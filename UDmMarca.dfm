@@ -1,0 +1,45 @@
+object DmMarca: TDmMarca
+  OldCreateOrder = False
+  Height = 487
+  Width = 714
+  object qMarcaObj: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from dbo.Marca')
+    Left = 336
+    Top = 96
+  end
+  object qPesqMarcaObj: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    CursorType = ctStatic
+    LockType = ltReadOnly
+    Parameters = <>
+    SQL.Strings = (
+      'select'
+      #9'Marc.Marc_id,'
+      #9'Marc.Marc_Nome'
+      'from Marca Marc')
+    Left = 336
+    Top = 192
+    object qPesqMarcaObjMarc_id: TAutoIncField
+      FieldName = 'Marc_id'
+      ReadOnly = True
+    end
+    object qPesqMarcaObjMarc_Nome: TStringField
+      FieldName = 'Marc_Nome'
+      Size = 50
+    end
+  end
+  object dsMarcaObj: TDataSource
+    DataSet = qMarcaObj
+    Left = 128
+    Top = 96
+  end
+  object dsPesqMarcaObj: TDataSource
+    DataSet = qPesqMarcaObj
+    Left = 128
+    Top = 192
+  end
+end

@@ -1,0 +1,161 @@
+unit UMarca;
+
+interface
+
+Type
+
+  TMarca = class(TObject)
+  private
+    { private declarations }
+    FId : Integer;
+    FNome : String;
+  protected
+    { protected declarations }
+  public
+    { public declarations }
+    Property Id : Integer read FId write FId;
+    Property Nome : String read FNome write FNome;
+
+    Function incluir : Boolean;
+    Function alterar : Boolean;
+    Function excluir : Boolean;
+    Function pesquisarId : Boolean;
+
+  published
+    { published declarations }
+  end;
+
+implementation
+
+Uses SysUtils, UDmMarca;
+
+{ TMarca }
+
+function TMarca.alterar: Boolean;
+var
+  sql : string;
+
+begin
+  Result := True;
+
+  try
+    sql :=
+    ' UPDATE Marca ' +
+    '    SET Marc_Nome = :Marc_Nome ' +
+    '  WHERE  Marc_id = :Marc_id ';
+
+
+    DmMarca.qMarcaObj.Close;
+    DmMarca.qMarcaObj.SQL.Text := sql;
+
+    DmMarca.qMarcaObj.Parameters.ParamByName('Marc_Nome').Value := Self.Nome;
+    DmMarca.qMarcaObj.Parameters.ParamByName('Marc_id').Value := Self.Id;
+
+    DmMarca.qMarcaObj.ExecSQL;
+
+  except on E: Exception do
+    begin
+      Result := False;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+
+end;
+
+function TMarca.excluir: Boolean;
+var
+  sql : string;
+begin
+  Result := True;
+
+  try
+    sql :=
+    '   delete from dbo.Marca   '+
+    '   where Marc_id = :Marc_id        ';
+
+    DmMarca.qMarcaObj.Close;
+    DmMarca.qMarcaObj.SQL.Text := sql;
+
+    DmMarca.qMarcaObj.Parameters.ParamByName('Marc_id').Value := Self.Id;
+
+    DmMarca.qMarcaObj.ExecSQL;
+
+  except on E: Exception do
+    begin
+      Result := False;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+
+end;
+
+function TMarca.incluir: Boolean;
+var
+  sql : string;
+
+begin
+  Result := True;
+
+  try
+    sql :=
+    ' INSERT INTO Marca     ' +
+    '           (Marc_Nome )                ' +
+    '     VALUES (                       ' +
+    '           :Marc_Nome)  ';
+
+
+    DmMarca.qMarcaObj.Close;
+    DmMarca.qMarcaObj.SQL.Text := sql;
+
+    DmMarca.qMarcaObj.Parameters.ParamByName('Marc_Nome').Value := Self.Nome;
+
+    DmMarca.qMarcaObj.ExecSQL;
+
+  except on E: Exception do
+    begin
+      Result := False;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+
+end;
+
+function TMarca.pesquisarId: Boolean;
+var
+  sql : string;
+
+begin
+  Result := True;
+
+   try
+
+      sql :=
+      ' select ' +
+      '  Marc.* ' +
+      ' from Marca Marca ' ;
+
+       sql := sql + ' where Marc.Marc_id = :Marc_id ';
+
+       DmMarca.qPesqMarcaObj.Close;
+       DmMarca.qPesqMarcaObj..Text := sql;
+       DmGrupo.qPesqGrupoObj.Parameters.ParamByName('Marc_id').Value := Self.Id;
+       DmGrupo.qPesqGrupoObj.Open;
+
+       Result := not DmGrupo.qPesqGrupoObj.IsEmpty;
+
+       if Result then
+       begin
+         Self.Nome := DmGrupo.qPesqGrupoObj.FieldByName('Marc_Nome').AsString;
+
+       end;
+
+   except on E: Exception do
+     begin
+       Result := False;
+       raise Exception.Create(E.Message);
+     end;
+   end;
+
+end;
+
+end.

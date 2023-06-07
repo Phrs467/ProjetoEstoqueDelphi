@@ -1,0 +1,37 @@
+unit UProdutos;
+
+interface
+
+Type
+  TProdutos = class(TObject)
+  private
+    { private declarations }
+    FId : Integer;
+    FNome : String;
+    FIdUni : Integer;
+    FIdForn : Integer;
+
+  protected
+    { protected declarations }
+  public
+    { public declarations }
+    Property Id : Integer read FId write FId;
+    Property Nome : String read FNome write FNome;
+    Property IdUni : Integer read FIdUni write FIdUni;
+    Property IdForn : Integer read FIdForn write FIdForn;
+
+    Function incluir : Boolean;
+  published
+    { published declarations }
+  end;
+
+implementation
+
+{ TProdutos }
+
+function TProdutos.incluir: Boolean;
+begin
+  Result := True;
+end;
+
+end.

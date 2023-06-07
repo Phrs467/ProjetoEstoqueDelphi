@@ -1,0 +1,27 @@
+object DmMarca: TDmMarca
+  OldCreateOrder = False
+  Height = 487
+  Width = 714
+  object qMarcaObj: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    Parameters = <>
+    Left = 336
+    Top = 96
+  end
+  object qPesqMarcaObj: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    Parameters = <>
+    Left = 336
+    Top = 192
+  end
+  object dsMarcaObj: TDataSource
+    DataSet = qMarcaObj
+    Left = 128
+    Top = 96
+  end
+  object dsPesqMarcaObj: TDataSource
+    DataSet = qPesqMarcaObj
+    Left = 128
+    Top = 192
+  end
+end

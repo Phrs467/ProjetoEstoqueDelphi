@@ -1,0 +1,156 @@
+object FormCadFornecedor: TFormCadFornecedor
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  Caption = 'Cadastro de Fornecedor'
+  ClientHeight = 541
+  ClientWidth = 778
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LblidForn: TLabel
+    Left = 48
+    Top = 85
+    Width = 14
+    Height = 14
+    Caption = 'ID'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object LblNomeForn: TLabel
+    Left = 48
+    Top = 157
+    Width = 106
+    Height = 14
+    Caption = 'Nome Fornecedor'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object LblPesqNomeForn: TLabel
+    Left = 376
+    Top = 360
+    Width = 27
+    Height = 13
+    Caption = 'Nome'
+  end
+  object LblPesqIdForn: TLabel
+    Left = 552
+    Top = 360
+    Width = 11
+    Height = 13
+    Caption = 'ID'
+  end
+  object DBEditIdForn: TDBEdit
+    Left = 48
+    Top = 104
+    Width = 97
+    Height = 21
+    DataField = 'Forn_id'
+    DataSource = DmFornecedor.dsFornecedor
+    TabOrder = 0
+  end
+  object DBGridCadForn: TDBGrid
+    Left = 376
+    Top = 104
+    Width = 320
+    Height = 177
+    DataSource = DmFornecedor.dsFornecedor
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'Forn_id'
+        Title.Caption = 'ID'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Forn_Nome'
+        Title.Caption = 'Nome'
+        Visible = True
+      end>
+  end
+  object DBNavigatorCadForn: TDBNavigator
+    Left = 376
+    Top = 56
+    Width = 320
+    Height = 33
+    DataSource = DmFornecedor.dsFornecedor
+    TabOrder = 2
+    OnClick = DBNavigatorCadFornClick
+  end
+  object BtPesqForn: TButton
+    Left = 376
+    Top = 424
+    Width = 75
+    Height = 25
+    Caption = 'Pesquisar'
+    TabOrder = 3
+    OnClick = BtPesqFornClick
+  end
+  object EditPesqNomeForn: TEdit
+    Left = 376
+    Top = 379
+    Width = 121
+    Height = 21
+    TabOrder = 4
+  end
+  object EditPesqIdForn: TEdit
+    Left = 552
+    Top = 379
+    Width = 121
+    Height = 21
+    TabOrder = 5
+  end
+  object RadioCadForn: TRadioGroup
+    Left = 376
+    Top = 304
+    Width = 320
+    Height = 50
+    Caption = 'Pesquisar por:'
+    Columns = 2
+    ItemIndex = 0
+    Items.Strings = (
+      'Nome'
+      'ID')
+    TabOrder = 6
+  end
+  object DBEditNomeForn: TDBEdit
+    Left = 48
+    Top = 176
+    Width = 201
+    Height = 21
+    DataField = 'Forn_Nome'
+    DataSource = DmFornecedor.dsFornecedor
+    TabOrder = 7
+  end
+  object MainMenu1: TMainMenu
+    Left = 32
+    Top = 312
+    object Imprimir1: TMenuItem
+      Caption = 'Imprimir'
+      OnClick = Imprimir1Click
+    end
+  end
+end

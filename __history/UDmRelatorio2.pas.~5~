@@ -1,0 +1,37 @@
+unit UDmRelatorio2;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB, Datasnap.DBClient,
+  Datasnap.Provider;
+
+type
+  TdmRelatorio2 = class(TDataModule)
+    DataSetProvider1: TDataSetProvider;
+    ClientDataSet1: TClientDataSet;
+    ADOConnection1: TADOConnection;
+    ADODataSet1: TADODataSet;
+    ClientDataSet1Fun_id: TIntegerField;
+    ClientDataSet1Fun_Nome: TStringField;
+    ClientDataSet1Dp_id: TIntegerField;
+    ClientDataSet1Dp_Nome: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dmRelatorio2: TdmRelatorio2;
+
+implementation
+
+uses
+  UDBConexao, URelatorio2;
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

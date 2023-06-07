@@ -1,0 +1,20 @@
+object dmDepartamentos: TdmDepartamentos
+  OldCreateOrder = False
+  Height = 475
+  Width = 727
+  object qDepartamentos: TADOQuery
+    Active = True
+    Connection = DBConexao.ConexaoBDPEDRO
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from dbo.Departamentos')
+    Left = 320
+    Top = 136
+  end
+  object dsDepartamentos: TDataSource
+    DataSet = qDepartamentos
+    Left = 160
+    Top = 136
+  end
+end

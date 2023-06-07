@@ -1,0 +1,160 @@
+unit UUnidade;
+
+interface
+
+Type
+  TUnidade = class(TObject)
+  private
+    { private declarations }
+    FId: integer;
+    FDescricao: string;
+
+  protected
+    { protected declarations }
+  public
+    { public declarations }
+    property Id: integer read FId write FId;
+    property Descricao: string read FDescricao write Fdescricao;
+
+    function incluir : boolean;
+    Function alterar : Boolean;
+    Function excluir : Boolean;
+    Function pesquisar : Boolean;
+
+  published
+    { published declarations }
+  end;
+
+implementation
+
+Uses
+  SysUtils, UDmUnidades;
+
+{ TUnidade }
+
+function TUnidade.alterar: Boolean;
+var
+  sql : string;
+
+begin
+  Result := True;
+
+  try
+    sql :=
+    ' UPDATE Unidades ' +
+    '    SET Uni_Descricao = :Uni_Descricao ' +
+    '  WHERE  Uni_id = :Uni_id ';
+
+
+    DmUnidades.qUnidadesObj.Close;
+    DmUnidades.qUnidadesObj.SQL.Text := sql;
+
+    DmUnidades.qUnidadesObj.Parameters.ParamByName('Uni_Descricao').Value := Self.Descricao;
+    DmUnidades.qUnidadesObj.Parameters.ParamByName('Uni_id').Value := Self.Id;
+
+    DmUnidades.qUnidadesObj.ExecSQL;
+
+  except on E: Exception do
+    begin
+      Result := False;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+
+function TUnidade.excluir: Boolean;
+var
+  sql : string;
+begin
+  Result := True;
+
+  try
+    sql :=
+    '   delete from dbo.Unidades   '+
+    '   where Uni_id = :Uni_id     ';
+
+    DmUnidades.qUnidadesObj.Close;
+    DmUnidades.qUnidadesObj.SQL.Text := sql;
+
+    DmUnidades.qUnidadesObj.Parameters.ParamByName('Uni_id').Value := Self.Id;
+
+    DmUnidades.qUnidadesObj.ExecSQL;
+
+  except on E: Exception do
+    begin
+      Result := False;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+
+function TUnidade.incluir: boolean;
+var
+  sql : string;
+
+begin
+  Result := True;
+
+  try
+    sql :=
+    ' INSERT INTO Unidades     ' +
+    '           (Uni_Descricao)          ' +
+    '     VALUES (                       ' +
+    '          ,:Uni_Descricao) ';
+
+
+    DmUnidades.qUnidadesObj.Close;
+    DmUnidades.qUnidadesObj.SQL.Text := sql;
+
+    DmUnidades.qUnidadesObj.Parameters.ParamByName('Uni_Descricao').Value := Self.Descricao;
+
+
+    DmUnidades.qUnidadesObj.ExecSQL;
+
+  except on E: Exception do
+    begin
+      Result := False;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+
+function TUnidade.pesquisar: Boolean;
+var
+  sql : string;
+
+begin
+  Result := True;
+
+   try
+
+      sql :=
+      ' select ' +
+      '  Uni.* ' +
+      ' from Unidades Uni ' ;
+
+       sql := sql + ' where Uni.Uni_id = :Uni_id ';
+
+       DmUnidades.qPesqUniObj.Close;
+       DmUnidades.qPesqUniObj.SQL.Text := sql;
+       DmUnidades.qPesqUniObj.Parameters.ParamByName('Uni_id').Value := Self.Id;
+       DmUnidades.qPesqUniObj.Open;
+
+       Result := not DmUnidades.qPesqUniObj.IsEmpty;
+
+       if Result then
+       begin
+         Self.Descricao := DmUnidades.qPesqUniObj.FieldByName('Uni_Descricao').AsString;
+         self.Id := DmUnidades.qPesqUniObj.FieldByName('Uni_id').AsInteger;
+       end;
+
+   except on E: Exception do
+     begin
+       Result := False;
+       raise Exception.Create(E.Message);
+     end;
+   end;
+
+end;
+
+end.

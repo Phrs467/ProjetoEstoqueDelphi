@@ -1,0 +1,73 @@
+unit UItensMovEntrada;
+
+interface
+
+Type
+
+  TItensMoviEntrada = class(TObject)
+  private
+    { private declarations }
+
+      FIdItens : Integer;
+      FIdProd : Integer;
+      FIdUni : Integer;
+      FIdMoe : Integer;
+      FImeQtd : Double;
+      FImeVlrUni : Double;
+      FImeVlrTotBruto : Double;
+      FImeVlrTotFrete : Double;
+      FImeVlrDesconto : Double;
+      FImeVlrTotLiquido : Double;
+
+  protected
+    { protected declarations }
+  public
+    { public declarations }
+    Property IdItens : Integer read FIdItens write FIdItens;
+    Property IdProd : Integer read FIdProd write FIdProd;
+    Property IdUni : Integer read FIdUni write FIdUni;
+    Property IdMoe : Integer read FIdMoe write FIdMoe;
+    Property ImeQtd : Double read FImeQtd write FImeQtd;
+    Property ImeVlrUni : Double read FImeVlrUni write FImeVlrUni;
+    Property ImeVlrTotBruto : Double read FImeVlrTotBruto write FImeVlrTotBruto;
+    Property ImeVlrTotFrete : Double read FImeVlrTotFrete write FImeVlrTotFrete;
+    Property ImeVlrDesconto : Double read FImeVlrDesconto write FImeVlrDesconto;
+    Property ImeVlrTotLiquido : Double read FImeVlrTotLiquido write FImeVlrTotLiquido;
+
+    Function incluir : boolean;
+    function alterar: Boolean;
+    function excluir: Boolean;
+    function pesquisarIdItensMoviEntra: Boolean;
+
+  published
+    { published declarations }
+  end;
+
+implementation
+
+Uses
+  SysUtils,
+
+{ TItensMoviEntrada }
+
+function TItensMoviEntrada.alterar: Boolean;
+begin
+
+end;
+
+function TItensMoviEntrada.excluir: Boolean;
+begin
+
+end;
+
+function TItensMoviEntrada.incluir: boolean;
+begin
+
+end;
+
+function TItensMoviEntrada.pesquisarIdItensMoviEntra: Boolean;
+begin
+
+end;
+
+end.

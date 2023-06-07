@@ -1,0 +1,116 @@
+object FormRelatorioUni: TFormRelatorioUni
+  Left = 0
+  Top = 0
+  Caption = 'Relat'#243'rio Unidades'
+  ClientHeight = 597
+  ClientWidth = 864
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RLReport1: TRLReport
+    Left = 0
+    Top = 0
+    Width = 794
+    Height = 1123
+    DataSource = dsUnidades
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    object RLBand1: TRLBand
+      Left = 38
+      Top = 38
+      Width = 718
+      Height = 48
+      BandType = btHeader
+      object RLSystemInfo1: TRLSystemInfo
+        Left = 652
+        Top = 0
+        Width = 66
+        Height = 16
+        Align = faRightTop
+        Info = itHour
+        Text = 'Hora'
+      end
+      object RLSystemInfo2: TRLSystemInfo
+        Left = 582
+        Top = 0
+        Width = 70
+        Height = 16
+        Align = faRightTop
+        Text = 'Data:'
+      end
+      object RLSystemInfo3: TRLSystemInfo
+        Left = 286
+        Top = 0
+        Width = 145
+        Height = 16
+        Align = faCenterTop
+        Info = itTitle
+        Text = 'Relat'#243'rio Unidades'
+      end
+    end
+    object RLBand2: TRLBand
+      Left = 38
+      Top = 86
+      Width = 718
+      Height = 59
+      BandType = btHeader
+      object RLLabel1: TRLLabel
+        Left = 32
+        Top = 0
+        Width = 16
+        Height = 16
+        Align = faTopOnly
+        Caption = 'ID'
+      end
+      object RLLabel2: TRLLabel
+        Left = 184
+        Top = 0
+        Width = 62
+        Height = 16
+        Align = faTopOnly
+        Caption = 'Descri'#231#227'o'
+      end
+    end
+    object RLBand3: TRLBand
+      Left = 38
+      Top = 145
+      Width = 718
+      Height = 88
+      BandType = btFooter
+      object RLDBText1: TRLDBText
+        Left = 32
+        Top = 0
+        Width = 40
+        Height = 16
+        Align = faTopOnly
+        DataField = 'Uni_id'
+        DataSource = dsUnidades
+        Text = ''
+      end
+      object RLDBText2: TRLDBText
+        Left = 184
+        Top = 0
+        Width = 40
+        Height = 16
+        Align = faTopOnly
+        DataField = 'Uni_id'
+        DataSource = dsUnidades
+        Text = ''
+      end
+    end
+  end
+  object dsUnidades: TDataSource
+    DataSet = dmRelatorio2.cdsUnidades
+    Left = 808
+    Top = 120
+  end
+end

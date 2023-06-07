@@ -1,0 +1,55 @@
+unit UPesqItensMoviEntrada;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Data.DB,
+  Vcl.Grids, Vcl.DBGrids;
+
+type
+  TFormPesqItensMoviEntrada = class(TForm)
+    PanelPesqItensMoviEntra: TPanel;
+    RgPesqItensMoviEntra: TRadioGroup;
+    EdtPesqItensMoviEntra: TEdit;
+    LblPesqItensMoviEntra: TLabel;
+    BtPesqItensMoviEntra: TButton;
+    BtSelecionarItensMoviEntrada: TButton;
+    DBGridPesqItensMoviEntra: TDBGrid;
+    procedure RgPesqItensMoviEntraClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormPesqItensMoviEntrada: TFormPesqItensMoviEntrada;
+
+implementation
+
+uses
+  UDmItensMoviEntrada;
+
+{$R *.dfm}
+
+procedure TFormPesqItensMoviEntrada.RgPesqItensMoviEntraClick(Sender: TObject);
+begin
+  if RgPesqItensMoviEntra.ItemIndex = 0 then
+  begin
+    LblPesqItensMoviEntra.Caption := 'Digite seu ID:'
+  end;
+
+  if RgPesqItensMoviEntra.ItemIndex = 1 then
+  begin
+    LblPesqItensMoviEntra.Caption := 'Digite o Nome do produto:'
+  end;
+
+  if RgPesqItensMoviEntra.ItemIndex = 2 then
+  begin
+    LblPesqItensMoviEntra.Caption := 'Digite o ID de movimentação: '
+  end;
+
+end;
+
+end.

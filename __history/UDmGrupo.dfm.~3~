@@ -1,0 +1,27 @@
+object DmGrupo: TDmGrupo
+  OldCreateOrder = False
+  Height = 483
+  Width = 731
+  object qGrupoObj: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    Parameters = <>
+    Left = 296
+    Top = 104
+  end
+  object qPesqGrupoObj: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    Parameters = <>
+    Left = 296
+    Top = 192
+  end
+  object dsGrupoObj: TDataSource
+    DataSet = qGrupoObj
+    Left = 128
+    Top = 104
+  end
+  object dsPesqGrupoObj: TDataSource
+    DataSet = qPesqGrupoObj
+    Left = 128
+    Top = 192
+  end
+end

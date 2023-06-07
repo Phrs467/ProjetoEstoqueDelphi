@@ -1,0 +1,25 @@
+unit UDmGrupo;
+
+interface
+
+uses
+  System.SysUtils, System.Classes;
+
+type
+  TDmGrupo = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DmGrupo: TDmGrupo;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

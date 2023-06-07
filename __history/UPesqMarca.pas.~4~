@@ -1,0 +1,51 @@
+unit UPesqMarca;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TFormPesqMarca = class(TForm)
+    Panel1: TPanel;
+    RgPesqMarca: TRadioGroup;
+    LblPesqMarca: TLabel;
+    EdtPesqMarca: TEdit;
+    BtPesqGrupo: TButton;
+    BtSelecMarca: TButton;
+    DBGrid1: TDBGrid;
+    procedure RgPesqMarcaClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormPesqMarca: TFormPesqMarca;
+
+implementation
+
+uses
+  UDmMarca;
+
+{$R *.dfm}
+
+procedure TFormPesqMarca.RgPesqMarcaClick(Sender: TObject);
+begin
+  if RgPesqMarca.ItemIndex = 0 then
+  begin
+    LblPesqMarca.Caption := 'Digite seu nome:';
+  end;
+
+  if RgPesqMarca.ItemIndex = 1 then
+  begin
+    LblPesqMarca.Caption := 'Digite seu Id:';
+  end;
+
+
+end;
+
+end.

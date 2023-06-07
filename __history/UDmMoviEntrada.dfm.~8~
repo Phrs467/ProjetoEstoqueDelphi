@@ -1,0 +1,51 @@
+object DmMoviEntrada: TDmMoviEntrada
+  OldCreateOrder = False
+  Height = 410
+  Width = 483
+  object DsMoviEntrada: TDataSource
+    DataSet = qMoviEntrada
+    Left = 56
+    Top = 104
+  end
+  object DsPesqMoviEntrada: TDataSource
+    DataSet = qPesqMoviEntrada
+    Left = 56
+    Top = 184
+  end
+  object qMoviEntrada: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    Parameters = <>
+    Left = 272
+    Top = 104
+  end
+  object qPesqMoviEntrada: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    CursorType = ctStatic
+    LockType = ltReadOnly
+    Parameters = <>
+    SQL.Strings = (
+      'select'
+      '  Mov.Moe_id,'
+      '  Mov.Num_Nota,'
+      '  Mov.Forn_id,'
+      '  Forn.Forn_Nome'
+      'from Movimento_Entrada Mov'
+      #9'left outer join Fornecedor Forn on Forn.Forn_id = Mov.Forn_id')
+    Left = 272
+    Top = 184
+    object qPesqMoviEntradaNum_Nota: TLargeintField
+      FieldName = 'Num_Nota'
+    end
+    object qPesqMoviEntradaForn_id: TIntegerField
+      FieldName = 'Forn_id'
+    end
+    object qPesqMoviEntradaForn_Nome: TStringField
+      FieldName = 'Forn_Nome'
+      Size = 50
+    end
+    object qPesqMoviEntradaMoe_id: TIntegerField
+      FieldName = 'Moe_id'
+      ReadOnly = True
+    end
+  end
+end

@@ -1,0 +1,48 @@
+unit UCadDepartamentoObj;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TFormCadDepartamentoObj = class(TForm)
+    PanelCadDepartamentoObj: TPanel;
+    LblCadIdDepObj: TLabel;
+    EdtCadIdDepObj: TEdit;
+    LblCadNomeDepObj: TLabel;
+    EdtCadNomeDepObj: TEdit;
+    btnBtNovoCadDepartamento: TButton;
+    BtSalvarCadDepartamento: TButton;
+    BtExcluirCadDepartamento: TButton;
+    procedure btnBtNovoCadDepartamentoClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure LimparForm;
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCadDepartamentoObj: TFormCadDepartamentoObj;
+
+implementation
+
+{$R *.dfm}
+
+{ TFormCadDepartamentoObj }
+
+procedure TFormCadDepartamentoObj.btnBtNovoCadDepartamentoClick(
+  Sender: TObject);
+begin
+  LimparForm;
+end;
+
+procedure TFormCadDepartamentoObj.LimparForm;
+begin
+  EdtCadIdDepObj.Clear;
+  EdtCadNomeDepObj.Clear;
+end;
+
+end.

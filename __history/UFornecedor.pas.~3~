@@ -1,0 +1,53 @@
+unit UFornecedor;
+
+interface
+
+Type
+  TFornecedor = class(TObject)
+  private
+    { private declarations }
+    FId : Integer;
+    FNome : String;
+
+  protected
+    { protected declarations }
+  public
+    { public declarations }
+    Property Id : Integer read FId write FId;
+    Property Nome : String read FNome write FNome;
+
+    Function incluir : Boolean;
+    function alterar: Boolean;
+    function excluir: Boolean;
+    function pesquisar: Boolean;
+
+
+  published
+    { published declarations }
+  end;
+
+implementation
+
+{ TFornecedor }
+
+function TFornecedor.alterar: Boolean;
+begin
+  Result := True;
+end;
+
+function TFornecedor.excluir: Boolean;
+begin
+  Result := True;
+end;
+
+function TFornecedor.incluir: Boolean;
+begin
+  Result := True;
+end;
+
+function TFornecedor.pesquisar: Boolean;
+begin
+  Result := True;
+end;
+
+end.

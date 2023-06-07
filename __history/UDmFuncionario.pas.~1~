@@ -1,0 +1,33 @@
+unit UDmFuncionario;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB;
+
+type
+  TDmFuncionario = class(TDataModule)
+    qFuncionarios: TADOQuery;
+    qFuncionariosFun_id: TIntegerField;
+    qFuncionariosFun_Nome: TStringField;
+    qFuncionariosFun_Senha: TStringField;
+    dsFuncionarios: TDataSource;
+    qId: TADOQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DmFuncionario: TDmFuncionario;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses UDBConexao;
+
+{$R *.dfm}
+
+end.

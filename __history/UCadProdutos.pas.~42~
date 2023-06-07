@@ -1,0 +1,119 @@
+unit UCadProdutos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.Menus, UProduto;
+
+type
+  TFormCadProdutos = class(TForm)
+    editIdProd: TDBEdit;
+    LblCadIdProd: TLabel;
+    editNomeProd: TDBEdit;
+    LblCadNomeProd: TLabel;
+    RadioPesqProd: TRadioGroup;
+    EditPesqProdNome: TEdit;
+    EditPesqProdId: TEdit;
+    LblPesqNomeProd: TLabel;
+    LblPesqCadId: TLabel;
+    BtPesqCadProd: TButton;
+    DBNavigatorCadProd: TDBNavigator;
+    DBGridCadProd: TDBGrid;
+    LblCadUniCadProd: TLabel;
+    DBEditCadProdUniId: TDBEdit;
+    MainMenuImprimirCadProd: TMainMenu;
+    Imprimir1: TMenuItem;
+    BtPesqUniTela: TButton;
+    EditPesqUniTela: TEdit;
+    dsProdTela: TDataSource;
+    procedure BtPesqCadProdClick(Sender: TObject);
+    procedure Imprimir1Click(Sender: TObject);
+    procedure BtPesqUniTelaClick(Sender: TObject);
+    procedure dsProdTelaDataChange(Sender: TObject; Field: TField);
+    procedure FormActivate(Sender: TObject);
+
+  private
+    { Private declarations }
+    Produto: TProduto;
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCadProdutos: TFormCadProdutos;
+
+implementation
+
+{$R *.dfm}
+
+uses UDmProdutos, URelatorioProd, UPesqUnidades, UDmUnidades, UPesqFornecedor, UDmFornecedor;
+
+procedure TFormCadProdutos.BtPesqUniTelaClick(Sender: TObject);
+begin
+  FormPesqUnidades.ShowModal;
+  if FormPesqUnidades.FrmIdUnidades > 0 then
+  begin
+    if not (DmProdutos.dsProdutos.State in [dsEdit, dsInsert]) then
+    begin
+      DmProdutos.dsProdutos.Edit;
+    end;
+
+    DBEditCadProdUniId.Field.Value := FormPesqUnidades.FrmIdUnidades;
+    EditPesqUniTela.Text := FormPesqUnidades.FrmDescUnidades;
+  end;
+
+end;
+
+procedure TFormCadProdutos.BtPesqCadProdClick(Sender: TObject);
+begin
+  if RadioPesqProd.ItemIndex = 0  then
+    begin
+      if EditPesqProdNome.Text <> '' then
+        begin
+          if not DmProdutos.qProdutos.Locate('Prod_Nome', EditPesqProdNome.Text, [loPartialKey]) then
+            begin
+             ShowMessage('Não encontrado!');
+            end;
+        end;
+    end;
+
+  if RadioPesqProd.ItemIndex = 1  then
+    begin
+      if EditPesqProdId.Text <> '' then
+        begin
+          if not DmProdutos.qProdutos.Locate('Prod_id', EditPesqProdId.Text, []) then
+            begin
+             ShowMessage('Não encontrado!');
+            end;
+        end;
+    end;
+
+
+
+end;
+
+
+
+procedure TFormCadProdutos.dsProdTelaDataChange(Sender: TObject; Field: TField);
+begin
+  if self.Active then
+  begin
+//     EditPesqUniTela.Text := DmUnidades.RetornaDescUnidades(DBEditCadProdUniId.Field.AsInteger);
+  end;
+
+end;
+
+
+procedure TFormCadProdutos.FormActivate(Sender: TObject);
+begin
+  dsProdTelaDataChange(nil, nil);
+end;
+
+procedure TFormCadProdutos.Imprimir1Click(Sender: TObject);
+begin
+  FormRelatorioProd.RLReportProdutos.Preview()
+end;
+
+end.

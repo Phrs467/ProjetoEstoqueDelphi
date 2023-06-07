@@ -1,0 +1,5 @@
+﻿object DmRelatório: TDmRelatório
+  OldCreateOrder = False
+  Height = 600
+  Width = 666
+end

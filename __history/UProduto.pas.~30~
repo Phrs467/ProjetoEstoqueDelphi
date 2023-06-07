@@ -1,0 +1,290 @@
+unit UProduto;
+
+interface
+
+Type
+  TProduto = class(TObject)
+  private
+    { private declarations }
+    FId : Integer;
+    FNome : String;
+    FIdUni : Integer;
+    FIdGrup : Integer;
+    FIdMarc : Integer;
+
+  protected
+    { protected declarations }
+  public
+    { public declarations }
+    Property Id : Integer read FId write FId;
+    Property Nome : String read FNome write FNome;
+    Property IdUni : Integer read FIdUni write FIdUni;
+    Property IdGrup : Integer read FIdGrup write FIdGrup;
+    Property IdMarc : Integer read FIdMarc write FIdMarc;
+
+    Function incluir : Boolean;
+    function alterar: Boolean;
+    function excluir: Boolean;
+    function pesquisarId: Boolean;
+  published
+    { published declarations }
+  end;
+
+implementation
+
+uses
+  SysUtils, UDmProdutos;
+
+{ TProdutos }
+
+function TProduto.alterar: Boolean;
+var
+  sqlUpdate,
+  sqlCampos,
+  sqlWhere,
+  sql : string;
+
+begin
+  Result := True;
+
+  try
+//    sql :=
+//    ' UPDATE Produtos               ' +
+//    '    SET Prod_Nome = :Prod_Nome ' +
+//    '       ,Uni_id = :Uni_id       ' +
+//    '       ,Marc_id = :Marc_id     ' +
+//    '       ,Grup_id = :Grup_id     ' +
+//    '  WHERE  Prod_id = :Prod_id    ';
+//
+//
+//    DmProdutos.qProdutosObj.Close;
+//    DmProdutos.qProdutosObj.SQL.Text := sql;
+//
+//    DmProdutos.qProdutosObj.Parameters.ParamByName('Prod_Nome').Value := Self.Nome;
+//    DmProdutos.qProdutosObj.Parameters.ParamByName('Uni_id').Value := Self.IdUni;
+//    DmProdutos.qProdutosObj.Parameters.ParamByName('Prod_id').Value := Self.Id;
+//    DmProdutos.qProdutosObj.Parameters.ParamByName('Marc_id').Value := Self.IdMarc;
+//    DmProdutos.qProdutosObj.Parameters.ParamByName('Grup_id').Value := Self.IdGrup;
+
+      sqlCampos :=
+      ' UPDATE Produtos   '+
+      '     set Prod_nome = :Prod_Nome  ';
+
+      if Self.IdUni > 0 then
+        sqlCampos := sqlCampos +
+        '     ,Uni_id = :Uni_id   '
+      else
+        sqlCampos := sqlCampos +
+        '     ,Uni_id = null;  '
+
+      if Self.IdMarc > 0 then
+        sqlCampos := sqlCampos +
+        '     ,Marc_id = :Marc_id   '
+      else
+        sqlCampos := sqlCampos +
+        '     ,Marc_id = null   ';
+
+      if Self.IdGrup > 0 then
+        sqlCampos := sqlCampos +
+        '     ,Grup_id = :Grup_id   '
+      else sqlCampos := sqlCampos +
+        '     ,Grup_id = null   '
+
+      sqlWhere :=
+      '   WHERE Prod_id = :Prod_id  ';
+
+      sqlUpdate := sqlCampos + sqlWhere;
+
+      DmProdutos.qProdutosObj.Close;
+      DmProdutos.qProdutosObj.SQL.Text := sqlUpdate;
+
+      DmProdutos.qProdutosObj.Parameters.ParamByName('Prod_id').Value := Self.Id;
+      DmProdutos.qProdutosObj.Parameters.ParamByName('Prod_Nome').Value := Self.Nome;
+
+      if Self.IdUni > 0 then
+        DmProdutos.qProdutosObj.Parameters.ParamByName('Uni_id').Value := Self.IdUni;
+
+      if Self.IdMarc > 0 then
+        DmProdutos.qProdutosObj.Parameters.ParamByName('Marc_id').Value := Self.IdMarc;
+
+      if Self.IdGrup > 0 then
+        DmProdutos.qProdutosObj.Parameters.ParamByName('Grup_id').Value := Self.IdGrup;
+
+      DmProdutos.qProdutosObj.ExecSQL;
+
+  except on E: Exception do
+    begin
+      Result := False;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+
+end;
+
+function TProduto.excluir: Boolean;
+var
+  sql : string;
+begin
+  Result := True;
+
+  try
+    sql :=
+    '   delete from dbo.Produtos   '+
+    '   where Prod_id = :Prod_id        ';
+
+    DmProdutos.qProdutosObj.Close;
+    DmProdutos.qProdutosObj.SQL.Text := sql;
+
+    DmProdutos.qProdutosObj.Parameters.ParamByName('Prod_id').Value := Self.Id;
+
+    DmProdutos.qProdutosObj.ExecSQL;
+
+  except on E: Exception do
+    begin
+      Result := False;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+
+end;
+
+function TProduto.incluir: Boolean;
+var
+  sqlInsert,
+  sqlCampos,
+  sqlValues,
+  sql : string;
+
+begin
+  Result := True;
+
+  try
+//    sql :=
+//    ' INSERT INTO Produtos      ' +
+//    '           (Prod_Nome      ' +
+//    '           ,Uni_id         ' +
+//    '           ,Marc_id        ' +
+//    '           ,Grup_id)       ' +
+//    '     VALUES (              ' +
+//    '            :Prod_Nome     ' +
+//    '           ,:Uni_id        ' +
+//    '           ,:Marc_id       ' +
+//    '           ,:Grup_id)      ' ;
+//
+//
+//    DmProdutos.qProdutosObj.Close;
+//    DmProdutos.qProdutosObj.SQL.Text := sql;
+//
+//    DmProdutos.qProdutosObj.Parameters.ParamByName('Prod_Nome').Value := Self.Nome;
+//    DmProdutos.qProdutosObj.Parameters.ParamByName('Uni_id').Value := Self.IdUni;
+//    DmProdutos.qProdutosObj.Parameters.ParamByName('Marc_id').Value := Self.IdMarc;
+//    DmProdutos.qProdutosObj.Parameters.ParamByName('Grup_id').Value := Self.IdGrup;
+
+
+    sqlCampos :=
+    ' INSERT INTO Produtos      ' +
+    '           (Prod_Nome      ' ;
+
+    if Self.IdUni > 0 then
+      sqlCampos := sqlCampos +
+       '          , Uni_id         ';
+
+    if Self.IdMarc > 0 then
+      sqlCampos := sqlCampos +
+       '          , Marc_id        ';
+
+    if Self.IdGrup  > 0then
+      sqlCampos := sqlCampos +
+        '         , Grup_id        ';
+
+    sqlCampos := sqlCampos +
+    ' ) ';
+
+    sqlValues :=
+    '     VALUES (              ' +
+    '            :Prod_Nome     ' ;
+
+    if Self.IdUni > 0 then
+      sqlValues := sqlValues +
+      '          , :Uni_id         ' ;
+
+    if Self.IdMarc > 0 then
+      sqlValues := sqlValues +
+      '          , :Marc_id        ' ;
+
+    if Self.IdGrup > 0 then
+      sqlValues := sqlValues +
+      '          , :Grup_id        ' ;
+
+    sqlValues :=  sqlValues +
+    ' ) ';
+
+    sqlInsert := sqlCampos + sqlValues;
+
+    DmProdutos.qProdutosObj.Close;
+    DmProdutos.qProdutosObj.SQL.Text := sqlInsert;
+
+    DmProdutos.qProdutosObj.Parameters.ParamByName('Prod_Nome').Value := Self.Nome;
+
+    if Self.IdUni > 0 then
+      DmProdutos.qProdutosObj.Parameters.ParamByName('Uni_id').Value := Self.IdUni;
+
+    if Self.IdMarc > 0 then
+      DmProdutos.qProdutosObj.Parameters.ParamByName('Marc_id').Value := Self.IdMarc;
+
+    if Self.IdGrup > 0 then
+      DmProdutos.qProdutosObj.Parameters.ParamByName('Grup_id').Value := Self.IdGrup;
+
+
+
+    DmProdutos.qProdutosObj.ExecSQL;
+
+  except on E: Exception do
+    begin
+      Result := False;
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+
+function TProduto.pesquisarId: Boolean;
+var
+  sql : string;
+
+begin
+  Result := True;
+
+   try
+
+      sql :=
+      ' select ' +
+      '  prod.* ' +
+      ' from Produtos prod ' ;
+
+       sql := sql + ' where Prod.Prod_id = :Prod_id ';
+
+       DmProdutos.qPesqProdObj.Close;
+       DmProdutos.qPesqProdObj.SQL.Text := sql;
+       DmProdutos.qPesqProdObj.Parameters.ParamByName('Prod_id').Value := Self.Id;
+       DmProdutos.qPesqProdObj.Open;
+
+       Result := not DmProdutos.qPesqProdObj.IsEmpty;
+
+       if Result then
+       begin
+         Self.Nome := DmProdutos.qPesqProdObj.FieldByName('Prod_Nome').AsString;
+         Self.IdUni := DmProdutos.qPesqProdObj.FieldByName('Uni_id').AsInteger;
+         Self.IdMarc := DmProdutos.qPesqProdObj.FieldByName('Marc_id').AsInteger;
+         Self.IdGrup := DmProdutos.qPesqProdObj.FieldByName('Grup_id').AsInteger;
+       end;
+
+   except on E: Exception do
+     begin
+       Result := False;
+       raise Exception.Create(E.Message);
+     end;
+   end;
+
+end;
+
+end.

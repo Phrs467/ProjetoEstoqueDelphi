@@ -1,0 +1,5 @@
+object DmMarca: TDmMarca
+  OldCreateOrder = False
+  Height = 487
+  Width = 714
+end

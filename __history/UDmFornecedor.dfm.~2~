@@ -1,0 +1,18 @@
+object DmFornecedor: TDmFornecedor
+  OldCreateOrder = False
+  Height = 487
+  Width = 612
+  object qFornecedor: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    Parameters = <>
+    SQL.Strings = (
+      'select * from dbo.Fornecedor')
+    Left = 232
+    Top = 152
+  end
+  object dsFornecedor: TDataSource
+    DataSet = qFornecedor
+    Left = 136
+    Top = 152
+  end
+end

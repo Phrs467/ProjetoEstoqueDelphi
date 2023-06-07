@@ -1,0 +1,5 @@
+object DmGrupo: TDmGrupo
+  OldCreateOrder = False
+  Height = 405
+  Width = 449
+end

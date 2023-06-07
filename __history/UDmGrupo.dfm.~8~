@@ -1,0 +1,37 @@
+object DmGrupo: TDmGrupo
+  OldCreateOrder = False
+  Height = 483
+  Width = 731
+  object qGrupoObj: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from dbo.Grupo')
+    Left = 296
+    Top = 104
+  end
+  object qPesqGrupoObj: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    CursorType = ctStatic
+    LockType = ltReadOnly
+    Parameters = <>
+    SQL.Strings = (
+      'select'
+      #9'Grup.Grup_id,'
+      #9'Grup.Grup_Nome'
+      'from Grupo Grup')
+    Left = 296
+    Top = 192
+  end
+  object dsGrupoObj: TDataSource
+    DataSet = qGrupoObj
+    Left = 128
+    Top = 104
+  end
+  object dsPesqGrupoObj: TDataSource
+    DataSet = qPesqGrupoObj
+    Left = 120
+    Top = 192
+  end
+end

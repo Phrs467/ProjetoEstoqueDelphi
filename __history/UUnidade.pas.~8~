@@ -1,0 +1,52 @@
+unit UUnidade;
+
+interface
+
+Type
+  TUnidade = class(TObject)
+  private
+    { private declarations }
+    FId: integer;
+    FDescricao: string;
+
+  protected
+    { protected declarations }
+  public
+    { public declarations }
+    property Id: integer read FId write FId;
+    property Descricao: string read FDescricao write Fdescricao;
+
+    function incluir : boolean;
+    Function alterar : Boolean;
+    Function excluir : Boolean;
+    Function pesquisar : Boolean;
+
+  published
+    { published declarations }
+  end;
+
+implementation
+
+{ TUnidade }
+
+function TUnidade.alterar: Boolean;
+begin
+  Result := True;
+end;
+
+function TUnidade.excluir: Boolean;
+begin
+  Result := True;
+end;
+
+function TUnidade.incluir: boolean;
+begin
+  Result := True;
+end;
+
+function TUnidade.pesquisar: Boolean;
+begin
+  Result := True;
+end;
+
+end.

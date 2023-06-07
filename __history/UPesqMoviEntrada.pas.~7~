@@ -1,0 +1,111 @@
+unit UPesqMoviEntrada;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TFormPesqMoviEntrada = class(TForm)
+    PanelPesqMoviEntrada: TPanel;
+    RgPesqMoviEntrada: TRadioGroup;
+    EdtPesqMoviEntrada: TEdit;
+    LblPesqMoviEntrada: TLabel;
+    BtPesqMoviEntrada: TButton;
+    BtSelecMoviEntrada: TButton;
+    DBGridPesqMoviEntrada: TDBGrid;
+    procedure RgPesqMoviEntradaClick(Sender: TObject);
+    procedure BtPesqMoviEntradaClick(Sender: TObject);
+    procedure BtSelecMoviEntradaClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    FrmNumNota  : Integer;
+    FrmNomeForn   : String;
+  end;
+
+var
+  FormPesqMoviEntrada: TFormPesqMoviEntrada;
+
+implementation
+
+uses
+  UDmMoviEntrada;
+
+{$R *.dfm}
+
+procedure TFormPesqMoviEntrada.BtPesqMoviEntradaClick(Sender: TObject);
+var
+  sql : string;
+
+begin
+
+  sql :=
+  ' select ' +
+  '  Mov.Num_Nota, ' +
+  '  Mov.Forn_id, ' +
+  '  Forn.Forn_Nome ' +
+  '  from Movimento_Entrada Mov ' +
+  '  left outer join Fornecedor Forn  On Forn.Forn_id = Mov.Forn_id ';
+
+  if RgPesqMoviEntrada.ItemIndex = 0 then
+  begin
+     if EdtPesqMoviEntrada.Text <> '' then
+      begin
+         sql := sql + ' where Mov.Num_Nota = :Num_Nota ';
+
+         DmMoviEntrada.qPesqMoviEntrada.Close;
+         DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
+         DmMoviEntrada.qPesqMoviEntrada.Parameters.ParamByName('Num_Nota').Value := EdtPesqMoviEntrada.Text;
+         DmMoviEntrada.qPesqMoviEntrada.Open;
+      end;
+  end;
+
+  if RgPesqMoviEntrada.ItemIndex = 1 then
+  begin
+     if EdtPesqMoviEntrada.Text <> '' then
+      begin
+         sql := sql + ' where Mov.Num_Nota like ''%' + EdtPesqMoviEntrada.Text + '%''';
+
+         DmMoviEntrada.qPesqMoviEntrada.Close;
+         DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
+         DmMoviEntrada.qPesqMoviEntrada.Open;
+      end;
+  end;
+
+end;
+
+procedure TFormPesqMoviEntrada.BtSelecMoviEntradaClick(Sender: TObject);
+begin
+  FrmNumNota := 0;
+  FrmNomeForn := '';
+   if not DmMoviEntrada.qPesqMoviEntrada.IsEmpty then
+   begin
+     FrmNumNota := DmMoviEntrada.qPesqMoviEntradaNum_Nota.AsInteger;
+     FrmNomeForn := DmMoviEntrada.qPesqMoviEntradaForn_Nome.AsString;
+   end;
+   Self.Close;
+
+end;
+
+procedure TFormPesqMoviEntrada.RgPesqMoviEntradaClick(Sender: TObject);
+begin
+    begin
+    if RgPesqMoviEntrada.ItemIndex = 0 then
+      begin
+        LblPesqMoviEntrada.Caption := 'Digite o Nº nota:';
+      end;
+
+    if RgPesqMoviEntrada.ItemIndex = 1 then
+      begin
+        LblPesqMoviEntrada.Caption := 'Digite o Fornecedor';
+      end;
+
+  end;
+
+end;
+
+end.

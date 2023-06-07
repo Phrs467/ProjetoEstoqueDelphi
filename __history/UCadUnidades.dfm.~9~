@@ -1,0 +1,144 @@
+object FormUnidades: TFormUnidades
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro de Unidades'
+  ClientHeight = 422
+  ClientWidth = 678
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Lblid: TLabel
+    Left = 32
+    Top = 45
+    Width = 11
+    Height = 13
+    Caption = 'ID'
+  end
+  object LblDesc: TLabel
+    Left = 32
+    Top = 101
+    Width = 46
+    Height = 13
+    Caption = 'Descri'#231#227'o'
+  end
+  object LblPesqDesc: TLabel
+    Left = 272
+    Top = 351
+    Width = 46
+    Height = 13
+    Caption = 'Descri'#231#227'o'
+  end
+  object LblPesqId: TLabel
+    Left = 456
+    Top = 351
+    Width = 10
+    Height = 13
+    Caption = 'Id'
+  end
+  object DBEditId: TDBEdit
+    Left = 32
+    Top = 64
+    Width = 121
+    Height = 21
+    Cursor = crNo
+    DataField = 'Uni_id'
+    DataSource = DmUnidades.dsUnidades
+    ReadOnly = True
+    TabOrder = 0
+  end
+  object DBGridCadUni: TDBGrid
+    Left = 272
+    Top = 110
+    Width = 360
+    Height = 188
+    DataSource = DmUnidades.dsUnidades
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'Uni_id'
+        Title.Caption = 'ID'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Uni_Descricao'
+        Title.Caption = 'DESCRI'#199#195'O'
+        Visible = True
+      end>
+  end
+  object DBMemoDesc: TDBMemo
+    Left = 32
+    Top = 120
+    Width = 185
+    Height = 89
+    DataField = 'Uni_Descricao'
+    DataSource = DmUnidades.dsUnidades
+    TabOrder = 2
+  end
+  object RadioPesqUni: TRadioGroup
+    Left = 272
+    Top = 304
+    Width = 360
+    Height = 41
+    Caption = 'Pesquisar por:'
+    Columns = 2
+    ItemIndex = 0
+    Items.Strings = (
+      'Descri'#231#227'o'
+      'ID')
+    TabOrder = 3
+  end
+  object EditPesqDescUni: TEdit
+    Left = 272
+    Top = 370
+    Width = 121
+    Height = 21
+    TabOrder = 4
+  end
+  object EditPesqIdUni: TEdit
+    Left = 456
+    Top = 370
+    Width = 121
+    Height = 21
+    TabOrder = 5
+  end
+  object BtPesqUni: TButton
+    Left = 272
+    Top = 408
+    Width = 75
+    Height = 25
+    Caption = 'Pesquisar'
+    TabOrder = 6
+    OnClick = BtPesqUniClick
+  end
+  object DBNavigatorCadUni: TDBNavigator
+    Left = 272
+    Top = 39
+    Width = 360
+    Height = 46
+    DataSource = DmUnidades.dsUnidades
+    TabOrder = 7
+  end
+  object MainMenu1: TMainMenu
+    Left = 104
+    Top = 272
+    object Imprimir1: TMenuItem
+      Caption = 'Imprimir'
+      OnClick = Imprimir1Click
+    end
+  end
+end

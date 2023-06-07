@@ -1,0 +1,32 @@
+unit UPesqGrupo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.ExtCtrls, Vcl.StdCtrls;
+
+type
+  TFormPesqGrupo = class(TForm)
+    RgPesqGrupo: TRadioGroup;
+    LblPesqGrupo: TLabel;
+    EdtPesqGrupo: TEdit;
+    BtPesqGrupo: TButton;
+    BtSelecPesqGrupo: TButton;
+    Panel1: TPanel;
+    DBGridPesqGrupo: TDBGrid;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormPesqGrupo: TFormPesqGrupo;
+
+implementation
+
+{$R *.dfm}
+
+end.

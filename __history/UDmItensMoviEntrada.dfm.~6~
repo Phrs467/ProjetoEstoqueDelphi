@@ -1,0 +1,40 @@
+object DmItensMoviEntrada: TDmItensMoviEntrada
+  OldCreateOrder = False
+  Height = 446
+  Width = 676
+  object qItensMoviEntrada: TADOQuery
+    Parameters = <>
+    Left = 376
+    Top = 104
+  end
+  object dsItensMoviEntrada: TDataSource
+    DataSet = qItensMoviEntrada
+    Left = 176
+    Top = 104
+  end
+  object dsPesqItensMoviEntrada: TDataSource
+    Left = 176
+    Top = 192
+  end
+  object qPesqItensMoviEntrada: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    Parameters = <>
+    SQL.Strings = (
+      'select'
+      '   Ime.*'
+      '  ,Prod.Prod_Nome'
+      '  ,Uni.Uni_Descricao'
+      '  ,Moe.moe_id'
+      '  ,Forn.Forn_Nome'
+      '  ,Moe.Num_Nota'
+      'from Itens_Movimentacao_Entrada Ime'
+      #9'left outer join Produtos Prod on Prod.Prod_id = Ime.Prod_id'
+      #9'left outer join Unidades Uni on Uni.Uni_id = Ime.Uni_id'
+      
+        #9'left outer join Movimento_Entrada Moe on Moe.moe_id = Ime.moe_i' +
+        'd'
+      #9'inner join Fornecedor Forn on Forn.Forn_id = Moe.Forn_id')
+    Left = 376
+    Top = 200
+  end
+end

@@ -1,0 +1,24 @@
+unit UCadMarcaObj;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+  TFormCadMarcaObj = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCadMarcaObj: TFormCadMarcaObj;
+
+implementation
+
+{$R *.dfm}
+
+end.

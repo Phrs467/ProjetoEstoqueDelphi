@@ -1,0 +1,14 @@
+object dmDepartamentos: TdmDepartamentos
+  OldCreateOrder = False
+  Height = 475
+  Width = 727
+  object qDepartamentos: TADOQuery
+    Parameters = <>
+    Left = 320
+    Top = 136
+  end
+  object dsDepartamentos: TDataSource
+    Left = 160
+    Top = 136
+  end
+end

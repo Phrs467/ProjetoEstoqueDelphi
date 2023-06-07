@@ -1,0 +1,16 @@
+object dmDepartamentos: TdmDepartamentos
+  OldCreateOrder = False
+  Height = 475
+  Width = 727
+  object qDepartamentos: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    Parameters = <>
+    Left = 320
+    Top = 136
+  end
+  object dsDepartamentos: TDataSource
+    DataSet = qDepartamentos
+    Left = 160
+    Top = 136
+  end
+end

@@ -1,0 +1,109 @@
+unit UPesqFuncionario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Data.DB,
+  Vcl.Grids, Vcl.DBGrids;
+
+type
+  TFormPesqFunc = class(TForm)
+    PanelPesqFuncionario: TPanel;
+    RgPesqFuncionario: TRadioGroup;
+    EdtPesqFuncionario: TEdit;
+    LblPesqNomeFunc: TLabel;
+    BtPesqFuncionario: TButton;
+    DBGridPesqFuncionario: TDBGrid;
+    procedure RgPesqFuncionarioClick(Sender: TObject);
+    procedure BtPesqFuncionarioClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormPesqFunc: TFormPesqFunc;
+
+implementation
+
+uses
+  UDmFuncionario;
+
+{$R *.dfm}
+
+
+
+procedure TFormPesqFunc.BtPesqFuncionarioClick(Sender: TObject);
+var
+  sql : string;
+
+begin
+
+  sql :=
+  ' select ' +
+  '  fun.Fun_id, ' +
+  '  fun.Fun_Nome, ' +
+  '  fun.Fun_Senha, ' +
+  '  fun.Dp_id, ' +
+  '  dep.Dp_Nome ' +
+  ' from Funcionarios fun ' +
+  '  left outer join Departamentos dep  On dep.dp_id = fun.dp_id ';
+
+  if RgPesqFuncionario.ItemIndex = 0 then
+  begin
+     if EdtPesqFuncionario.Text <> '' then
+      begin
+         sql := sql + ' where fun.Fun_Nome like ''%' + EdtPesqFuncionario.Text + '%''';
+
+         DmFuncionario.qPesqFuncionario.Close;
+         DmFuncionario.qPesqFuncionario.SQL.Text := sql;
+         DmFuncionario.qPesqFuncionario.Open;
+
+//         if not DmFuncionario.qPesqFuncionario.Locate('Fun_Nome', EdtPesqFuncionario.Text, [loPartialKey]) then
+//          begin
+//            ShowMessage('Não encontrado');
+//          end;
+
+      end;
+  end;
+
+    if RgPesqFuncionario.ItemIndex = 1 then
+  begin
+     if EdtPesqFuncionario.Text <> '' then
+      begin
+         sql := sql + ' where fun.fun_id = :fun_id ';
+
+         DmFuncionario.qPesqFuncionario.Close;
+         DmFuncionario.qPesqFuncionario.SQL.Text := sql;
+         DmFuncionario.qPesqFuncionario.Parameters.ParamByName('fun_id').Value := EdtPesqFuncionario.Text;
+         DmFuncionario.qPesqFuncionario.Open;
+
+//        if not DmFuncionario.qPesqFuncionario.Locate('Fun_id', EdtPesqFuncionario.Text, []) then
+//          begin
+//            ShowMessage('Não encontrado');
+//          end;
+      end;
+  end;
+
+
+end;
+
+procedure TFormPesqFunc.RgPesqFuncionarioClick(Sender: TObject);
+begin
+    begin
+    if RgPesqFuncionario.ItemIndex = 0 then
+      begin
+        LblPesqNomeFunc.Caption := 'Digite seu nome';
+      end;
+
+    if RgPesqFuncionario.ItemIndex = 1 then
+      begin
+        LblPesqNomeFunc.Caption := 'Digite seu ID';
+      end;
+
+  end;
+end;
+
+end.

@@ -1,0 +1,178 @@
+unit UCadFuncionario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus,
+  Vcl.DBCtrls, Vcl.Mask, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ToolWin,
+  Vcl.ActnMan, Vcl.ActnCtrls, Vcl.ActnMenus, UFuncionario;
+
+type
+  TfrmCadFuncionario = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBNavigator1: TDBNavigator;
+    DBGrid1: TDBGrid;
+    EditPesqNome: TEdit;
+    LabelPesquisas: TLabel;
+    LabelPesqNome: TLabel;
+    ButtonPesquisar: TButton;
+    EditPesqId: TEdit;
+    Label4: TLabel;
+    RadioPesquisaPor: TRadioGroup;
+    DBEditDp_id: TDBEdit;
+    Label5: TLabel;
+    MainMenu1: TMainMenu;
+    Imprimir1: TMenuItem;
+    RelatrioFuncionrio1: TMenuItem;
+    FuncionrioeDepartamento1: TMenuItem;
+    btPesqDepartamento: TButton;
+    EditNomeDepartamento: TEdit;
+    dsFuncTela: TDataSource;
+    procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
+    procedure ButtonPesquisarClick(Sender: TObject);
+    procedure RelatrioFuncionrio1Click(Sender: TObject);
+    procedure FuncionrioeDepartamento1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btPesqDepartamentoClick(Sender: TObject);
+    procedure dsFuncTelaDataChange(Sender: TObject; Field: TField);
+
+
+
+
+  private
+    { Private declarations }
+    Funcionario : TFuncionario;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadFuncionario: TfrmCadFuncionario;
+implementation
+{$R *.dfm}
+
+uses UDmFuncionario, URelatorio2, URelatorioFunc, UPesqDepartamento, UDmDepartamentos;
+
+
+
+
+procedure TfrmCadFuncionario.btPesqDepartamentoClick(Sender: TObject);
+begin
+  FormPesqDepartamento.ShowModal;
+  if FormPesqDepartamento.FrmIdDepartamento > 0 then
+  begin
+    if not (DmFuncionario.dsFuncionarios.State in [dsEdit, dsInsert]) then
+    begin
+      DmFuncionario.qFuncionarios.Edit;
+    end;
+
+    DBEditDp_id.Field.Value := FormPesqDepartamento.FrmIdDepartamento;
+    EditNomeDepartamento.Text := FormPesqDepartamento.FrmNomeDepartamento;
+  end;
+
+end;
+
+procedure TfrmCadFuncionario.ButtonPesquisarClick(Sender: TObject);
+begin
+  if RadioPesquisaPor.ItemIndex = 0 then
+  begin
+    if EditPesqNome.Text <> '' then
+    begin
+      if not DmFuncionario.qFuncionarios.Locate('Fun_Nome', EditPesqNome.Text,[loPartialKey]) then
+      begin
+        ShowMessage('Não encontrado!');
+      end;
+    end;
+  end;
+
+  if RadioPesquisaPor.ItemIndex = 1 then
+  begin
+    if EditPesqId.Text <> '' then
+     begin
+      if not DmFuncionario.qFuncionarios.Locate('Fun_id', EditPesqId.Text, []) then
+        begin
+          ShowMessage('Não encontrado!');
+        end;
+      end;
+
+  end;
+
+end;
+
+procedure TfrmCadFuncionario.DBNavigator1Click(Sender: TObject;
+  Button: TNavigateBtn);
+begin
+  if Button = nbInsert then
+  begin
+    DmFuncionario.qId.Close;
+    DmFuncionario.qId.Open;
+    DmFuncionario.qFuncionarios.FieldByName('Fun_id').Value := DmFuncionario.qId.FieldByName('ultimo_id').AsInteger +1;
+  end;
+
+    if DmFuncionario.dsPesqFuncionario.State in [dsInsert] then
+    begin
+      Funcionario := TFuncionario.Create;
+
+      Funcionario.Id := 0;
+      Funcionario.Nome := '';
+
+      Funcionario.incluir;
+
+      Funcionario.Free;
+    end;
+
+    if DmFuncionario.dsPesqFuncionario.State in [dsEdit] then
+    begin
+      Funcionario := TFuncionario.Create;
+
+      Funcionario.Id := 0;
+      Funcionario.Nome := '';
+
+      Funcionario.Alterar;
+
+      Funcionario.Free;
+    end;
+
+    if Button = nbDelete then
+    begin
+       Funcionario := TFuncionario.Create;
+      Funcionario.Id := 0;
+      Funcionario.Nome := '';
+
+      Funcionario.Excluir;
+
+      Funcionario.Free;
+    end;
+
+  end;
+
+  procedure TfrmCadFuncionario.dsFuncTelaDataChange(Sender: TObject;
+  Field: TField);
+begin
+  EditNomeDepartamento.Text := dmDepartamentos.RetornaNomeDepartamento(DBEditDp_id.Field.AsInteger);
+end;
+
+procedure TfrmCadFuncionario.FormShow(Sender: TObject);
+begin
+  DmFuncionario.qFuncionarios.Open;
+end;
+
+procedure TfrmCadFuncionario.FuncionrioeDepartamento1Click(Sender: TObject);
+begin
+  FormRelatorio2.RLReport1.Preview()
+end;
+
+procedure TfrmCadFuncionario.RelatrioFuncionrio1Click(Sender: TObject);
+begin
+  FormRelatorioFunc.RLReportFunc.Preview()
+end;
+
+end.

@@ -1,0 +1,31 @@
+unit UCadGrupoObj;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TFormCadGrupoObj = class(TForm)
+    LblCadIdGrupo: TLabel;
+    EdtCadIdGrupo: TEdit;
+    LblCadNomeGrupo: TLabel;
+    EdtCadNomeGrupo: TEdit;
+    BtNovoCadGrupo: TButton;
+    BtSalvarCadGrupo: TButton;
+    BtExcluirCadGrupo: TButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCadGrupoObj: TFormCadGrupoObj;
+
+implementation
+
+{$R *.dfm}
+
+end.

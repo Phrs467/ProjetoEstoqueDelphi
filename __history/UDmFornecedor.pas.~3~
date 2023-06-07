@@ -1,0 +1,31 @@
+unit UDmFornecedor;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB;
+
+type
+  TDmFornecedor = class(TDataModule)
+    qFornecedor: TADOQuery;
+    dsFornecedor: TDataSource;
+    qFornecedorForn_id: TAutoIncField;
+    qFornecedorForn_Nome: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DmFornecedor: TDmFornecedor;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses UDBConexao;
+
+{$R *.dfm}
+
+end.

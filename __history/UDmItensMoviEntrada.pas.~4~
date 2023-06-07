@@ -1,0 +1,32 @@
+unit UDmItensMoviEntrada;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB;
+
+type
+  TDmItensMoviEntrada = class(TDataModule)
+    qItensMoviEntrada: TADOQuery;
+    dsItensMoviEntrada: TDataSource;
+    dsPesqItensMoviEntrada: TDataSource;
+    qPesqItensMoviEntrada: TADOQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DmItensMoviEntrada: TDmItensMoviEntrada;
+
+implementation
+
+uses
+  UDBConexao;
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

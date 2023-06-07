@@ -1,0 +1,25 @@
+unit UDmMarca;
+
+interface
+
+uses
+  System.SysUtils, System.Classes;
+
+type
+  TDmMarca = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DmMarca: TDmMarca;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

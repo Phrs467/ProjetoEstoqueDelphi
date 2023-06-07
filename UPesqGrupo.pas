@@ -1,0 +1,113 @@
+unit UPesqGrupo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.ExtCtrls, Vcl.StdCtrls;
+
+type
+  TFormPesqGrupo = class(TForm)
+    RgPesqGrupo: TRadioGroup;
+    LblPesqGrupo: TLabel;
+    EdtPesqGrupo: TEdit;
+    BtPesqGrupo: TButton;
+    BtSelecPesqGrupo: TButton;
+    Panel1: TPanel;
+    DBGridPesqGrupo: TDBGrid;
+    procedure RgPesqGrupoClick(Sender: TObject);
+    procedure BtPesqGrupoClick(Sender: TObject);
+    procedure BtSelecPesqGrupoClick(Sender: TObject);
+
+  private
+    { Private declarations }
+    procedure LimparForm;
+  public
+    { Public declarations }
+    FrmNomeGrupo : String;
+    FrmIdGrupo : Integer;
+  end;
+
+var
+  FormPesqGrupo: TFormPesqGrupo;
+
+implementation
+
+uses
+  UDmGrupo;
+
+{$R *.dfm}
+
+procedure TFormPesqGrupo.BtPesqGrupoClick(Sender: TObject);
+
+var
+  sql : string;
+
+begin
+  sql :=
+  ' select ' +
+  '  Grup.Grup_id, ' +
+  '  Grup.Grup_Nome ' +
+  '  from Grupo Grup ';
+
+  if RgPesqGrupo.ItemIndex = 0 then
+  begin
+     if EdtPesqGrupo.Text <> '' then
+      begin
+         sql := sql + ' where Grup.Grup_Nome like ''%' + EdtPesqGrupo.Text + '%''';
+
+         DmGrupo.qPesqGrupoObj.Close;
+         DmGrupo.qPesqGrupoObj.SQL.Text := sql;
+         DmGrupo.qPesqGrupoObj.Open;
+      end;
+  end;
+
+  if RgPesqGrupo.ItemIndex = 1 then
+  begin
+     if EdtPesqGrupo.Text <> '' then
+      begin
+         sql := sql + ' where Grup.Grup_id = :Grup_id ';
+
+         DmGrupo.qPesqGrupoObj.Close;
+         DmGrupo.qPesqGrupoObj.SQL.Text := sql;
+         DmGrupo.qPesqGrupoObj.Parameters.ParamByName('Grup_id').Value := EdtPesqGrupo.Text;
+         DmGrupo.qPesqGrupoObj.Open;
+      end;
+  end;
+
+end;
+
+procedure TFormPesqGrupo.BtSelecPesqGrupoClick(Sender: TObject);
+begin
+  FrmIdGrupo := 0;
+  FrmNomeGrupo := '';
+   if not DmGrupo.qPesqGrupoObj.IsEmpty then
+   begin
+     FrmIdGrupo := DmGrupo.qPesqGrupoObjGrup_id .AsInteger;
+     FrmNomeGrupo := DmGrupo.qPesqGrupoObjGrup_Nome.AsString;
+   end;
+   Self.Close;
+end;
+
+
+
+procedure TFormPesqGrupo.LimparForm;
+begin
+///
+end;
+
+procedure TFormPesqGrupo.RgPesqGrupoClick(Sender: TObject);
+begin
+  if RgPesqGrupo.ItemIndex = 0 then
+  begin
+    LblPesqGrupo.Caption := 'Digite seu nome:';
+  end;
+
+  if RgPesqGrupo.ItemIndex = 1 then
+  begin
+    LblPesqGrupo.Caption := 'Digite seu Id:';
+  end;
+end;
+
+end.

@@ -1,0 +1,33 @@
+unit UDmUnidades;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB;
+
+type
+  TDmUnidades = class(TDataModule)
+    qUnidades: TADOQuery;
+    dsUnidades: TDataSource;
+    qPesqUnidades: TADOQuery;
+    dsPesqUnidades: TDataSource;
+    qPesqUnidadesUni_id: TAutoIncField;
+    qPesqUnidadesUni_Descricao: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DmUnidades: TDmUnidades;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses UDBConexao;
+
+{$R *.dfm}
+
+end.

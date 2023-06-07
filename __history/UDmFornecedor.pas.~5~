@@ -1,0 +1,69 @@
+unit UDmFornecedor;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB;
+
+type
+  TDmFornecedor = class(TDataModule)
+    qFornecedor: TADOQuery;
+    dsFornecedor: TDataSource;
+    qFornecedorForn_id: TAutoIncField;
+    qFornecedorForn_Nome: TStringField;
+    qPesqFornecedor: TADOQuery;
+    dsPesqFornecedor: TDataSource;
+    qPesqFornecedorForn_id: TAutoIncField;
+    qPesqFornecedorForn_Nome: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function RetornaNomeFornecedor(pFornId : Integer): String;
+
+  end;
+
+var
+  DmFornecedor: TDmFornecedor;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses UDBConexao;
+
+{$R *.dfm}
+
+{ TDmFornecedor }
+
+
+
+{ TDmFornecedor }
+
+function TDmFornecedor.RetornaNomeFornecedor(pFornId: Integer): String;
+var
+  sql : string;
+begin
+  Result := '';
+
+  sql :=
+  'select ' +
+  ' Forn.Forn_id,' +
+  ' Forn.Forn_Nome ' +
+  ' from Fornecedor Forn ';
+
+  sql := sql + '  where Forn.Forn_id = :Forn_id ';
+
+  qPesqFornecedor.Close;
+  qPesqFornecedor.SQL.Text := sql;
+  qPesqFornecedor.Parameters.ParamByName('Forn_id').Value := pFornId;
+  qPesqFornecedor.Open;
+
+  if not qPesqFornecedor.IsEmpty then
+  begin
+    Result := qPesqFornecedor.FieldByName('Forn_Nome').AsString;
+  end;
+
+end;
+
+end.

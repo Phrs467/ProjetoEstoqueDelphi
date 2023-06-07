@@ -1,0 +1,28 @@
+object DmMoviEntrada: TDmMoviEntrada
+  OldCreateOrder = False
+  Height = 410
+  Width = 483
+  object DsMoviEntrada: TDataSource
+    DataSet = qMoviEntrada
+    Left = 56
+    Top = 104
+  end
+  object DsPesqMoviEntrada: TDataSource
+    DataSet = qPesqMoviEntrada
+    Left = 56
+    Top = 184
+  end
+  object qMoviEntrada: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    Parameters = <>
+    Left = 272
+    Top = 104
+  end
+  object qPesqMoviEntrada: TADOQuery
+    Connection = DBConexao.ConexaoBDPEDRO
+    LockType = ltReadOnly
+    Parameters = <>
+    Left = 272
+    Top = 184
+  end
+end

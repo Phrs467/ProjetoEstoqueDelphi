@@ -1,0 +1,226 @@
+object FormCadProdutos: TFormCadProdutos
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro de Produtos'
+  ClientHeight = 426
+  ClientWidth = 749
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenuImprimirCadProd
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnActivate = FormActivate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LblCadIdProd: TLabel
+    Left = 24
+    Top = 56
+    Width = 11
+    Height = 13
+    Caption = 'ID'
+  end
+  object LblCadNomeProd: TLabel
+    Left = 24
+    Top = 112
+    Width = 83
+    Height = 13
+    Caption = 'Nome do Produto'
+  end
+  object LblPesqNomeProd: TLabel
+    Left = 328
+    Top = 325
+    Width = 27
+    Height = 13
+    Caption = 'Nome'
+  end
+  object LblPesqCadId: TLabel
+    Left = 527
+    Top = 325
+    Width = 11
+    Height = 13
+    Caption = 'ID'
+  end
+  object LblCadUniCadProd: TLabel
+    Left = 24
+    Top = 176
+    Width = 44
+    Height = 13
+    Caption = 'Unidades'
+  end
+  object lblCadProdForn: TLabel
+    Left = 24
+    Top = 237
+    Width = 55
+    Height = 13
+    Caption = 'Fornecedor'
+  end
+  object editIdProd: TDBEdit
+    Left = 24
+    Top = 75
+    Width = 97
+    Height = 21
+    Cursor = crNo
+    DataField = 'Prod_id'
+    DataSource = DmProdutos.dsProdutos
+    ReadOnly = True
+    TabOrder = 1
+  end
+  object editNomeProd: TDBEdit
+    Left = 24
+    Top = 131
+    Width = 225
+    Height = 21
+    DataField = 'Prod_Nome'
+    DataSource = DmProdutos.dsProdutos
+    TabOrder = 0
+  end
+  object RadioPesqProd: TRadioGroup
+    Left = 328
+    Top = 256
+    Width = 320
+    Height = 57
+    Caption = 'Pesquisar por:'
+    Columns = 2
+    ItemIndex = 0
+    Items.Strings = (
+      'Nome'
+      'ID')
+    TabOrder = 2
+  end
+  object EditPesqProdNome: TEdit
+    Left = 328
+    Top = 344
+    Width = 121
+    Height = 21
+    TabOrder = 3
+  end
+  object EditPesqProdId: TEdit
+    Left = 527
+    Top = 344
+    Width = 121
+    Height = 21
+    TabOrder = 4
+  end
+  object BtPesqCadProd: TButton
+    Left = 328
+    Top = 384
+    Width = 97
+    Height = 25
+    Caption = 'Pesquisar'
+    TabOrder = 5
+    OnClick = BtPesqCadProdClick
+  end
+  object DBNavigatorCadProd: TDBNavigator
+    Left = 328
+    Top = 56
+    Width = 300
+    Height = 40
+    DataSource = DmProdutos.dsProdutos
+    TabOrder = 6
+  end
+  object DBGridCadProd: TDBGrid
+    Left = 328
+    Top = 112
+    Width = 413
+    Height = 120
+    DataSource = DmProdutos.dsProdutos
+    TabOrder = 7
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'Prod_id'
+        Title.Caption = 'ID'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Prod_Nome'
+        Title.Caption = 'Nome'
+        Width = 186
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Uni_id'
+        Title.Caption = 'Unidades'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Forn_id'
+        Title.Caption = 'Fornecedor'
+        Visible = True
+      end>
+  end
+  object DBEditCadProdUniId: TDBEdit
+    Left = 24
+    Top = 195
+    Width = 73
+    Height = 21
+    DataField = 'Uni_id'
+    DataSource = DmProdutos.dsProdutos
+    TabOrder = 8
+  end
+  object DBEditCadProdFornId: TDBEdit
+    Left = 24
+    Top = 256
+    Width = 73
+    Height = 21
+    DataField = 'Forn_id'
+    DataSource = DmProdutos.dsProdutos
+    TabOrder = 9
+  end
+  object BtPesqUniTela: TButton
+    Left = 103
+    Top = 193
+    Width = 33
+    Height = 25
+    TabOrder = 10
+    OnClick = BtPesqUniTelaClick
+  end
+  object EditPesqUniTela: TEdit
+    Left = 142
+    Top = 195
+    Width = 121
+    Height = 21
+    TabOrder = 11
+  end
+  object BtPesqFornTela: TButton
+    Left = 103
+    Top = 254
+    Width = 33
+    Height = 25
+    TabOrder = 12
+    OnClick = BtPesqFornTelaClick
+  end
+  object EditPesqFornTela: TEdit
+    Left = 142
+    Top = 256
+    Width = 121
+    Height = 21
+    TabOrder = 13
+  end
+  object MainMenuImprimirCadProd: TMainMenu
+    Left = 104
+    Top = 352
+    object Imprimir1: TMenuItem
+      Caption = 'Imprimir'
+      OnClick = Imprimir1Click
+    end
+  end
+  object dsProdTela: TDataSource
+    DataSet = DmProdutos.qProdutos
+    OnDataChange = dsProdTelaDataChange
+    Left = 232
+    Top = 304
+  end
+end

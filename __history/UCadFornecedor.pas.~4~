@@ -1,0 +1,40 @@
+unit UCadFornecedor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Mask;
+
+type
+  TFormCadFornecedor = class(TForm)
+    DBEditIdForn: TDBEdit;
+    DBEditNomeForn: TDBEdit;
+    DBGridCadForn: TDBGrid;
+    DBNavigatorCadForn: TDBNavigator;
+    LblidForn: TLabel;
+    LblNomeForn: TLabel;
+    LblPesqNomeForn: TLabel;
+    LblPesqIdForn: TLabel;
+    BtPesqForn: TButton;
+    EditPesqNomeForn: TEdit;
+    EditPesqIdForn: TEdit;
+    RadioCadForn: TRadioGroup;
+    DBEdit1: TDBEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCadFornecedor: TFormCadFornecedor;
+
+implementation
+
+{$R *.dfm}
+
+uses UDmFornecedor;
+
+end.

@@ -1,0 +1,124 @@
+unit UCadDepartamentoObj;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, UDepartamento;
+
+type
+  TFormCadDepartamentoObj = class(TForm)
+    PanelCadDepartamentoObj: TPanel;
+    LblCadIdDepObj: TLabel;
+    EdtCadIdDepObj: TEdit;
+    LblCadNomeDepObj: TLabel;
+    EdtCadNomeDepObj: TEdit;
+    btnBtNovoCadDepartamento: TButton;
+    BtSalvarCadDepartamento: TButton;
+    BtExcluirCadDepartamento: TButton;
+    BtPesqDepartamento: TButton;
+    procedure btnBtNovoCadDepartamentoClick(Sender: TObject);
+    procedure BtSalvarCadDepartamentoClick(Sender: TObject);
+    procedure BtExcluirCadDepartamentoClick(Sender: TObject);
+    procedure BtPesqDepartamentoClick(Sender: TObject);
+  private
+    { Private declarations }
+    Departamento : TDepartamento;
+    procedure LimparForm;
+    procedure PesquisarFuncionario;
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCadDepartamentoObj: TFormCadDepartamentoObj;
+
+implementation
+
+uses
+  UDmDepartamentos, UPesqDepartamento;
+
+{$R *.dfm}
+
+{ TFormCadDepartamentoObj }
+
+procedure TFormCadDepartamentoObj.BtExcluirCadDepartamentoClick(
+  Sender: TObject);
+begin
+   Departamento := TDepartamento.Create;
+
+   Departamento.Id := StrToInt(EdtCadIdDepObj.Text);
+   Departamento.excluir;
+
+   Departamento.Free;
+
+  LimparForm;
+end;
+
+procedure TFormCadDepartamentoObj.btnBtNovoCadDepartamentoClick(
+  Sender: TObject);
+begin
+  LimparForm;
+end;
+
+procedure TFormCadDepartamentoObj.BtPesqDepartamentoClick(Sender: TObject);
+begin
+ FormPesqDepartamento.ShowModal;
+  if FormPesqDepartamento.FrmIdDepartamento > 0 then
+  begin
+    EdtCadIdDepObj.Text := IntToStr(FormPesqDepartamento.FrmIdDepartamento);
+    PesquisarFuncionario;
+  end;
+end;
+
+procedure TFormCadDepartamentoObj.BtSalvarCadDepartamentoClick(Sender: TObject);
+begin
+   Departamento := TDepartamento.Create;
+
+   Departamento.Nome := EdtCadNomeDepObj.Text;
+
+   if EdtCadIdDepObj.Text = '' then
+      Departamento.incluir
+   else
+   begin
+     Departamento.Id := StrToInt(EdtCadIdDepObj.Text);
+     Departamento.alterar;
+   end;
+   Departamento.Free;
+
+end;
+
+procedure TFormCadDepartamentoObj.LimparForm;
+begin
+  EdtCadIdDepObj.Clear;
+  EdtCadNomeDepObj.Clear;
+end;
+
+procedure TFormCadDepartamentoObj.PesquisarFuncionario;
+begin
+  if EdtCadIdDepObj.Text <> '' then
+  begin
+
+    Departamento := TDepartamento.Create;
+    Departamento.Id := StrToInt(EdtCadIdDepObj.Text);
+
+    if Departamento.pesquisar then
+    begin
+
+      EdtCadIdDepObj.Text := IntToStr(Departamento.Id);
+      EdtCadNomeDepObj.Text := Departamento.Nome;
+
+
+    end
+    else
+    begin
+      ShowMessage('Funcionário não localizado!');
+    end;
+
+    Departamento.Free;
+
+  end;
+
+end;
+
+end.

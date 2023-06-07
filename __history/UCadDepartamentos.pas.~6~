@@ -1,0 +1,122 @@
+unit UCadDepartamentos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
+  Data.DB, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Menus, UDepartamento;
+
+type
+  TFormDepartamentos = class(TForm)
+    DBEdit2: TDBEdit;
+    Label2: TLabel;
+    DBGrid1: TDBGrid;
+    DBNavigator1: TDBNavigator;
+    DBEdit1: TDBEdit;
+    Label1: TLabel;
+    RadioPesqDep: TRadioGroup;
+    Label3: TLabel;
+    Label4: TLabel;
+    EditPesqDepNome: TEdit;
+    EditPesqDepId: TEdit;
+    Button1: TButton;
+    MainMenu1: TMainMenu;
+    Imprimir1: TMenuItem;
+    procedure Button1Click(Sender: TObject);
+    procedure Imprimir1Click(Sender: TObject);
+    procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
+  private
+    { Private declarations }
+    Departamento : TDepartamento;
+  public
+    { Public declarations }
+  end;
+
+var
+  FormDepartamentos: TFormDepartamentos;
+
+implementation
+
+{$R *.dfm}
+
+uses UDmDepartamentos, URelatorioDepar;
+
+procedure TFormDepartamentos.Button1Click(Sender: TObject);
+begin
+    if RadioPesqDep.ItemIndex = 0  then
+    begin
+      if EditPesqDepNome.Text <> '' then
+        begin
+          if not dmDepartamentos.qDepartamentos.Locate('Dp_Nome', EditPesqDepNome.Text, [loPartialKey]) then
+            begin
+             ShowMessage('Não encontrado!');
+            end;
+        end;
+    end;
+
+  if RadioPesqDep.ItemIndex = 1  then
+    begin
+      if EditPesqDepId.Text <> '' then
+        begin
+          if not dmDepartamentos.qDepartamentos.Locate('Dp_id', EditPesqDepId.Text, []) then
+            begin
+             ShowMessage('Não encontrado!');
+            end;
+        end;
+    end;
+
+end;
+
+procedure TFormDepartamentos.DBNavigator1Click(Sender: TObject;
+  Button: TNavigateBtn);
+begin
+    if Button = nbPost then
+  begin
+
+    if dmDepartamentos.DsPesqDepartamentos.State in [dsInsert] then
+    begin
+      Departamento := TDepartamento.Create;
+
+      Departamento.Id := 0;
+      Departamento.Nome := '';
+
+      Departamento.incluir;
+
+      Departamento.Free;
+    end;
+
+    if dmDepartamentos.DsPesqDepartamentos.State in [dsEdit] then
+    begin
+      Departamento := TDepartamento.Create;
+
+      Departamento.Id := 0;
+      Departamento.Nome := '';
+
+      Departamento.Alterar;
+
+      Departamento.Free;
+    end;
+
+  end;
+
+  if Button = nbDelete then
+  begin
+      Departamento := TDepartamento.Create;
+
+      Departamento.Id := 0;
+      Departamento.Nome := '';
+
+      Departamento.Excluir;
+
+      Departamento.Free;
+  end;
+
+end;
+
+procedure TFormDepartamentos.Imprimir1Click(Sender: TObject);
+begin
+  FormRelatorioDepar.RLReportDepar.Preview()
+end;
+
+end.

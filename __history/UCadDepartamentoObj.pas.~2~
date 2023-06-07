@@ -1,0 +1,29 @@
+unit UCadDepartamentoObj;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TFormCadDepartamentoObj = class(TForm)
+    PanelCadDepartamentoObj: TPanel;
+    LblCadIdDepObj: TLabel;
+    EdtCadIdDepObj: TEdit;
+    LblCadNomeDepObj: TLabel;
+    EdtCadNomeDepObj: TEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCadDepartamentoObj: TFormCadDepartamentoObj;
+
+implementation
+
+{$R *.dfm}
+
+end.

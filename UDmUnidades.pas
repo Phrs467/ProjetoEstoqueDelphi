@@ -1,0 +1,66 @@
+unit UDmUnidades;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB;
+
+type
+  TDmUnidades = class(TDataModule)
+    qUnidades: TADOQuery;
+    dsUnidades: TDataSource;
+    qPesqUnidades: TADOQuery;
+    dsPesqUnidades: TDataSource;
+    qPesqUnidadesUni_id: TAutoIncField;
+    qPesqUnidadesUni_Descricao: TStringField;
+    DsUnidadesObj: TDataSource;
+    DsPesqUniObj: TDataSource;
+    qUnidadesObj: TADOQuery;
+    qPesqUniObj: TADOQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function RetornaDescUnidades(pUniId : Integer): string;
+  end;
+
+var
+  DmUnidades: TDmUnidades;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses UDBConexao;
+
+{$R *.dfm}
+
+{ TDmUnidades }
+
+function TDmUnidades.RetornaDescUnidades(pUniId: Integer): string;
+var
+  sql : string;
+begin
+  Result := '';
+
+  sql :=
+  'select ' +
+  ' Uni.Uni_id,' +
+  ' Uni.Uni_Descricao ' +
+  ' from Unidades Uni ';
+
+  sql := sql + ' where Uni.Uni_id = :Uni_id ';
+
+  qPesqUnidades.Close;
+  qPesqUnidades.SQL.Text := sql;
+  qPesqUnidades.Parameters.ParamByName('Uni_id').Value := pUniId;
+  qPesqUnidades.Open;
+
+  if not qPesqUnidades.IsEmpty then
+  begin
+    Result := qPesqUnidades.FieldByName('Uni_Descricao').AsString;
+  end;
+
+end;
+
+end.

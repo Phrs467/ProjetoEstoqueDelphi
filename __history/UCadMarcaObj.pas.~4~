@@ -1,0 +1,70 @@
+unit UCadMarcaObj;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UMarca;
+
+type
+  TFormCadMarca = class(TForm)
+    LblCadIdMarca: TLabel;
+    EdtCadIdMarca: TEdit;
+    Label2: TLabel;
+    EdtCadNomeMarca: TEdit;
+    BtNovoCadMarca: TButton;
+    BtSalvarCadMarca: TButton;
+    BtExcluirCadMarca: TButton;
+    BtPesqCadMarca: TButton;
+  private
+    { Private declarations }
+    Marca : TMarca;
+
+    Procedure LimparForm;
+    Procedure PesquisarMarca;
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCadMarca: TFormCadMarca;
+
+implementation
+
+{$R *.dfm}
+
+{ TFormCadMarca }
+
+procedure TFormCadMarca.LimparForm;
+begin
+  EdtCadIdMarca.Clear;
+  EdtCadNomeMarca.Clear;
+end;
+
+procedure TFormCadMarca.PesquisarMarca;
+begin
+  if EdtCadIdMarca.Text <> '' then
+  begin
+
+    Marca := TMarca.Create;
+    Marca.Id := StrToInt(EdtCadIdMarca.Text);
+
+    if Marca.pesquisarId then
+    begin
+
+      EdtCadIdMarca.Text := IntToStr(Marca.Id);
+      EdtCadNomeMarca.Text := Marca.Nome;
+
+    end
+    else
+    begin
+      ShowMessage('Marca não localizado!');
+    end;
+
+    Marca.Free;
+
+  end;
+
+end;
+
+end.

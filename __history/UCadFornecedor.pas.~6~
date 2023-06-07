@@ -1,0 +1,66 @@
+unit UCadFornecedor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Mask;
+
+type
+  TFormCadFornecedor = class(TForm)
+    DBEditIdForn: TDBEdit;
+    DBGridCadForn: TDBGrid;
+    DBNavigatorCadForn: TDBNavigator;
+    LblidForn: TLabel;
+    LblNomeForn: TLabel;
+    LblPesqNomeForn: TLabel;
+    LblPesqIdForn: TLabel;
+    BtPesqForn: TButton;
+    EditPesqNomeForn: TEdit;
+    EditPesqIdForn: TEdit;
+    RadioCadForn: TRadioGroup;
+    DBEditNomeForn: TDBEdit;
+    procedure BtPesqFornClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCadFornecedor: TFormCadFornecedor;
+
+implementation
+
+{$R *.dfm}
+
+uses UDmFornecedor;
+
+procedure TFormCadFornecedor.BtPesqFornClick(Sender: TObject);
+begin
+  if RadioCadForn.ItemIndex = 0  then
+    begin
+      if EditPesqNomeForn.Text <> '' then
+        begin
+          if not DmFornecedor.qFornecedor.Locate('Forn_Nome', EditPesqNomeForn.Text, [loPartialKey]) then
+            begin
+             ShowMessage('Não encontrado!');
+            end;
+        end;
+    end;
+
+  if RadioCadForn.ItemIndex = 1  then
+    begin
+      if EditPesqIdForn.Text <> '' then
+        begin
+          if not DmFornecedor.qFornecedor.Locate('Forn_id', EditPesqIdForn.Text, []) then
+            begin
+             ShowMessage('Não encontrado!');
+            end;
+        end;
+    end;
+
+end;
+
+end.

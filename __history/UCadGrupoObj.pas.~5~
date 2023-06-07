@@ -1,0 +1,82 @@
+unit UCadGrupoObj;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UGrupo;
+
+type
+  TFormCadGrupoObj = class(TForm)
+    LblCadIdGrupo: TLabel;
+    EdtCadIdGrupo: TEdit;
+    LblCadNomeGrupo: TLabel;
+    EdtCadNomeGrupo: TEdit;
+    BtNovoCadGrupo: TButton;
+    BtSalvarCadGrupo: TButton;
+    BtExcluirCadGrupo: TButton;
+    BtPesqCadGrupo: TButton;
+    procedure BtPesqCadGrupoClick(Sender: TObject);
+  private
+    { Private declarations }
+    Grupo : TGrupo;
+
+    Procedure LimparForm;
+    Procedure PesquisarGrupo;
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCadGrupoObj: TFormCadGrupoObj;
+
+implementation
+
+uses
+  UPesqGrupo;
+
+{$R *.dfm}
+
+procedure TFormCadGrupoObj.BtPesqCadGrupoClick(Sender: TObject);
+begin
+ FormPesqGrupo.ShowModal;
+  if FormPesqGrupo.FrmIdGrupo > 0 then
+  begin
+    EdtCadIdGrupo.Text := IntToStr(FormPesqGrupo.FrmIdGrupo);
+    PesquisarGrupo;
+  end;
+
+end;
+
+procedure TFormCadGrupoObj.LimparForm;
+begin
+
+end;
+
+procedure TFormCadGrupoObj.PesquisarGrupo;
+begin
+  if EdtCadIdGrupo.Text <> '' then
+  begin
+
+    Grupo := TGrupo.Create;
+    Grupo.Id := StrToInt(EdtCadIdGrupo.Text);
+
+    if Grupo.pesquisarId then
+    begin
+
+      EdtCadIdGrupo.Text := IntToStr(Grupo.Id);
+      EdtCadNomeGrupo.Text := Grupo.Nome;
+
+    end
+    else
+    begin
+      ShowMessage('Grupo não localizado!');
+    end;
+
+    Grupo.Free;
+
+  end;
+
+end;
+
+end.

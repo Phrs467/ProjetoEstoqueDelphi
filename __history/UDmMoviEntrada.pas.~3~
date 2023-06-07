@@ -1,0 +1,35 @@
+unit UDmMoviEntrada;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB;
+
+type
+  TDmMoviEntrada = class(TDataModule)
+    DsMoviEntrada: TDataSource;
+    DsPesqMoviEntrada: TDataSource;
+    qMoviEntrada: TADOQuery;
+    qPesqMoviEntrada: TADOQuery;
+    qPesqMoviEntradaMoe_id: TIntegerField;
+    qPesqMoviEntradaNum_Serie: TIntegerField;
+    qPesqMoviEntradaNum_Nota: TLargeintField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DmMoviEntrada: TDmMoviEntrada;
+
+implementation
+
+uses
+  UDBConexao;
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

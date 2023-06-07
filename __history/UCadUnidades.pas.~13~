@@ -1,0 +1,121 @@
+unit UCadUnidades;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Vcl.ExtCtrls, Vcl.Menus, UUnidade;
+
+type
+  TFormUnidades = class(TForm)
+    Lblid: TLabel;
+    LblDesc: TLabel;
+    DBGridCadUni: TDBGrid;
+    DBMemoDesc: TDBMemo;
+    RadioPesqUni: TRadioGroup;
+    LblPesqDesc: TLabel;
+    LblPesqId: TLabel;
+    EditPesqDescUni: TEdit;
+    EditPesqIdUni: TEdit;
+    BtPesqUni: TButton;
+    DBEditId: TDBEdit;
+    MainMenu1: TMainMenu;
+    Imprimir1: TMenuItem;
+    DBNavigatorCadUni: TDBNavigator;
+    procedure BtPesqUniClick(Sender: TObject);
+    procedure Imprimir1Click(Sender: TObject);
+    procedure DBNavigatorCadUniClick(Sender: TObject; Button: TNavigateBtn);
+  private
+    { Private declarations }
+    unidade : TUnidade;
+  public
+    { Public declarations }
+  end;
+
+var
+  FormUnidades: TFormUnidades;
+
+implementation
+
+{$R *.dfm}
+
+uses UDmUnidades, URelatorioUni;
+
+procedure TFormUnidades.BtPesqUniClick(Sender: TObject);
+begin
+  if RadioPesqUni.ItemIndex = 0  then
+    begin
+      if EditPesqDescUni.Text <> '' then
+        begin
+          if not DmUnidades.qUnidades.Locate('Uni_Descricao', EditPesqDescUni.Text, [loPartialKey]) then
+            begin
+             ShowMessage('Não encontrado!');
+            end;
+        end;
+    end;
+
+  if RadioPesqUni.ItemIndex = 1  then
+    begin
+      if EditPesqIdUni.Text <> '' then
+        begin
+          if not DmUnidades.qUnidades.Locate('Uni_id', EditPesqIdUni.Text, []) then
+            begin
+             ShowMessage('Não encontrado!');
+            end;
+        end;
+    end;
+end;
+
+procedure TFormUnidades.DBNavigatorCadUniClick(Sender: TObject;
+  Button: TNavigateBtn);
+begin
+    if Button = nbPost then
+  begin
+
+    if DmUnidades.dsPesqUnidades.State in [dsInsert] then
+    begin
+      Unidade := TUnidade.Create;
+
+      Unidade.Id := 0;
+      Unidade.Descricao := '';
+
+      Unidade.incluir;
+
+      Unidade.Free;
+    end;
+
+    if DmUnidades.dsPesqUnidades.State in [dsEdit] then
+    begin
+      Unidade := TUnidade.Create;
+
+      Unidade.Id := 0;
+      Unidade.Descricao := '';
+
+      Unidade.Alterar;
+
+      Unidade.Free;
+    end;
+
+  end;
+
+  if Button = nbDelete then
+  begin
+      Unidade := TUnidade.Create;
+
+      Unidade.Id := 0;
+      Unidade.Descricao := '';
+
+      Unidade.Excluir;
+
+      Unidade.Free;
+  end;
+
+end;
+
+procedure TFormUnidades.Imprimir1Click(Sender: TObject);
+begin
+  FormRelatorioUni.RLReport1.Preview()
+end;
+
+end.

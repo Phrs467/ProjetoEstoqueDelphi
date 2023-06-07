@@ -1,0 +1,52 @@
+unit UDepartamento;
+
+interface
+
+Type
+  TDepartamento = class(TObject)
+  private
+    { private declarations }
+    FId : Integer;
+    FNome : String;
+
+  protected
+    { protected declarations }
+  public
+    { public declarations }
+    Property Id : Integer read FId write FId;
+    Property Nome : String read FNome write FNome;
+
+    Function incluir : Boolean;
+    function alterar: Boolean;
+    function excluir: Boolean;
+    function pesquisar: Boolean;
+
+  published
+    { published declarations }
+  end;
+
+implementation
+
+{ TDepartamento }
+
+function TDepartamento.alterar: Boolean;
+begin
+  Result := True;
+end;
+
+function TDepartamento.excluir: Boolean;
+begin
+  Result := True;
+end;
+
+function TDepartamento.incluir: Boolean;
+begin
+  Result := True;
+end;
+
+function TDepartamento.pesquisar: Boolean;
+begin
+  Result := True;
+end;
+
+end.

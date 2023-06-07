@@ -1,0 +1,38 @@
+unit UDmItensMoviEntrada;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB;
+
+type
+  TDmItensMoviEntrada = class(TDataModule)
+    qItensMoviEntrada: TADOQuery;
+    dsItensMoviEntrada: TDataSource;
+    dsPesqItensMoviEntrada: TDataSource;
+    qPesqItensMoviEntrada: TADOQuery;
+    qPesqItensMoviEntradaIme_id: TAutoIncField;
+    qPesqItensMoviEntradaProd_Nome: TStringField;
+    qPesqItensMoviEntradaUni_Descricao: TStringField;
+    qPesqItensMoviEntradamoe_id: TAutoIncField;
+    qPesqItensMoviEntradaForn_Nome: TStringField;
+    qPesqItensMoviEntradaNum_Nota: TLargeintField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DmItensMoviEntrada: TDmItensMoviEntrada;
+
+implementation
+
+uses
+  UDBConexao;
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,35 @@
+unit UFornecedor;
+
+interface
+
+Type
+  TFornecedor = class(TObject)
+  private
+    { private declarations }
+    FId : Integer;
+    FNome : String;
+
+  protected
+    { protected declarations }
+  public
+    { public declarations }
+    Property Id : Integer read FId write FId;
+    Property Nome : String read FNome write FNome;
+
+    Function incluir : Boolean;
+
+
+  published
+    { published declarations }
+  end;
+
+implementation
+
+{ TFornecedor }
+
+function TFornecedor.incluir: Boolean;
+begin
+  Result := True;
+end;
+
+end.
