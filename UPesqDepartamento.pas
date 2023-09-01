@@ -91,18 +91,18 @@ end;
 
 procedure TFormPesqDepartamento.RgPesqDepartamentosClick(Sender: TObject);
 begin
-      begin
-    if RgPesqDepartamentos.ItemIndex = 0 then
-      begin
-        LblPesqNomeDepar.Caption := 'Digite seu nome';
-      end;
 
-    if RgPesqDepartamentos.ItemIndex = 1 then
-      begin
-        LblPesqNomeDepar.Caption := 'Digite seu ID';
-      end;
-
+  if RgPesqDepartamentos.ItemIndex = 0 then
+  begin
+      LblPesqNomeDepar.Caption := 'Digite seu nome';
   end;
+
+  if RgPesqDepartamentos.ItemIndex = 1 then
+  begin
+      LblPesqNomeDepar.Caption := 'Digite seu ID';
+  end;
+
+
 end;
 
 end.

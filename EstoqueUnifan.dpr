@@ -100,6 +100,6 @@ begin
   Application.CreateForm(TFormItensMoviEntrada, FormItensMoviEntrada);
   Application.CreateForm(TDmItensMoviEntrada, DmItensMoviEntrada);
   Application.CreateForm(TFormPesqItensMoviEntrada, FormPesqItensMoviEntrada);
-  Application.CreateForm(TFormRelaProd, FormRelaProd);
+//  Application.CreateForm(TFormRelaProd, FormRelaProd);
   Application.Run;
 end.
