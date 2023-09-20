@@ -2,8 +2,8 @@ object FormPesqDepartamento: TFormPesqDepartamento
   Left = 0
   Top = 0
   Caption = 'Pesquisa de Departamentos'
-  ClientHeight = 552
-  ClientWidth = 825
+  ClientHeight = 553
+  ClientWidth = 838
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object FormPesqDepartamento: TFormPesqDepartamento
   object PanelPesqDepar: TPanel
     Left = 0
     Top = 0
-    Width = 825
+    Width = 838
     Height = 89
     Align = alTop
     TabOrder = 0

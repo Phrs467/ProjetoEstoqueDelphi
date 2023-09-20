@@ -50,29 +50,27 @@ begin
 
     if RgPesqDepartamentos.ItemIndex = 0 then
   begin
-     if EdtPesqNomeDepar.Text <> '' then
-      begin
-         sql := sql + ' where dep.Dp_Nome like ''%' + EdtPesqNomeDepar.Text + '%''';
+    if EdtPesqNomeDepar.Text <> '' then
+    begin
+      sql := sql + ' where dep.Dp_Nome like ''%' + EdtPesqNomeDepar.Text + '%''';
 
-         dmDepartamentos.qPesqDepartamentos.Close;
-         dmDepartamentos.qPesqDepartamentos.SQL.Text := sql;
-         dmDepartamentos.qPesqDepartamentos.Open;
-
-      end;
+      dmDepartamentos.qPesqDepartamentos.Close;
+      dmDepartamentos.qPesqDepartamentos.SQL.Text := sql;
+      dmDepartamentos.qPesqDepartamentos.Open;
+    end;
   end;
 
     if RgPesqDepartamentos.ItemIndex = 1 then
   begin
-     if EdtPesqNomeDepar.Text <> '' then
-      begin
-         sql := sql + ' where dep.Dp_id = :Dp_id ';
+    if EdtPesqNomeDepar.Text <> '' then
+    begin
+      sql := sql + ' where dep.Dp_id = :Dp_id ';
 
-         dmDepartamentos.qPesqDepartamentos.Close;
-         dmDepartamentos.qPesqDepartamentos.SQL.Text := sql;
-         dmDepartamentos.qPesqDepartamentos.Parameters.ParamByName('Dp_id').Value := EdtPesqNomeDepar.Text;
-         dmDepartamentos.qPesqDepartamentos.Open;
-
-      end;
+      dmDepartamentos.qPesqDepartamentos.Close;
+      dmDepartamentos.qPesqDepartamentos.SQL.Text := sql;
+      dmDepartamentos.qPesqDepartamentos.Parameters.ParamByName('Dp_id').Value := EdtPesqNomeDepar.Text;
+      dmDepartamentos.qPesqDepartamentos.Open;
+    end;
   end;
 
 end;
@@ -91,7 +89,6 @@ end;
 
 procedure TFormPesqDepartamento.RgPesqDepartamentosClick(Sender: TObject);
 begin
-
   if RgPesqDepartamentos.ItemIndex = 0 then
   begin
       LblPesqNomeDepar.Caption := 'Digite seu nome';
@@ -101,8 +98,6 @@ begin
   begin
       LblPesqNomeDepar.Caption := 'Digite seu ID';
   end;
-
-
 end;
 
 end.
