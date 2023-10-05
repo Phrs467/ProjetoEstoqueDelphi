@@ -61,6 +61,7 @@ begin
     end
     else
     begin
+
       sql := sql + ' where Grup.Grup_Nome like ''%' + EdtPesqGrupo.Text + '%''';
 
       DmGrupo.qPesqGrupoObj.Close;
@@ -73,17 +74,17 @@ begin
   begin
     if EdtPesqGrupo.Text = '' then
     begin
-      DmGrupo.qPesqGrupoObj.Close;
-      DmGrupo.qPesqGrupoObj.SQL.Text := sql;
-      DmGrupo.qPesqGrupoObj.Open;
-    end
-    else
-    begin
       sql := sql + ' where Grup.Grup_id = :Grup_id ';
 
       DmGrupo.qPesqGrupoObj.Close;
       DmGrupo.qPesqGrupoObj.SQL.Text := sql;
       DmGrupo.qPesqGrupoObj.Parameters.ParamByName('Grup_id').Value := EdtPesqGrupo.Text;
+      DmGrupo.qPesqGrupoObj.Open;
+    end
+    else
+    begin
+      DmGrupo.qPesqGrupoObj.Close;
+      DmGrupo.qPesqGrupoObj.SQL.Text := sql;
       DmGrupo.qPesqGrupoObj.Open;
     end;
   end;

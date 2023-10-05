@@ -57,6 +57,7 @@ sql :=
     end
     else
     begin
+
       sql := sql + ' where Uni.Uni_Descricao like ''%' + EdtPesqUni.Text + '%''';
 
       DmUnidades.qPesqUnidades.Close;

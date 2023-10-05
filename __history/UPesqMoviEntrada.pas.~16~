@@ -56,36 +56,36 @@ begin
   begin
     if EdtPesqMoviEntrada.Text = '' then
     begin
-      DmMoviEntrada.qPesqMoviEntrada.Close;
-      DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
-      DmMoviEntrada.qPesqMoviEntrada.Open;
-    end
-    else
-    begin
       sql := sql + ' where Mov.Moe_id = :Moe_id ';
 
       DmMoviEntrada.qPesqMoviEntrada.Close;
       DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
       DmMoviEntrada.qPesqMoviEntrada.Parameters.ParamByName('Moe_id').Value := EdtPesqMoviEntrada.Text;
       DmMoviEntrada.qPesqMoviEntrada.Open;
+    end
+    else
+    begin
+      DmMoviEntrada.qPesqMoviEntrada.Close;
+      DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
+      DmMoviEntrada.qPesqMoviEntrada.Open;
     end;
   end;
 
   if RgPesqMoviEntrada.ItemIndex = 1 then
   begin
-    if EdtPesqMoviEntrada.Text = '' then
-    begin
-      DmMoviEntrada.qPesqMoviEntrada.Close;
-      DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
-      DmMoviEntrada.qPesqMoviEntrada.Open;
-    end
-    else
+    if EdtPesqMoviEntrada.Text <> '' then
     begin
       sql := sql + ' where Mov.Num_Nota = :Num_Nota ';
 
       DmMoviEntrada.qPesqMoviEntrada.Close;
       DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
       DmMoviEntrada.qPesqMoviEntrada.Parameters.ParamByName('Num_Nota').Value := EdtPesqMoviEntrada.Text;
+      DmMoviEntrada.qPesqMoviEntrada.Open;
+    end
+    else
+    begin
+      DmMoviEntrada.qPesqMoviEntrada.Close;
+      DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
       DmMoviEntrada.qPesqMoviEntrada.Open;
     end;
   end;
@@ -94,14 +94,14 @@ begin
   begin
     if EdtPesqMoviEntrada.Text = '' then
     begin
+      sql := sql + ' where Forn.Forn_Nome like ''%' + EdtPesqMoviEntrada.Text + '%''';
+
       DmMoviEntrada.qPesqMoviEntrada.Close;
       DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
       DmMoviEntrada.qPesqMoviEntrada.Open;
     end
     else
     begin
-      sql := sql + ' where Forn.Forn_Nome like ''%' + EdtPesqMoviEntrada.Text + '%''';
-
       DmMoviEntrada.qPesqMoviEntrada.Close;
       DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
       DmMoviEntrada.qPesqMoviEntrada.Open;

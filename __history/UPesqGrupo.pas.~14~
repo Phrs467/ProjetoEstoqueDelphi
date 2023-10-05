@@ -61,6 +61,7 @@ begin
     end
     else
     begin
+
       sql := sql + ' where Grup.Grup_Nome like ''%' + EdtPesqGrupo.Text + '%''';
 
       DmGrupo.qPesqGrupoObj.Close;

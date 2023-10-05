@@ -50,39 +50,27 @@ begin
 
   if RgPesqMarca.ItemIndex = 0 then
   begin
-    if EdtPesqMarca.Text = '' then
-    begin
-      DmMarca.qPesqMarcaObj.Close;
-      DmMarca.qPesqMarcaObj.SQL.Text := sql;
-      DmMarca.qPesqMarcaObj.Open;
-    end
-    else
-    begin
-      sql := sql + ' where Marc.Marc_Nome like ''%' + EdtPesqMarca.Text + '%''';
+     if EdtPesqMarca.Text <> '' then
+      begin
+         sql := sql + ' where Marc.Marc_Nome like ''%' + EdtPesqMarca.Text + '%''';
 
-      DmMarca.qPesqMarcaObj.Close;
-      DmMarca.qPesqMarcaObj.SQL.Text := sql;
-      DmMarca.qPesqMarcaObj.Open;
-    end;
+         DmMarca.qPesqMarcaObj.Close;
+         DmMarca.qPesqMarcaObj.SQL.Text := sql;
+         DmMarca.qPesqMarcaObj.Open;
+      end;
   end;
 
   if RgPesqMarca.ItemIndex = 1 then
   begin
-    if EdtPesqMarca.Text = '' then
-    begin
-      DmMarca.qPesqMarcaObj.Close;
-      DmMarca.qPesqMarcaObj.SQL.Text := sql;
-      DmMarca.qPesqMarcaObj.Open;
-    end
-    else
-    begin
-      sql := sql + ' where Marc.Marc_id = :Marc_id ';
+     if EdtPesqMarca.Text <> '' then
+      begin
+         sql := sql + ' where Marc.Marc_id = :Marc_id ';
 
-      DmMarca.qPesqMarcaObj.Close;
-      DmMarca.qPesqMarcaObj.SQL.Text := sql;
-      DmMarca.qPesqMarcaObj.Parameters.ParamByName('Marc_id').Value := EdtPesqMarca.Text;
-      DmMarca.qPesqMarcaObj.Open;
-    end;
+         DmMarca.qPesqMarcaObj.Close;
+         DmMarca.qPesqMarcaObj.SQL.Text := sql;
+         DmMarca.qPesqMarcaObj.Parameters.ParamByName('Marc_id').Value := EdtPesqMarca.Text;
+         DmMarca.qPesqMarcaObj.Open;
+      end;
   end;
 
 end;

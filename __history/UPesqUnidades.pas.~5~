@@ -51,14 +51,14 @@ sql :=
   begin
     if EdtPesqUni.Text = '' then
     begin
+      sql := sql + ' where Uni.Uni_Descricao like ''%' + EdtPesqUni.Text + '%''';
+
       DmUnidades.qPesqUnidades.Close;
       DmUnidades.qPesqUnidades.SQL.Text := sql;
       DmUnidades.qPesqUnidades.Open;
     end
     else
     begin
-      sql := sql + ' where Uni.Uni_Descricao like ''%' + EdtPesqUni.Text + '%''';
-
       DmUnidades.qPesqUnidades.Close;
       DmUnidades.qPesqUnidades.SQL.Text := sql;
       DmUnidades.qPesqUnidades.Open;
@@ -69,17 +69,17 @@ sql :=
   begin
     if EdtPesqUni.Text = '' then
     begin
-      DmUnidades.qPesqUnidades.Close;
-      DmUnidades.qPesqUnidades.SQL.Text := sql;
-      DmUnidades.qPesqUnidades.Open;
-    end
-    else
-    begin
       sql := sql + ' where Uni.Uni_id = :Uni_id ';
 
       DmUnidades.qPesqUnidades.Close;
       DmUnidades.qPesqUnidades.SQL.Text := sql;
       DmUnidades.qPesqUnidades.Parameters.ParamByName('Uni_id').Value := EdtPesqUni.Text;
+      DmUnidades.qPesqUnidades.Open;
+    end
+    else
+    begin
+      DmUnidades.qPesqUnidades.Close;
+      DmUnidades.qPesqUnidades.SQL.Text := sql;
       DmUnidades.qPesqUnidades.Open;
     end;
   end;

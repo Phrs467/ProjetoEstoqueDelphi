@@ -60,27 +60,39 @@ begin
 
   if RgPesqProduto.ItemIndex = 0 then
   begin
-     if EdtPesqProd.Text <> '' then
-      begin
-         sql := sql + ' where Prod.Prod_Nome like ''%' + EdtPesqProd.Text + '%''';
+    if EdtPesqProd.Text = '' then
+    begin
+      DmProdutos.qPesqProd.Close;
+      DmProdutos.qPesqProd.SQL.Text := sql;
+      DmProdutos.qPesqProd.Open;
+    end
+    else
+    begin
+      sql := sql + ' where Prod.Prod_Nome like ''%' + EdtPesqProd.Text + '%''';
 
-         DmProdutos.qPesqProd.Close;
-         DmProdutos.qPesqProd.SQL.Text := sql;
-         DmProdutos.qPesqProd.Open;
-      end;
+      DmProdutos.qPesqProd.Close;
+      DmProdutos.qPesqProd.SQL.Text := sql;
+      DmProdutos.qPesqProd.Open;
+    end;
   end;
 
   if RgPesqProduto.ItemIndex = 1 then
   begin
-     if EdtPesqProd.Text <> '' then
-      begin
-         sql := sql + ' where Prod.Prod_id = :Prod_id ';
+    if EdtPesqProd.Text = '' then
+    begin
+      DmProdutos.qPesqProd.Close;
+      DmProdutos.qPesqProd.SQL.Text := sql;
+      DmProdutos.qPesqProd.Open;
+    end
+    else
+    begin
+      sql := sql + ' where Prod.Prod_id = :Prod_id ';
 
-         DmProdutos.qPesqProd.Close;
-         DmProdutos.qPesqProd.SQL.Text := sql;
-         DmProdutos.qPesqProd.Parameters.ParamByName('Prod_id').Value := EdtPesqProd.Text;
-         DmProdutos.qPesqProd.Open;
-      end;
+      DmProdutos.qPesqProd.Close;
+      DmProdutos.qPesqProd.SQL.Text := sql;
+      DmProdutos.qPesqProd.Parameters.ParamByName('Prod_id').Value := EdtPesqProd.Text;
+      DmProdutos.qPesqProd.Open;
+    end;
   end;
 
 end;

@@ -55,7 +55,13 @@ begin
 
   if RgPesqFuncionario.ItemIndex = 0 then
   begin
-    if EdtPesqFuncionario.Text <> '' then
+    if EdtPesqFuncionario.Text = '' then
+    begin
+      DmFuncionario.qPesqFuncionario.Close;
+      DmFuncionario.qPesqFuncionario.SQL.Text := sql;
+      DmFuncionario.qPesqFuncionario.Open;
+    end
+    else
     begin
       sql := sql + ' where fun.Fun_Nome like ''%' + EdtPesqFuncionario.Text + '%''';
 
@@ -67,7 +73,13 @@ begin
 
   if RgPesqFuncionario.ItemIndex = 1 then
   begin
-    if EdtPesqFuncionario.Text <> '' then
+    if EdtPesqFuncionario.Text = '' then
+    begin
+      DmFuncionario.qPesqFuncionario.Close;
+      DmFuncionario.qPesqFuncionario.SQL.Text := sql;
+      DmFuncionario.qPesqFuncionario.Open;
+    end
+    else
     begin
       sql := sql + ' where fun.fun_id = :fun_id ';
 

@@ -23,6 +23,8 @@ type
     { Private declarations }
   public
     { Public declarations }
+
+    FrmIdEntra : Integer;
     FrmNumNota  : Integer;
     FrmNomeForn   : String;
   end;
@@ -45,13 +47,26 @@ begin
 
   sql :=
   ' select ' +
-  '  Mov.Num_Nota, ' +
-  '  Mov.Forn_id, ' +
-  '  Forn.Forn_Nome ' +
+  '  Mov.*  '+
+  '  ,Forn.Forn_Nome ' +
   '  from Movimento_Entrada Mov ' +
   '  left outer join Fornecedor Forn  On Forn.Forn_id = Mov.Forn_id ';
 
   if RgPesqMoviEntrada.ItemIndex = 0 then
+  begin
+     if EdtPesqMoviEntrada.Text <> '' then
+      begin
+         sql := sql + ' where Mov.Moe_id = :Moe_id ';
+
+         DmMoviEntrada.qPesqMoviEntrada.Close;
+         DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
+         DmMoviEntrada.qPesqMoviEntrada.Parameters.ParamByName('Moe_id').Value := EdtPesqMoviEntrada.Text;
+         DmMoviEntrada.qPesqMoviEntrada.Open;
+      end;
+  end;
+
+
+  if RgPesqMoviEntrada.ItemIndex = 1 then
   begin
      if EdtPesqMoviEntrada.Text <> '' then
       begin
@@ -64,11 +79,11 @@ begin
       end;
   end;
 
-  if RgPesqMoviEntrada.ItemIndex = 1 then
+  if RgPesqMoviEntrada.ItemIndex = 2 then
   begin
      if EdtPesqMoviEntrada.Text <> '' then
       begin
-         sql := sql + ' where Mov.Num_Nota like ''%' + EdtPesqMoviEntrada.Text + '%''';
+         sql := sql + ' where Forn.Forn_Nome like ''%' + EdtPesqMoviEntrada.Text + '%''';
 
          DmMoviEntrada.qPesqMoviEntrada.Close;
          DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
@@ -80,10 +95,12 @@ end;
 
 procedure TFormPesqMoviEntrada.BtSelecMoviEntradaClick(Sender: TObject);
 begin
+  FrmIdEntra := 0;
   FrmNumNota := 0;
   FrmNomeForn := '';
    if not DmMoviEntrada.qPesqMoviEntrada.IsEmpty then
    begin
+     FrmIdEntra := DmMoviEntrada.qPesqMoviEntradaMoe_id.AsInteger;
      FrmNumNota := DmMoviEntrada.qPesqMoviEntradaNum_Nota.AsInteger;
      FrmNomeForn := DmMoviEntrada.qPesqMoviEntradaForn_Nome.AsString;
    end;
@@ -94,14 +111,19 @@ end;
 procedure TFormPesqMoviEntrada.RgPesqMoviEntradaClick(Sender: TObject);
 begin
     begin
-    if RgPesqMoviEntrada.ItemIndex = 0 then
+      if RgPesqMoviEntrada.ItemIndex = 0 then
       begin
-        LblPesqMoviEntrada.Caption := 'Digite o Nº nota:';
+        LblPesqMoviEntrada.Caption := 'Digite o ID de entrada:';
       end;
 
-    if RgPesqMoviEntrada.ItemIndex = 1 then
+      if RgPesqMoviEntrada.ItemIndex = 1 then
       begin
-        LblPesqMoviEntrada.Caption := 'Digite o Fornecedor';
+        LblPesqMoviEntrada.Caption := 'Digite o Nº da nota';
+      end;
+
+      if RgPesqMoviEntrada.ItemIndex = 2 then
+      begin
+        LblPesqMoviEntrada.Caption := 'Digite o nome do fornecedor';
       end;
 
   end;

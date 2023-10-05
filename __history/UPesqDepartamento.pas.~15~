@@ -52,14 +52,14 @@ begin
   begin
     if EdtPesqNomeDepar.Text = '' then
     begin
+      sql := sql + ' where dep.Dp_Nome like ''%' + EdtPesqNomeDepar.Text + '%''';
+
       dmDepartamentos.qPesqDepartamentos.Close;
       dmDepartamentos.qPesqDepartamentos.SQL.Text := sql;
       dmDepartamentos.qPesqDepartamentos.Open;
     end
     else
     begin
-      sql := sql + ' where dep.Dp_Nome like ''%' + EdtPesqNomeDepar.Text + '%''';
-
       dmDepartamentos.qPesqDepartamentos.Close;
       dmDepartamentos.qPesqDepartamentos.SQL.Text := sql;
       dmDepartamentos.qPesqDepartamentos.Open;
@@ -70,17 +70,17 @@ begin
   begin
     if EdtPesqNomeDepar.Text = '' then
     begin
-      dmDepartamentos.qPesqDepartamentos.Close;
-      dmDepartamentos.qPesqDepartamentos.SQL.Text := sql;
-      dmDepartamentos.qPesqDepartamentos.Open;
-    end
-    else
-    begin
       sql := sql + ' where dep.Dp_id = :Dp_id ';
 
       dmDepartamentos.qPesqDepartamentos.Close;
       dmDepartamentos.qPesqDepartamentos.SQL.Text := sql;
       dmDepartamentos.qPesqDepartamentos.Parameters.ParamByName('Dp_id').Value := EdtPesqNomeDepar.Text;
+      dmDepartamentos.qPesqDepartamentos.Open;
+    end
+    else
+    begin
+      dmDepartamentos.qPesqDepartamentos.Close;
+      dmDepartamentos.qPesqDepartamentos.SQL.Text := sql;
       dmDepartamentos.qPesqDepartamentos.Open;
     end;
   end;

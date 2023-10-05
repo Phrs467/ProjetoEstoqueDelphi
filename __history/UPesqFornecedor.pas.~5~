@@ -54,14 +54,14 @@ sql :=
   begin
     if EdtPesqForn.Text = '' then
     begin
+      sql := sql + ' where Forn.Forn_Nome like ''%' + EdtPesqForn.Text + '%''';
+
       DmFornecedor.qPesqFornecedor.Close;
       DmFornecedor.qPesqFornecedor.SQL.Text := sql;
       DmFornecedor.qPesqFornecedor.Open;
     end
     else
     begin
-      sql := sql + ' where Forn.Forn_Nome like ''%' + EdtPesqForn.Text + '%''';
-
       DmFornecedor.qPesqFornecedor.Close;
       DmFornecedor.qPesqFornecedor.SQL.Text := sql;
       DmFornecedor.qPesqFornecedor.Open;
@@ -72,17 +72,17 @@ sql :=
   begin
     if EdtPesqForn.Text = '' then
     begin
-      DmFornecedor.qPesqFornecedor.Close;
-      DmFornecedor.qPesqFornecedor.SQL.Text := sql;
-      DmFornecedor.qPesqFornecedor.Open;
-    end
-    else
-    begin
       sql := sql + ' where Forn.Forn_id = :Forn_id ';
 
       DmFornecedor.qPesqFornecedor.Close;
       DmFornecedor.qPesqFornecedor.SQL.Text := sql;
       DmFornecedor.qPesqFornecedor.Parameters.ParamByName('Forn_id').Value := EdtPesqForn.Text;
+      DmFornecedor.qPesqFornecedor.Open;
+    end
+    else
+    begin
+      DmFornecedor.qPesqFornecedor.Close;
+      DmFornecedor.qPesqFornecedor.SQL.Text := sql;
       DmFornecedor.qPesqFornecedor.Open;
     end;
   end;

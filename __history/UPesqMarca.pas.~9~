@@ -68,7 +68,7 @@ begin
 
   if RgPesqMarca.ItemIndex = 1 then
   begin
-    if EdtPesqMarca.Text = '' then
+    if EdtPesqMarca.Text <> '' then
     begin
       DmMarca.qPesqMarcaObj.Close;
       DmMarca.qPesqMarcaObj.SQL.Text := sql;
@@ -76,6 +76,7 @@ begin
     end
     else
     begin
+
       sql := sql + ' where Marc.Marc_id = :Marc_id ';
 
       DmMarca.qPesqMarcaObj.Close;

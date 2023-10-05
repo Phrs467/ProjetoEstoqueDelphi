@@ -49,39 +49,27 @@ sql :=
 
   if RgPesqUni.ItemIndex = 0 then
   begin
-    if EdtPesqUni.Text = '' then
-    begin
-      DmUnidades.qPesqUnidades.Close;
-      DmUnidades.qPesqUnidades.SQL.Text := sql;
-      DmUnidades.qPesqUnidades.Open;
-    end
-    else
-    begin
-      sql := sql + ' where Uni.Uni_Descricao like ''%' + EdtPesqUni.Text + '%''';
+     if EdtPesqUni.Text <> '' then
+      begin
+         sql := sql + ' where Uni.Uni_Descricao like ''%' + EdtPesqUni.Text + '%''';
 
-      DmUnidades.qPesqUnidades.Close;
-      DmUnidades.qPesqUnidades.SQL.Text := sql;
-      DmUnidades.qPesqUnidades.Open;
-    end;
+         DmUnidades.qPesqUnidades.Close;
+         DmUnidades.qPesqUnidades.SQL.Text := sql;
+         DmUnidades.qPesqUnidades.Open;
+      end;
   end;
 
   if RgPesqUni.ItemIndex = 1 then
   begin
-    if EdtPesqUni.Text = '' then
-    begin
-      DmUnidades.qPesqUnidades.Close;
-      DmUnidades.qPesqUnidades.SQL.Text := sql;
-      DmUnidades.qPesqUnidades.Open;
-    end
-    else
-    begin
-      sql := sql + ' where Uni.Uni_id = :Uni_id ';
+     if EdtPesqUni.Text <> '' then
+      begin
+         sql := sql + ' where Uni.Uni_id = :Uni_id ';
 
-      DmUnidades.qPesqUnidades.Close;
-      DmUnidades.qPesqUnidades.SQL.Text := sql;
-      DmUnidades.qPesqUnidades.Parameters.ParamByName('Uni_id').Value := EdtPesqUni.Text;
-      DmUnidades.qPesqUnidades.Open;
-    end;
+         DmUnidades.qPesqUnidades.Close;
+         DmUnidades.qPesqUnidades.SQL.Text := sql;
+         DmUnidades.qPesqUnidades.Parameters.ParamByName('Uni_id').Value := EdtPesqUni.Text;
+         DmUnidades.qPesqUnidades.Open;
+      end;
   end;
 end;
 

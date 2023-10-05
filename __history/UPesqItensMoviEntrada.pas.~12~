@@ -62,17 +62,17 @@ begin
   begin
     if EdtPesqItensMoviEntra.Text = '' then
     begin
-      DmItensMoviEntrada.qPesqItensMoviEntrada.Close;
-      DmItensMoviEntrada.qPesqItensMoviEntrada.SQL.Text := sql;
-      DmItensMoviEntrada.qPesqItensMoviEntrada.Open;
-    end
-    else
-    begin
       sql := sql + ' where Ime.Ime_id = :Ime_id ';
 
       DmItensMoviEntrada.qPesqItensMoviEntrada.Close;
       DmItensMoviEntrada.qPesqItensMoviEntrada.SQL.Text := sql;
       DmItensMoviEntrada.qPesqItensMoviEntrada.Parameters.ParamByName('Ime_id').Value := EdtPesqItensMoviEntra.Text;
+      DmItensMoviEntrada.qPesqItensMoviEntrada.Open;
+    end
+    else
+    begin
+      DmItensMoviEntrada.qPesqItensMoviEntrada.Close;
+      DmItensMoviEntrada.qPesqItensMoviEntrada.SQL.Text := sql;
       DmItensMoviEntrada.qPesqItensMoviEntrada.Open;
     end;
   end;
@@ -81,14 +81,14 @@ begin
   begin
     if EdtPesqItensMoviEntra.Text = '' then
     begin
+      sql := sql + ' where Prod.Prod_Nome like ''%' + EdtPesqItensMoviEntra.Text + '%''';
+
       DmItensMoviEntrada.qPesqItensMoviEntrada.Close;
       DmItensMoviEntrada.qPesqItensMoviEntrada.SQL.Text := sql;
       DmItensMoviEntrada.qPesqItensMoviEntrada.Open;
     end
     else
     begin
-      sql := sql + ' where Prod.Prod_Nome like ''%' + EdtPesqItensMoviEntra.Text + '%''';
-
       DmItensMoviEntrada.qPesqItensMoviEntrada.Close;
       DmItensMoviEntrada.qPesqItensMoviEntrada.SQL.Text := sql;
       DmItensMoviEntrada.qPesqItensMoviEntrada.Open;
@@ -99,17 +99,17 @@ begin
   begin
     if EdtPesqItensMoviEntra.Text = '' then
     begin
-      DmItensMoviEntrada.qPesqItensMoviEntrada.Close;
-      DmItensMoviEntrada.qPesqItensMoviEntrada.SQL.Text := sql;
-      DmItensMoviEntrada.qPesqItensMoviEntrada.Open;
-    end
-    else
-    begin
       sql := sql + ' where Moe.moe_id = :moe_id ';
 
       DmItensMoviEntrada.qPesqItensMoviEntrada.Close;
       DmItensMoviEntrada.qPesqItensMoviEntrada.SQL.Text := sql;
       DmItensMoviEntrada.qPesqItensMoviEntrada.Parameters.ParamByName('moe_id').Value := EdtPesqItensMoviEntra.Text;
+      DmItensMoviEntrada.qPesqItensMoviEntrada.Open;
+    end
+    else
+    begin
+      DmItensMoviEntrada.qPesqItensMoviEntrada.Close;
+      DmItensMoviEntrada.qPesqItensMoviEntrada.SQL.Text := sql;
       DmItensMoviEntrada.qPesqItensMoviEntrada.Open;
     end;
   end;

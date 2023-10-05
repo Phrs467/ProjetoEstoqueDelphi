@@ -335,7 +335,7 @@ object FormMoviEntrada: TFormMoviEntrada
   end
   object BtPesqCadItensMoviEntra: TButton
     Left = 56
-    Top = 274
+    Top = 280
     Width = 137
     Height = 23
     Caption = 'Itens Movimenta'#231#227'o'

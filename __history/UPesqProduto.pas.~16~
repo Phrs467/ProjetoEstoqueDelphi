@@ -15,8 +15,10 @@ type
     EdtPesqProd: TEdit;
     BtPesquisarProd: TButton;
     DBGrid1: TDBGrid;
+    BtSelecionarProd: TButton;
     procedure RgPesqProdutoClick(Sender: TObject);
     procedure BtPesquisarProdClick(Sender: TObject);
+    procedure BtSelecionarProdClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,16 +42,21 @@ var
  sql : string;
 
 begin
+
   sql :=
   ' select ' +
   '  Prod.Prod_id, ' +
   '  Prod.Prod_Nome, ' +
   '  Prod.Uni_id, ' +
-  '  Uni.Uni_Descricao,' +
-  '  Forn.Forn_Nome ' +
+  '  Uni.Uni_Descricao, ' +
+  '  Prod.Grup_id, ' +
+  '  Grup.Grup_Nome, ' +
+  '  Prod.Marc_id,  ' +
+  '  Marc.Marc_Nome  ' +
   '  From Produtos Prod ' +
-  '  left outer join Unidades Uni On Uni.Uni_id = Prod.Prod_id '+
-  '  left outer join Fornecedor Forn On	Forn.Forn_id = Prod.Forn_id';
+  '  left outer join Unidades Uni On Uni.Uni_id = Prod.Uni_id ' +
+  '  left outer join Grupo Grup On Grup.Grup_id = Prod.Grup_id '+
+  '  left outer join Marca Marc On Marc.Marc_id = Prod.Marc_id ';
 
   if RgPesqProduto.ItemIndex = 0 then
   begin
@@ -76,6 +83,18 @@ begin
       end;
   end;
 
+end;
+
+procedure TFormPesqProdutos.BtSelecionarProdClick(Sender: TObject);
+begin
+  FrmIdProduto := 0;
+  FrmNomeProduto := '';
+   if not DmProdutos.qPesqProd.IsEmpty then
+   begin
+     FrmIdProduto := DmProdutos.qPesqProdProd_id.AsInteger;
+     FrmNomeProduto := DmProdutos.qPesqProdProd_Nome.AsString;
+   end;
+   Self.Close;
 end;
 
 procedure TFormPesqProdutos.RgPesqProdutoClick(Sender: TObject);

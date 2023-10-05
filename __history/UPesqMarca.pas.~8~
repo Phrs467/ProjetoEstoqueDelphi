@@ -68,19 +68,19 @@ begin
 
   if RgPesqMarca.ItemIndex = 1 then
   begin
-    if EdtPesqMarca.Text = '' then
-    begin
-      DmMarca.qPesqMarcaObj.Close;
-      DmMarca.qPesqMarcaObj.SQL.Text := sql;
-      DmMarca.qPesqMarcaObj.Open;
-    end
-    else
+    if EdtPesqMarca.Text <> '' then
     begin
       sql := sql + ' where Marc.Marc_id = :Marc_id ';
 
       DmMarca.qPesqMarcaObj.Close;
       DmMarca.qPesqMarcaObj.SQL.Text := sql;
       DmMarca.qPesqMarcaObj.Parameters.ParamByName('Marc_id').Value := EdtPesqMarca.Text;
+      DmMarca.qPesqMarcaObj.Open;
+    end
+    else
+    begin
+      DmMarca.qPesqMarcaObj.Close;
+      DmMarca.qPesqMarcaObj.SQL.Text := sql;
       DmMarca.qPesqMarcaObj.Open;
     end;
   end;

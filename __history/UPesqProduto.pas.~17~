@@ -42,40 +42,57 @@ var
  sql : string;
 
 begin
+
   sql :=
   ' select ' +
   '  Prod.Prod_id, ' +
   '  Prod.Prod_Nome, ' +
   '  Prod.Uni_id, ' +
-  '  Uni.Uni_Descricao,' +
-  '  Forn.Forn_Nome ' +
+  '  Uni.Uni_Descricao, ' +
+  '  Prod.Grup_id, ' +
+  '  Grup.Grup_Nome, ' +
+  '  Prod.Marc_id,  ' +
+  '  Marc.Marc_Nome  ' +
   '  From Produtos Prod ' +
-  '  left outer join Unidades Uni On Uni.Uni_id = Prod.Prod_id '+
-  '  left outer join Fornecedor Forn On	Forn.Forn_id = Prod.Forn_id ';
+  '  left outer join Unidades Uni On Uni.Uni_id = Prod.Uni_id ' +
+  '  left outer join Grupo Grup On Grup.Grup_id = Prod.Grup_id '+
+  '  left outer join Marca Marc On Marc.Marc_id = Prod.Marc_id ';
 
   if RgPesqProduto.ItemIndex = 0 then
   begin
-     if EdtPesqProd.Text <> '' then
-      begin
-         sql := sql + ' where Prod.Prod_Nome like ''%' + EdtPesqProd.Text + '%''';
+    if EdtPesqProd.Text = '' then
+    begin
+      sql := sql + ' where Prod.Prod_Nome like ''%' + EdtPesqProd.Text + '%''';
 
-         DmProdutos.qPesqProd.Close;
-         DmProdutos.qPesqProd.SQL.Text := sql;
-         DmProdutos.qPesqProd.Open;
-      end;
+      DmProdutos.qPesqProd.Close;
+      DmProdutos.qPesqProd.SQL.Text := sql;
+      DmProdutos.qPesqProd.Open;
+    end
+    else
+    begin
+      DmProdutos.qPesqProd.Close;
+      DmProdutos.qPesqProd.SQL.Text := sql;
+      DmProdutos.qPesqProd.Open;
+    end;
   end;
 
   if RgPesqProduto.ItemIndex = 1 then
   begin
-     if EdtPesqProd.Text <> '' then
-      begin
-         sql := sql + ' where Prod.Prod_id = :Prod_id ';
+    if EdtPesqProd.Text <> '' then
+    begin
+      sql := sql + ' where Prod.Prod_id = :Prod_id ';
 
-         DmProdutos.qPesqProd.Close;
-         DmProdutos.qPesqProd.SQL.Text := sql;
-         DmProdutos.qPesqProd.Parameters.ParamByName('Prod_id').Value := EdtPesqProd.Text;
-         DmProdutos.qPesqProd.Open;
-      end;
+      DmProdutos.qPesqProd.Close;
+      DmProdutos.qPesqProd.SQL.Text := sql;
+      DmProdutos.qPesqProd.Parameters.ParamByName('Prod_id').Value := EdtPesqProd.Text;
+      DmProdutos.qPesqProd.Open;
+    end
+    else
+    begin
+      DmProdutos.qPesqProd.Close;
+      DmProdutos.qPesqProd.SQL.Text := sql;
+      DmProdutos.qPesqProd.Open;
+    end;
   end;
 
 end;
