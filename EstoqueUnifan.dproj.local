@@ -49,18 +49,11 @@
     <Transaction>2023/01/09 15:51:55.000.093,D:\Unifan\Projetos de teste\EstoqueUnifan\Unit1.dfm=D:\Unifan\Projetos de teste\EstoqueUnifan\URelTeste.dfm</Transaction>
     <Transaction>2023/11/09 10:48:37.727,D:\Unifan\Projetos de teste\EstoqueUnifan\ULogin.dfm=D:\Unifan\Projetos de teste\EstoqueUnifan\Unit1.dfm</Transaction>
     <Transaction>2023/11/09 10:49:00.427,D:\Unifan\Projetos de teste\EstoqueUnifan\UDmLogin.dfm=D:\Unifan\Projetos de teste\EstoqueUnifan\Unit1.dfm</Transaction>
+    <Transaction>2023/11/09 11:25:57.743,D:\Unifan\Projetos de teste\EstoqueUnifan\UCadUnidades.pas=</Transaction>
+    <Transaction>2023/11/09 11:32:42.255,D:\Unifan\Projetos de teste\EstoqueUnifan\UDmRelatorio2.pas=</Transaction>
+    <Transaction>2023/11/09 11:33:58.110,=D:\Unifan\Projetos de teste\EstoqueUnifan\UDmRelatorio2.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
-    <File Path="UCadDepartamentos.pas"/>
-    <File Path="UCadDepartamentos.dfm"/>
-    <File Path="UCadFornecedor.pas"/>
-    <File Path="UCadFornecedor.dfm"/>
-    <File Path="UCadFuncionario.pas"/>
-    <File Path="UCadFuncionario.dfm"/>
-    <File Path="UCadProdutos.pas"/>
-    <File Path="UCadProdutos.dfm"/>
-    <File Path="UCadUnidades.pas"/>
-    <File Path="UCadUnidades.dfm"/>
     <File Path="UDBConexao.pas"/>
     <File Path="UDBConexao.dfm"/>
     <File Path="UDepartamento.pas"/>
@@ -72,8 +65,6 @@
     <File Path="UDmFuncionario.dfm"/>
     <File Path="UDmProdutos.pas"/>
     <File Path="UDmProdutos.dfm"/>
-    <File Path="UDmRelatorio2.pas"/>
-    <File Path="UDmRelatorio2.dfm"/>
     <File Path="UDmUnidades.pas"/>
     <File Path="UDmUnidades.dfm"/>
     <File Path="UFornecedor.pas"/>
@@ -91,8 +82,6 @@
     <File Path="UPesqUnidades.pas"/>
     <File Path="UPesqUnidades.dfm"/>
     <File Path="UProduto.pas"/>
-    <File Path="URelatorio2.pas"/>
-    <File Path="URelatorio2.dfm"/>
     <File Path="URelatorioDepar.pas"/>
     <File Path="URelatorioDepar.dfm"/>
     <File Path="URelatorioForn.pas"/>
@@ -142,11 +131,13 @@
     <File Path="UDmItensMoviEntrada.dfm"/>
     <File Path="UPesqItensMoviEntrada.pas"/>
     <File Path="UPesqItensMoviEntrada.dfm"/>
-    <File Path="URelTeste.pas"/>
-    <File Path="URelTeste.dfm"/>
     <File Path="ULogin.pas"/>
     <File Path="ULogin.dfm"/>
     <File Path="UDmLogin.pas"/>
     <File Path="UDmLogin.dfm"/>
+    <File Path="URelatorio2.pas"/>
+    <File Path="URelatorio2.dfm"/>
+    <File Path="UDmRelatorio2.pas"/>
+    <File Path="UDmRelatorio2.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>

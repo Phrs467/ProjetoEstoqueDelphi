@@ -5,17 +5,10 @@ uses
   UnitPrincipal in 'UnitPrincipal.pas' {FrmPrincipal},
   UDBConexao in 'UDBConexao.pas' {DBConexao: TDataModule},
   UDmFuncionario in 'UDmFuncionario.pas' {DmFuncionario: TDataModule},
-  UCadFuncionario in 'UCadFuncionario.pas' {frmCadFuncionario},
-  UCadDepartamentos in 'UCadDepartamentos.pas' {FormDepartamentos},
   UDmDepartamentos in 'UDmDepartamentos.pas' {dmDepartamentos: TDataModule},
-  UCadProdutos in 'UCadProdutos.pas' {FormCadProdutos},
   UDmProdutos in 'UDmProdutos.pas' {DmProdutos: TDataModule},
-  UCadUnidades in 'UCadUnidades.pas' {FormUnidades},
   UDmUnidades in 'UDmUnidades.pas' {DmUnidades: TDataModule},
-  UCadFornecedor in 'UCadFornecedor.pas' {FormCadFornecedor},
   UDmFornecedor in 'UDmFornecedor.pas' {DmFornecedor: TDataModule},
-  URelatorio2 in 'URelatorio2.pas' {FormRelatorio2},
-  UDmRelatorio2 in 'UDmRelatorio2.pas' {dmRelatorio2: TDataModule},
   URelatorioProd in 'URelatorioProd.pas' {FormRelatorioProd},
   URelatorioForn in 'URelatorioForn.pas' {FormRelatorioForn},
   URelatorioFunc in 'URelatorioFunc.pas' {FormRelatorioFunc},
@@ -52,29 +45,24 @@ uses
   UItensMovEntrada in 'UItensMovEntrada.pas',
   UDmItensMoviEntrada in 'UDmItensMoviEntrada.pas' {DmItensMoviEntrada: TDataModule},
   UPesqItensMoviEntrada in 'UPesqItensMoviEntrada.pas' {FormPesqItensMoviEntrada},
-  URelTeste in 'URelTeste.pas' {FormRelaProd},
-  ULogin in 'ULogin.pas' {Form1},
-  UDmLogin in 'UDmLogin.pas' {DataModule1: TDataModule};
+  ULogin in 'ULogin.pas' {FormLogin},
+  UDmLogin in 'UDmLogin.pas' {dmLogin: TDataModule},
+  URelatorio2 in 'URelatorio2.pas' {FormRelatorio2},
+  UDmRelatorio2 in 'UDmRelatorio2.pas' {dmRelatorio2: TDataModule};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TFrmPrincipal, FrmPrincipal);
   Application.CreateForm(TDBConexao, DBConexao);
   Application.CreateForm(TDmFuncionario, DmFuncionario);
-  Application.CreateForm(TfrmCadFuncionario, frmCadFuncionario);
-  Application.CreateForm(TFormDepartamentos, FormDepartamentos);
   Application.CreateForm(TdmDepartamentos, dmDepartamentos);
-  Application.CreateForm(TFormCadProdutos, FormCadProdutos);
   Application.CreateForm(TDmProdutos, DmProdutos);
-  Application.CreateForm(TFormUnidades, FormUnidades);
   Application.CreateForm(TDmUnidades, DmUnidades);
-  Application.CreateForm(TFormCadFornecedor, FormCadFornecedor);
   Application.CreateForm(TDmFornecedor, DmFornecedor);
-  Application.CreateForm(TFormRelatorio2, FormRelatorio2);
-  Application.CreateForm(TdmRelatorio2, dmRelatorio2);
   Application.CreateForm(TFormRelatorioProd, FormRelatorioProd);
   Application.CreateForm(TFormRelatorioForn, FormRelatorioForn);
   Application.CreateForm(TFormRelatorioFunc, FormRelatorioFunc);
@@ -102,8 +90,9 @@ begin
   Application.CreateForm(TFormItensMoviEntrada, FormItensMoviEntrada);
   Application.CreateForm(TDmItensMoviEntrada, DmItensMoviEntrada);
   Application.CreateForm(TFormPesqItensMoviEntrada, FormPesqItensMoviEntrada);
-  Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TdmLogin, dmLogin);
+  Application.CreateForm(TFormRelatorio2, FormRelatorio2);
+  Application.CreateForm(TdmRelatorio2, dmRelatorio2);
   //  Application.CreateForm(TFormRelaProd, FormRelaProd);
   Application.Run;
 end.

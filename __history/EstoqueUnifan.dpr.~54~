@@ -47,7 +47,14 @@ uses
   UMoviEntrada in 'UMoviEntrada.pas' {FormMoviEntrada},
   UDmMoviEntrada in 'UDmMoviEntrada.pas' {DmMoviEntrada: TDataModule},
   UPesqMoviEntrada in 'UPesqMoviEntrada.pas' {FormPesqMoviEntrada},
-  UMovimentacao in 'UMovimentacao.pas';
+  UMovimentacaoEntrada in 'UMovimentacaoEntrada.pas',
+  UCadItensMoviEntrada in 'UCadItensMoviEntrada.pas' {FormItensMoviEntrada},
+  UItensMovEntrada in 'UItensMovEntrada.pas',
+  UDmItensMoviEntrada in 'UDmItensMoviEntrada.pas' {DmItensMoviEntrada: TDataModule},
+  UPesqItensMoviEntrada in 'UPesqItensMoviEntrada.pas' {FormPesqItensMoviEntrada},
+  URelTeste in 'URelTeste.pas' {FormRelaProd},
+  ULogin in 'ULogin.pas' {Form1},
+  UDmLogin in 'UDmLogin.pas' {DataModule1: TDataModule};
 
 {$R *.res}
 
@@ -92,5 +99,11 @@ begin
   Application.CreateForm(TFormMoviEntrada, FormMoviEntrada);
   Application.CreateForm(TDmMoviEntrada, DmMoviEntrada);
   Application.CreateForm(TFormPesqMoviEntrada, FormPesqMoviEntrada);
+  Application.CreateForm(TFormItensMoviEntrada, FormItensMoviEntrada);
+  Application.CreateForm(TDmItensMoviEntrada, DmItensMoviEntrada);
+  Application.CreateForm(TFormPesqItensMoviEntrada, FormPesqItensMoviEntrada);
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TDataModule1, DataModule1);
+  //  Application.CreateForm(TFormRelaProd, FormRelaProd);
   Application.Run;
 end.

@@ -115,52 +115,23 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="UCadFuncionario.pas">
-            <Form>frmCadFuncionario</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="UCadDepartamentos.pas">
-            <Form>FormDepartamentos</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="UDmDepartamentos.pas">
             <Form>dmDepartamentos</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="UCadProdutos.pas">
-            <Form>FormCadProdutos</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UDmProdutos.pas">
             <Form>DmProdutos</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="UCadUnidades.pas">
-            <Form>FormUnidades</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="UDmUnidades.pas">
             <Form>DmUnidades</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="UCadFornecedor.pas">
-            <Form>FormCadFornecedor</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="UDmFornecedor.pas">
             <Form>DmFornecedor</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="URelatorio2.pas">
-            <Form>FormRelatorio2</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="UDmRelatorio2.pas">
-            <Form>dmRelatorio2</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
@@ -285,16 +256,21 @@
             <Form>FormPesqItensMoviEntrada</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="URelTeste.pas">
-            <Form>FormRelaProd</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="ULogin.pas">
-            <Form>Form1</Form>
+            <Form>FormLogin</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UDmLogin.pas">
-            <Form>DataModule1</Form>
+            <Form>dmLogin</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="URelatorio2.pas">
+            <Form>FormRelatorio2</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UDmRelatorio2.pas">
+            <Form>dmRelatorio2</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
