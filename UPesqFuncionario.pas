@@ -44,13 +44,15 @@ var
   sql : string;
 begin
   sql :=
-  ' select ' +
-  '  fun.Fun_id, ' +
-  '  fun.Fun_Nome, ' +
-  '  fun.Fun_Senha, ' +
-  '  fun.Dp_id, ' +
-  '  dep.Dp_Nome ' +
-  '  from Funcionarios fun ' +
+  ' select                      '+
+  '  fun.Fun_id,                '+
+  '  fun.Fun_Matricula,         '+
+  '  fun.Fun_Nome,              '+
+  '  fun.Fun_Senha,             '+
+  '  fun.Fun_Situacao,          '+
+  '  fun.Dp_id,                 '+
+  '  dep.Dp_Nome                '+
+  '  from Funcionarios fun      '+
   '  left outer join Departamentos dep  On dep.dp_id = fun.dp_id ';
 
   if RgPesqFuncionario.ItemIndex = 0 then
@@ -97,7 +99,7 @@ begin
   FrmNomeFuncionario := '';
   if not DmFuncionario.qPesqFuncionario.IsEmpty then
   begin
-     FrmIdFuncionario := DmFuncionario.qPesqFuncionarioDp_id.AsInteger;
+     FrmIdFuncionario := DmFuncionario.qPesqFuncionarioFun_id.AsInteger;
      FrmNomeFuncionario := DmFuncionario.qPesqFuncionarioFun_Nome.AsString;
   end;
   Self.Close;

@@ -12,12 +12,6 @@ type
     MenuPrincipal: TMainMenu;
     Sistema1: TMenuItem;
     Sair1: TMenuItem;
-    Funcionario1: TMenuItem;
-    Cadastro1: TMenuItem;
-    Departamentos1: TMenuItem;
-    Produtos1: TMenuItem;
-    Unidades1: TMenuItem;
-    Fornecedor1: TMenuItem;
     Pesquisar1: TMenuItem;
     Funcionrio1: TMenuItem;
     Departa1: TMenuItem;
@@ -41,11 +35,6 @@ type
     PesquisaMovimentaoentrada1: TMenuItem;
     ItensMovimentaoentrada1: TMenuItem;
     procedure Sair1Click(Sender: TObject);
-    procedure Cadastro1Click(Sender: TObject);
-    procedure Departamentos1Click(Sender: TObject);
-    procedure Produtos1Click(Sender: TObject);
-    procedure Unidades1Click(Sender: TObject);
-    procedure Fornecedor1Click(Sender: TObject);
     procedure Funcionrio1Click(Sender: TObject);
     procedure Departa1Click(Sender: TObject);
     procedure Produtos2Click(Sender: TObject);
@@ -65,6 +54,7 @@ type
 
     procedure ItensMovimentaoentrada1Click(Sender: TObject);
     procedure PesquisaMovimentaoentrada1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
 
 
 
@@ -83,26 +73,18 @@ implementation
 
 {$R *.dfm}
 
-uses UDBConexao, UCadDepartamentos, UCadProdutos, UCadUnidades, UCadFornecedor, URelatório, URelatorio2, UPesqFuncionario, UPesqDepartamento,
-  UPesqProduto, UPesqUnidades, UPesqFornecedor, UCadFuncionarioObj, UCadDepartamentoObj, UCadProdutosObj, UCadUnidadesObj, UCadFornecedorObj, UCadGrupoObj, UCadMarcaObj, UPesqGrupo, UPesqMarca, UMoviEntrada, UCadItensMoviEntrada, UPesqItensMoviEntrada, UDepartamento, UPesqMoviEntrada; //UCadFuncionario;
+uses UDBConexao ,URelatório, URelatorio2, UPesqFuncionario, UPesqDepartamento,
+  UPesqProduto, UPesqUnidades, UPesqFornecedor, UCadFuncionarioObj,
+  UCadDepartamentoObj, UCadProdutosObj, UCadUnidadesObj, UCadFornecedorObj,
+  UCadGrupoObj, UCadMarcaObj, UPesqGrupo, UPesqMarca, UMoviEntrada, UCadItensMoviEntrada,
+  UPesqItensMoviEntrada, UDepartamento, UPesqMoviEntrada;
 
-
-
-
-procedure TFrmPrincipal.Cadastro1Click(Sender: TObject);
-begin
-  frmCadFuncionario.ShowModal;
-end;
 
 procedure TFrmPrincipal.Departa1Click(Sender: TObject);
 begin
   FormPesqDepartamento.ShowModal;
 end;
 
-procedure TFrmPrincipal.Departamentos1Click(Sender: TObject);
-begin
-  FormDepartamentos.ShowModal;
-end;
 
 procedure TFrmPrincipal.DepartamentosOBJ1Click(Sender: TObject);
 begin
@@ -114,9 +96,10 @@ begin
   FormMoviEntrada.ShowModal;
 end;
 
-procedure TFrmPrincipal.Fornecedor1Click(Sender: TObject);
+
+procedure TFrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  FormCadFornecedor.ShowModal;
+  Application.Terminate;
 end;
 
 procedure TFrmPrincipal.Fornecedor2Click(Sender: TObject);
@@ -169,16 +152,9 @@ begin
   FormCadMarca.ShowModal;
 end;
 
-
-
 procedure TFrmPrincipal.PesquisaMovimentaoentrada1Click(Sender: TObject);
 begin
   FormMoviEntrada.ShowModal;
-end;
-
-procedure TFrmPrincipal.Produtos1Click(Sender: TObject);
-begin
-  FormCadProdutos.ShowModal;
 end;
 
 procedure TFrmPrincipal.Produtos2Click(Sender: TObject);
@@ -196,10 +172,6 @@ begin
   application.Terminate;
 end;
 
-procedure TFrmPrincipal.Unidades1Click(Sender: TObject);
-begin
-  FormUnidades.ShowModal;
-end;
 
 procedure TFrmPrincipal.Unidades2Click(Sender: TObject);
 begin

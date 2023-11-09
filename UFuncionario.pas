@@ -7,17 +7,21 @@ type
   private
     { private declarations }
     FId : Integer;
+    FMatricula : Integer;
     FNome : String;
     FDepId : Integer;
     FSenha: string;
+    FSituacao : String;
   protected
     { protected declarations }
   public
     { public declarations }
     Property Id : Integer read FId write FId;
+    Property Matricula : Integer read FMatricula write FMatricula;
     Property Nome : String read FNome write FNome;
     Property DepId : Integer read FDepId write FDepId;
     property Senha: String read FSenha write FSenha;
+    Property Situacao : string read FSituacao write FSituacao;
 
     Function incluir : boolean;
     function alterar: Boolean;
@@ -63,8 +67,10 @@ begin
 
       sqlCampos :=
       ' UPDATE Funcionarios '+
-      '   Set Fun_Nome = :Fun_Nome      '+
-      '       ,Fun_Senha = :Fun_Senha   ';
+      '   Set  Fun_Matricula = :Fun_Matricula   '+
+      '       ,Fun_Nome = :Fun_Nome             '+
+      '       ,Fun_Senha = :Fun_Senha           '+
+      '       ,Fun_Situacao = :Fun_Situacao     ';
 
       if Self.DepId > 0 then
         sqlCampos := sqlCampos +
@@ -80,9 +86,11 @@ begin
 
     DmFuncionario.qFuncObj.Close;
     DmFuncionario.qFuncObj.SQL.Text := sqlUpdate;
+    DmFuncionario.qFuncObj.Parameters.ParamByName('Fun_id').Value := Self.Id;
+    DmFuncionario.qFuncObj.Parameters.ParamByName('Fun_Matricula').Value := Self.Matricula;
     DmFuncionario.qFuncObj.Parameters.ParamByName('Fun_Nome').Value := Self.Nome;
     DmFuncionario.qFuncObj.Parameters.ParamByName('Fun_Senha').Value := Self.Senha;
-    DmFuncionario.qFuncObj.Parameters.ParamByName('Fun_id').Value := Self.Id;
+    DmFuncionario.qFuncObj.Parameters.ParamByName('Fun_Situacao').Value := Self.Situacao;
     if Self.DepId > 0 then
       DmFuncionario.qFuncObj.Parameters.ParamByName('Dp_id').Value := Self.DepId;
 
@@ -155,20 +163,25 @@ begin
 
     sqlCampos :=
     ' INSERT INTO Funcionarios     ' +
-    '           (Fun_Nome                ' +
-    '           ,Fun_Senha               ' ;
+    '           (                       '+
+    '            Fun_Matricula          '+
+    '           ,Fun_Nome               '+
+    '           ,Fun_Senha              '+
+    '           ,Fun_Situacao           ';
 
     if Self.DepId > 0 then
       sqlCampos := sqlCampos +
-    '           ,Dp_id                   ' ;
+    '           ,Dp_id                  ';
 
     sqlCampos := sqlCampos +
     ' ) ';
 
     sqlValues :=
-    '     VALUES (                       ' +
-    '           :Fun_Nome  ' +
-    '           ,:Fun_Senha ' ;
+    '     VALUES (              '+
+    '           :Fun_Matricula  '+
+    '           ,:Fun_Nome      '+
+    '           ,:Fun_Senha     '+
+    '           ,:Fun_Situacao  ';
 
     if self.DepId > 0 then
       sqlValues := sqlValues +
@@ -182,11 +195,13 @@ begin
     DmFuncionario.qFuncObj.Close;
     DmFuncionario.qFuncObj.SQL.Text := sqlInsert;
 
+    DmFuncionario.qFuncObj.Parameters.ParamByName('Fun_Matricula').Value := Self.Matricula;
     DmFuncionario.qFuncObj.Parameters.ParamByName('Fun_Nome').Value := Self.Nome;
     DmFuncionario.qFuncObj.Parameters.ParamByName('Fun_Senha').Value := Self.Senha;
-
+    DmFuncionario.qFuncObj.Parameters.ParamByName('Fun_Situacao').Value := Self.Situacao;
     if Self.DepId > 0 then
       DmFuncionario.qFuncObj.Parameters.ParamByName('Dp_id').Value := Self.DepId;
+
 
     DmFuncionario.qFuncObj.ExecSQL;
 
@@ -225,8 +240,10 @@ begin
 
        if Result then
        begin
+         Self.Matricula := DmFuncionario.qPesqFuncObj.FieldByName('Fun_Matricula').AsInteger;
          Self.Nome := DmFuncionario.qPesqFuncObj.FieldByName('Fun_Nome').AsString;
          Self.Senha := DmFuncionario.qPesqFuncObj.FieldByName('Fun_Senha').AsString;
+         Self.Situacao := DmFuncionario.qPesqFuncObj.FieldByName('Fun_Situacao').AsString;
          self.DepId := DmFuncionario.qPesqFuncObj.FieldByName('Dp_id').AsInteger;
        end;
 

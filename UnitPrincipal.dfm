@@ -14,32 +14,41 @@ object FrmPrincipal: TFrmPrincipal
   OldCreateOrder = False
   Position = poOwnerFormCenter
   WindowState = wsMaximized
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object MenuPrincipal: TMainMenu
     Left = 144
     Top = 112
-    object Funcionario1: TMenuItem
-      Caption = 'Cadastro'
-      object Cadastro1: TMenuItem
-        Caption = 'Funcion'#225'rios'
-        OnClick = Cadastro1Click
+    object Cadastros1: TMenuItem
+      Caption = 'Cadastros OBJ'
+      object FuncionrioOBJ1: TMenuItem
+        Caption = 'Funcion'#225'rio OBJ'
+        OnClick = FuncionrioOBJ1Click
       end
-      object Departamentos1: TMenuItem
-        Caption = 'Departamentos'
-        OnClick = Departamentos1Click
+      object DepartamentosOBJ1: TMenuItem
+        Caption = 'Departamentos OBJ'
+        OnClick = DepartamentosOBJ1Click
       end
-      object Produtos1: TMenuItem
-        Caption = 'Produtos'
-        OnClick = Produtos1Click
+      object ProdutosOBJ1: TMenuItem
+        Caption = 'Produtos OBJ'
+        OnClick = ProdutosOBJ1Click
       end
-      object Unidades1: TMenuItem
-        Caption = 'Unidades'
-        OnClick = Unidades1Click
+      object UnidadesOBJ1: TMenuItem
+        Caption = 'Unidades OBJ'
+        OnClick = UnidadesOBJ1Click
       end
-      object Fornecedor1: TMenuItem
-        Caption = 'Fornecedor'
-        OnClick = Fornecedor1Click
+      object FornecedorOBJ1: TMenuItem
+        Caption = 'Fornecedor OBJ'
+        OnClick = FornecedorOBJ1Click
+      end
+      object GrupoOBJ1: TMenuItem
+        Caption = 'Grupo OBJ'
+        OnClick = GrupoOBJ1Click
+      end
+      object MarcaOBJ1: TMenuItem
+        Caption = 'Marca OBJ'
+        OnClick = MarcaOBJ1Click
       end
     end
     object Pesquisar1: TMenuItem
@@ -73,44 +82,6 @@ object FrmPrincipal: TFrmPrincipal
         OnClick = Marca1Click
       end
     end
-    object Sistema1: TMenuItem
-      Caption = 'Sistema'
-      object Sair1: TMenuItem
-        Caption = 'Sair'
-        OnClick = Sair1Click
-      end
-    end
-    object Cadastros1: TMenuItem
-      Caption = 'Cadastros OBJ'
-      object FuncionrioOBJ1: TMenuItem
-        Caption = 'Funcion'#225'rio OBJ'
-        OnClick = FuncionrioOBJ1Click
-      end
-      object DepartamentosOBJ1: TMenuItem
-        Caption = 'Departamentos OBJ'
-        OnClick = DepartamentosOBJ1Click
-      end
-      object ProdutosOBJ1: TMenuItem
-        Caption = 'Produtos OBJ'
-        OnClick = ProdutosOBJ1Click
-      end
-      object UnidadesOBJ1: TMenuItem
-        Caption = 'Unidades OBJ'
-        OnClick = UnidadesOBJ1Click
-      end
-      object FornecedorOBJ1: TMenuItem
-        Caption = 'Fornecedor OBJ'
-        OnClick = FornecedorOBJ1Click
-      end
-      object GrupoOBJ1: TMenuItem
-        Caption = 'Grupo OBJ'
-        OnClick = GrupoOBJ1Click
-      end
-      object MarcaOBJ1: TMenuItem
-        Caption = 'Marca OBJ'
-        OnClick = MarcaOBJ1Click
-      end
-    end
     object MovimentosNFe1: TMenuItem
       Caption = 'Movimentos NF-e'
       object Entrada1: TMenuItem
@@ -131,6 +102,13 @@ object FrmPrincipal: TFrmPrincipal
       object ItensMovimentaoentrada1: TMenuItem
         Caption = 'Itens Movimenta'#231#227'o entrada'
         OnClick = ItensMovimentaoentrada1Click
+      end
+    end
+    object Sistema1: TMenuItem
+      Caption = 'Sistema'
+      object Sair1: TMenuItem
+        Caption = 'Sair'
+        OnClick = Sair1Click
       end
     end
   end

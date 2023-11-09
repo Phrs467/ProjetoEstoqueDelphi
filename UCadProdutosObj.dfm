@@ -2,15 +2,14 @@ object FormCadProdutosObj: TFormCadProdutosObj
   Left = 0
   Top = 0
   Caption = 'Cadastro de Produtos OBJ'
-  ClientHeight = 566
-  ClientWidth = 877
+  ClientHeight = 461
+  ClientWidth = 587
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  Menu = MmCadProdObj
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
@@ -18,42 +17,42 @@ object FormCadProdutosObj: TFormCadProdutosObj
   TextHeight = 13
   object LblCadIdProdObj: TLabel
     Left = 48
-    Top = 93
+    Top = 29
     Width = 10
     Height = 13
     Caption = 'Id'
   end
   object LblCadUniProdObj: TLabel
     Left = 48
-    Top = 213
+    Top = 149
     Width = 44
     Height = 13
     Caption = 'Unidades'
   end
   object LblCadNomeProdObj: TLabel
     Left = 48
-    Top = 149
+    Top = 85
     Width = 83
     Height = 13
     Caption = 'Nome do produto'
   end
   object LblCadGrupProdObj: TLabel
     Left = 48
-    Top = 269
+    Top = 205
     Width = 29
     Height = 13
     Caption = 'Grupo'
   end
   object LblCadMarcProdObj: TLabel
     Left = 48
-    Top = 325
+    Top = 261
     Width = 29
     Height = 13
     Caption = 'Marca'
   end
   object EdtCadProdIdObj: TEdit
     Left = 48
-    Top = 112
+    Top = 48
     Width = 121
     Height = 21
     TabOrder = 0
@@ -61,14 +60,14 @@ object FormCadProdutosObj: TFormCadProdutosObj
   end
   object EdtCadProdNomeObj: TEdit
     Left = 48
-    Top = 168
+    Top = 104
     Width = 121
     Height = 21
     TabOrder = 1
   end
   object EdtCadProdIdUniObj: TEdit
     Left = 48
-    Top = 232
+    Top = 168
     Width = 52
     Height = 21
     TabOrder = 2
@@ -76,14 +75,14 @@ object FormCadProdutosObj: TFormCadProdutosObj
   end
   object EdtCadProdNomeUniObj: TEdit
     Left = 146
-    Top = 232
+    Top = 168
     Width = 121
     Height = 21
     TabOrder = 3
   end
   object BtPesqUniProdObj: TButton
     Left = 106
-    Top = 231
+    Top = 167
     Width = 34
     Height = 24
     TabOrder = 4
@@ -91,7 +90,7 @@ object FormCadProdutosObj: TFormCadProdutosObj
   end
   object BtPesqProdObj: TButton
     Left = 175
-    Top = 110
+    Top = 46
     Width = 35
     Height = 25
     TabOrder = 5
@@ -99,7 +98,7 @@ object FormCadProdutosObj: TFormCadProdutosObj
   end
   object BtNovoCadProdObj: TButton
     Left = 48
-    Top = 408
+    Top = 344
     Width = 75
     Height = 25
     Caption = 'Novo'
@@ -108,7 +107,7 @@ object FormCadProdutosObj: TFormCadProdutosObj
   end
   object BtSalvarCadProdObj: TButton
     Left = 129
-    Top = 408
+    Top = 344
     Width = 75
     Height = 25
     Caption = 'Salvar'
@@ -117,7 +116,7 @@ object FormCadProdutosObj: TFormCadProdutosObj
   end
   object BtExcluirCadProdObj: TButton
     Left = 210
-    Top = 408
+    Top = 344
     Width = 75
     Height = 25
     Caption = 'Excluir'
@@ -126,7 +125,7 @@ object FormCadProdutosObj: TFormCadProdutosObj
   end
   object EdtCadProdIdGrupObj: TEdit
     Left = 48
-    Top = 288
+    Top = 224
     Width = 52
     Height = 21
     TabOrder = 9
@@ -134,14 +133,14 @@ object FormCadProdutosObj: TFormCadProdutosObj
   end
   object EdtCadProdGrupNomeObj: TEdit
     Left = 146
-    Top = 288
+    Top = 224
     Width = 121
     Height = 21
     TabOrder = 10
   end
   object EdtCadProdIdMarcObj: TEdit
     Left = 48
-    Top = 344
+    Top = 280
     Width = 52
     Height = 21
     TabOrder = 11
@@ -149,14 +148,14 @@ object FormCadProdutosObj: TFormCadProdutosObj
   end
   object EdtCadProdMarcNomeObj: TEdit
     Left = 146
-    Top = 344
+    Top = 280
     Width = 121
     Height = 21
     TabOrder = 12
   end
   object BtPesqGrupProdObj: TButton
     Left = 106
-    Top = 286
+    Top = 222
     Width = 34
     Height = 25
     TabOrder = 13
@@ -164,18 +163,10 @@ object FormCadProdutosObj: TFormCadProdutosObj
   end
   object BtPesqMarcProdObj: TButton
     Left = 106
-    Top = 342
+    Top = 278
     Width = 34
     Height = 25
     TabOrder = 14
     OnClick = BtPesqMarcProdObjClick
-  end
-  object MmCadProdObj: TMainMenu
-    Left = 24
-    Top = 16
-    object Imprimir1: TMenuItem
-      Caption = 'Imprimir'
-      OnClick = Imprimir1Click
-    end
   end
 end

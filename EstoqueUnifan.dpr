@@ -52,7 +52,9 @@ uses
   UItensMovEntrada in 'UItensMovEntrada.pas',
   UDmItensMoviEntrada in 'UDmItensMoviEntrada.pas' {DmItensMoviEntrada: TDataModule},
   UPesqItensMoviEntrada in 'UPesqItensMoviEntrada.pas' {FormPesqItensMoviEntrada},
-  URelTeste in 'URelTeste.pas' {FormRelaProd};
+  URelTeste in 'URelTeste.pas' {FormRelaProd},
+  ULogin in 'ULogin.pas' {Form1},
+  UDmLogin in 'UDmLogin.pas' {DataModule1: TDataModule};
 
 {$R *.res}
 
@@ -100,6 +102,8 @@ begin
   Application.CreateForm(TFormItensMoviEntrada, FormItensMoviEntrada);
   Application.CreateForm(TDmItensMoviEntrada, DmItensMoviEntrada);
   Application.CreateForm(TFormPesqItensMoviEntrada, FormPesqItensMoviEntrada);
-//  Application.CreateForm(TFormRelaProd, FormRelaProd);
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TDataModule1, DataModule1);
+  //  Application.CreateForm(TFormRelaProd, FormRelaProd);
   Application.Run;
 end.

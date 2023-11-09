@@ -12,6 +12,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    function bconectar(): Boolean;
   end;
 
 var
@@ -22,5 +23,18 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+{ TDBConexao }
+
+function TDBConexao.bconectar: Boolean;
+begin
+  try
+    ConexaoBDPEDRO.Connected := True;
+    if ConexaoBDPEDRO.Connected = true then
+      Result := True;
+  except
+    Result := False
+  end;
+end;
 
 end.

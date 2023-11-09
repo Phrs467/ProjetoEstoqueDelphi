@@ -37,9 +37,11 @@ object DmFuncionario: TDmFuncionario
     Parameters = <>
     SQL.Strings = (
       'select '
-      '  fun.Fun_id, '
+      '  fun.Fun_id,'
+      '  fun.Fun_Matricula, '
       '  fun.Fun_Nome, '
-      '  fun.Fun_Senha, '
+      '  fun.Fun_Senha,'
+      '  fun.Fun_Situacao, '
       '  fun.Dp_id,'
       '  dep.Dp_Nome'
       'from Funcionarios fun'
@@ -63,6 +65,13 @@ object DmFuncionario: TDmFuncionario
     object qPesqFuncionarioDp_Nome: TStringField
       FieldName = 'Dp_Nome'
       Size = 50
+    end
+    object qPesqFuncionarioFun_Matricula: TIntegerField
+      FieldName = 'Fun_Matricula'
+    end
+    object qPesqFuncionarioFun_Situacao: TStringField
+      FieldName = 'Fun_Situacao'
+      Size = 1
     end
   end
   object dsPesqFuncionario: TDataSource

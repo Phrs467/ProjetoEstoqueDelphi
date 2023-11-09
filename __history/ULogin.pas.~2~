@@ -1,0 +1,58 @@
+unit ULogin;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,UDBConexao,
+  dxGDIPlusClasses;
+
+type
+  TForm1 = class(TForm)
+    Image1: TImage;
+    btnEntrar: TButton;
+    edtSenha: TLabeledEdit;
+    edtUsuario: TLabeledEdit;
+    procedure btnEntrarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+uses
+  UDmLogin, UnitPrincipal;
+
+{$R *.dfm}
+
+procedure TForm1.btnEntrarClick(Sender: TObject);
+var
+  bconectado : Boolean;
+begin
+  bconectado := UDBConexao.DBConexao.bconectar;
+
+  dmLogin.ADOQuery1.Close;
+  dmLogin.ADOQuery1.SQL.Clear;
+  dmLogin.ADOQuery1.SQL.Text := 'SELECT * FROM Funcionarios where Fun_Matricula ='''+ edtUsuario.Text +
+  ''' and Fun_Senha ='''+edtSenha.Text+''' ';
+  dmLogin.ADOQuery1.Active := True;
+
+
+  if dmLogin.ADOQuery1.RecordCount >0 then
+  begin
+    dmLogin.ID_Logado := dmLogin.ADOQuery1.FieldByName('Fun_Matricula').AsString;
+    dmLogin.Usuario_Logado := dmLogin.ADOQuery1.FieldByName('Fun_Nome').AsString;
+    FrmPrincipal := TFrmPrincipal.Create(Application);
+    FrmPrincipal.ShowModal;
+    Self.Hide;
+  end
+  else
+    ShowMessage('Usuário ou senha inválidos!');
+end;
+
+end.

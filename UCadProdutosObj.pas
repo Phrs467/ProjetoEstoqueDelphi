@@ -29,8 +29,6 @@ type
     BtPesqMarcProdObj: TButton;
     LblCadGrupProdObj: TLabel;
     LblCadMarcProdObj: TLabel;
-    MmCadProdObj: TMainMenu;
-    Imprimir1: TMenuItem;
     procedure BtPesqProdObjClick(Sender: TObject);
     procedure BtPesqUniProdObjClick(Sender: TObject);
     procedure BtNovoCadProdObjClick(Sender: TObject);
@@ -47,7 +45,6 @@ type
       Shift: TShiftState);
     procedure EdtCadProdIdMarcObjKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure Imprimir1Click(Sender: TObject);
   private
     { Private declarations }
     Produtos : TProduto;
@@ -204,10 +201,6 @@ begin
   LimparForm;
 end;
 
-procedure TFormCadProdutosObj.Imprimir1Click(Sender: TObject);
-begin
-  FormRelaProd.RLReportProd.Preview();
-end;
 
 procedure TFormCadProdutosObj.LimparForm;
 begin

@@ -24,6 +24,8 @@ type
     qFuncObj: TADOQuery;
     dsPesqFuncObj: TDataSource;
     qPesqFuncObj: TADOQuery;
+    qPesqFuncionarioFun_Matricula: TIntegerField;
+    qPesqFuncionarioFun_Situacao: TStringField;
   private
     { Private declarations }
   public
