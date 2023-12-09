@@ -2,8 +2,8 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
   Left = 0
   Top = 0
   Caption = 'Itens Movimenta'#231#227'o de Entrada'
-  ClientHeight = 614
-  ClientWidth = 875
+  ClientHeight = 382
+  ClientWidth = 592
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -43,43 +43,43 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
     Caption = 'Unidades'
   end
   object LblQtdItens: TLabel
-    Left = 360
-    Top = 103
+    Left = 304
+    Top = 100
     Width = 130
     Height = 14
     Caption = 'Quantidade de Itens:'
   end
   object LblVlrUnitario: TLabel
-    Left = 360
-    Top = 159
+    Left = 304
+    Top = 156
     Width = 87
     Height = 14
     Caption = 'Valor Unit'#225'rio:'
   end
   object LblVlrDesconto: TLabel
-    Left = 360
-    Top = 213
+    Left = 304
+    Top = 210
     Width = 97
     Height = 14
     Caption = 'Valor Desconto:'
   end
   object LblVlrFrete: TLabel
-    Left = 360
-    Top = 271
+    Left = 304
+    Top = 268
     Width = 70
     Height = 14
     Caption = 'Valor Frete:'
   end
   object LblVlrBruto: TLabel
-    Left = 624
-    Top = 101
+    Left = 456
+    Top = 100
     Width = 74
     Height = 14
     Caption = 'Valor Bruto:'
   end
   object LblVlrLiquido: TLabel
-    Left = 624
-    Top = 157
+    Left = 456
+    Top = 156
     Width = 84
     Height = 14
     Caption = 'Valor L'#237'quido:'
@@ -166,50 +166,51 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
     TabOrder = 10
   end
   object EdtQtdItensMoviEntra: TEdit
-    Left = 360
-    Top = 122
+    Left = 304
+    Top = 119
     Width = 121
     Height = 22
     TabOrder = 11
   end
   object EdtVlrUnitarioItensMoviEntra: TEdit
-    Left = 360
-    Top = 178
+    Left = 304
+    Top = 175
     Width = 121
     Height = 22
     TabOrder = 12
   end
   object EdtVlrDescontoItensMoviEntra: TEdit
-    Left = 360
-    Top = 232
+    Left = 304
+    Top = 229
     Width = 121
     Height = 22
     TabOrder = 13
   end
   object EdtVlrFreteItensMoviEntra: TEdit
-    Left = 360
-    Top = 290
+    Left = 304
+    Top = 287
     Width = 121
     Height = 22
     TabOrder = 14
   end
   object EdtVlrBrutoItensMoviEntra: TEdit
-    Left = 624
-    Top = 120
+    Left = 456
+    Top = 119
     Width = 121
     Height = 22
     TabOrder = 15
+    OnExit = EdtVlrBrutoItensMoviEntraExit
   end
   object EdtVlrLiquiItensMoviEntra: TEdit
-    Left = 624
-    Top = 176
+    Left = 456
+    Top = 175
     Width = 121
     Height = 22
     TabOrder = 16
   end
   object BtNovoItemMoviEntra: TButton
     Left = 40
-    Top = 376
+    Top = 336
     Width = 75
     Height = 25
     Caption = 'Novo'
@@ -218,7 +219,7 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
   end
   object BtSalvarItemMoviEntra: TButton
     Left = 152
-    Top = 376
+    Top = 336
     Width = 75
     Height = 25
     Caption = 'Salvar'
@@ -227,7 +228,7 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
   end
   object BtExcluirItemMoviEntra: TButton
     Left = 264
-    Top = 376
+    Top = 336
     Width = 75
     Height = 25
     Caption = 'Excluir'
@@ -237,7 +238,7 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
   object PanelItensMoviEntrada: TPanel
     Left = 0
     Top = 0
-    Width = 875
+    Width = 592
     Height = 79
     Align = alTop
     Caption = 'Itens de movimenta'#231#245'es'

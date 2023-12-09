@@ -30,7 +30,7 @@ type
     qItensMoviEntradaUni_Descricao: TStringField;
     qItensMoviEntradaForn_Nome: TStringField;
     qItensMoviEntradaNum_Nota: TLargeintField;
-    qItensMoviEntradaIme_Quatidade: TBCDField;
+    qItensMoviEntradaIme_Quantidade: TIntegerField;
   private
     { Private declarations }
   public

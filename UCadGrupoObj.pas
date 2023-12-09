@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UGrupo;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UGrupo, Vcl.ExtCtrls;
 
 type
   TFormCadGrupoObj = class(TForm)
@@ -16,6 +16,7 @@ type
     BtSalvarCadGrupo: TButton;
     BtExcluirCadGrupo: TButton;
     BtPesqCadGrupo: TButton;
+    PanelCadGrupoObj: TPanel;
     procedure BtPesqCadGrupoClick(Sender: TObject);
     procedure EdtCadIdGrupoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);

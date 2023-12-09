@@ -6,7 +6,7 @@ object DBConexao: TDBConexao
     Connected = True
     ConnectionString = 
       'Provider=SQLOLEDB.1;Password=saoba123;Persist Security Info=True' +
-      ';User ID=sa;Initial Catalog=BDPEDRO;Data Source=DESENV5'
+      ';User ID=sa;Initial Catalog=BDPEDRO;Data Source=DESENV1'
     LoginPrompt = False
     Provider = 'SQLOLEDB.1'
     Left = 80

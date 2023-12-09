@@ -47,6 +47,7 @@ type
     procedure BtIdItensMoviEntraClick(Sender: TObject);
     procedure BtSalvarItemMoviEntraClick(Sender: TObject);
     procedure BtExcluirItemMoviEntraClick(Sender: TObject);
+    procedure EdtVlrBrutoItensMoviEntraExit(Sender: TObject);
   private
     { Private declarations }
     Produto : TProduto;
@@ -201,6 +202,22 @@ begin
   end;
 
   ItensMoviEntrada.Free
+
+end;
+
+procedure TFormItensMoviEntrada.EdtVlrBrutoItensMoviEntraExit(Sender: TObject);
+//var
+//  Quantidade ,ValorUnitário, Desconto, ValorFrete ,ValorBruto, ValorLiquido : Double;
+begin
+//  Quantidade := StrToInt(EdtQtdItensMoviEntra.Text);
+//  ValorUnitário := StrToFloatDef(EdtVlrUnitarioItensMoviEntra.Text, 0);
+//  Desconto := StrToFloatDef(EdtDescUniItensMoviEntra.Text, 0);
+//  ValorFrete := StrToFloatDef(EdtVlrFreteItensMoviEntra.Text, 0);
+//  ValorBruto := StrToFloatDef(EdtVlrBrutoItensMoviEntra.Text, 0);
+//
+//
+//  ValorBruto := (ValorLiquido * Quantidade) - Desconto + ValorFrete;
+//  EdtVlrLiquiItensMoviEntra.Text := FormatFloat('#0.00', ValorBruto);
 
 end;
 

@@ -148,6 +148,7 @@ begin
   MovimentacaoEntrada.NumSerie := StrToInt(EdtNumSerie.Text);
   MovimentacaoEntrada.NumNota :=  StrToInt(EdtNumNota.Text);
   MovimentacaoEntrada.DataEmissao := StrToDateTime(MaskEdtDataEntra.Text);
+  //só para ver
   MovimentacaoEntrada.DataEntra := StrToDateTime(MaskEdtDataEmissao.Text);
 
   if EdtValDesconto.Text = '' then

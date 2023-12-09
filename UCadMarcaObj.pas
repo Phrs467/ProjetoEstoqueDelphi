@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UMarca;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UMarca, Vcl.ExtCtrls;
 
 type
   TFormCadMarca = class(TForm)
@@ -16,6 +16,7 @@ type
     BtSalvarCadMarca: TButton;
     BtExcluirCadMarca: TButton;
     BtPesqCadMarca: TButton;
+    PanelCadMarcaObj: TPanel;
     procedure BtPesqCadMarcaClick(Sender: TObject);
     procedure BtNovoCadMarcaClick(Sender: TObject);
     procedure BtSalvarCadMarcaClick(Sender: TObject);

@@ -77,9 +77,8 @@ object DmItensMoviEntrada: TDmItensMoviEntrada
     object qItensMoviEntradaNum_Nota: TLargeintField
       FieldName = 'Num_Nota'
     end
-    object qItensMoviEntradaIme_Quatidade: TBCDField
+    object qItensMoviEntradaIme_Quantidade: TIntegerField
       FieldName = 'Ime_Quantidade'
-      Precision = 15
     end
   end
   object dsItensMoviEntrada: TDataSource

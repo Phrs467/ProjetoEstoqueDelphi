@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UFornecedor, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UFornecedor, Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
   TFormCadFornecedorObj = class(TForm)
@@ -16,6 +16,7 @@ type
     BtNovoCadFornObj: TButton;
     BtSalvarCadFornObj: TButton;
     BtExcluirCadFornObj: TButton;
+    PanelCadFornObj: TPanel;
     procedure BtPesqCadFornObjClick(Sender: TObject);
     procedure BtNovoCadFornObjClick(Sender: TObject);
     procedure BtSalvarCadFornObjClick(Sender: TObject);

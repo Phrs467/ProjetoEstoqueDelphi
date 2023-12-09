@@ -22,7 +22,7 @@ object FormPesqFunc: TFormPesqFunc
     TabOrder = 0
     object LblPesqNomeFunc: TLabel
       Left = 207
-      Top = 20
+      Top = 13
       Width = 83
       Height = 13
       Caption = 'Digite seu nome: '
@@ -43,14 +43,14 @@ object FormPesqFunc: TFormPesqFunc
     end
     object EdtPesqFuncionario: TEdit
       Left = 207
-      Top = 39
+      Top = 32
       Width = 177
       Height = 21
       TabOrder = 1
     end
     object BtPesqFuncionario: TButton
-      Left = 416
-      Top = 33
+      Left = 504
+      Top = 13
       Width = 75
       Height = 25
       Caption = 'Pesquisar'
@@ -58,21 +58,37 @@ object FormPesqFunc: TFormPesqFunc
       OnClick = BtPesqFuncionarioClick
     end
     object BtSelecionar: TButton
-      Left = 520
-      Top = 33
+      Left = 504
+      Top = 43
       Width = 75
       Height = 25
       Caption = 'Selecionar'
       TabOrder = 3
       OnClick = BtSelecionarClick
     end
+    object CheckBoxAtivo: TCheckBox
+      Left = 401
+      Top = 12
+      Width = 97
+      Height = 17
+      Caption = 'Ativo'
+      Checked = True
+      State = cbChecked
+      TabOrder = 4
+    end
   end
   object DBGridPesqFuncionario: TDBGrid
     Left = 8
-    Top = 104
+    Top = 107
     Width = 858
     Height = 481
     DataSource = DmFuncionario.dsPesqFuncionario
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -101,6 +117,23 @@ object FormPesqFunc: TFormPesqFunc
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
         Width = 189
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Fun_Situacao'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Title.Caption = 'Situa'#231#227'o'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 63
         Visible = True
       end
       item

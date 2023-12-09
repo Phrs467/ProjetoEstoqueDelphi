@@ -16,6 +16,7 @@ type
     BtPesqFuncionario: TButton;
     DBGridPesqFuncionario: TDBGrid;
     BtSelecionar: TButton;
+    CheckBoxAtivo: TCheckBox;
     procedure RgPesqFuncionarioClick(Sender: TObject);
     procedure BtPesqFuncionarioClick(Sender: TObject);
     procedure BtSelecionarClick(Sender: TObject);
@@ -54,6 +55,13 @@ begin
   '  dep.Dp_Nome                '+
   '  from Funcionarios fun      '+
   '  left outer join Departamentos dep  On dep.dp_id = fun.dp_id ';
+
+  if CheckBoxAtivo.Checked = true then
+  begin
+    sql := sql + 'where fun.Fun_Situacao = ''A''';
+  end
+  else
+    sql := sql + 'where fun.Fun_Situacao = ''I''';
 
   if RgPesqFuncionario.ItemIndex = 0 then
   begin

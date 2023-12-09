@@ -33,6 +33,7 @@ uses
 procedure TFormLogin.btnEntrarClick(Sender: TObject);
 var
   bconectado : Boolean;
+  Situacao : String;
 begin
   bconectado := UDBConexao.DBConexao.bconectar;
 
@@ -45,14 +46,26 @@ begin
 
   if dmLogin.ADOQuery1.RecordCount >0 then
   begin
-    dmLogin.ID_Logado := dmLogin.ADOQuery1.FieldByName('Fun_Matricula').AsString;
-    dmLogin.Usuario_Logado := dmLogin.ADOQuery1.FieldByName('Fun_Nome').AsString;
-    FrmPrincipal := TFrmPrincipal.Create(Application);
-    FrmPrincipal.ShowModal;
-    Self.Hide;
+    Situacao := dmLogin.ADOQuery1.FieldByName('Fun_Situacao').AsString;
+
+    if Situacao = 'A' then
+    begin
+      dmLogin.ID_Logado := dmLogin.ADOQuery1.FieldByName('Fun_Matricula').AsString;
+      dmLogin.Usuario_Logado := dmLogin.ADOQuery1.FieldByName('Fun_Nome').AsString;
+      FrmPrincipal := TFrmPrincipal.Create(Application);
+      FrmPrincipal.ShowModal;
+
+    end
+    else
+    begin
+      ShowMessage('Favor verificar a situação do seu cadastro juntamente ao RH.'+
+      #13+ 'Não foi possível efetuar o login,tente novamente mais tarde!');
+    end;
   end
   else
     ShowMessage('Usuário ou senha inválidos!');
+
+
 end;
 
 end.

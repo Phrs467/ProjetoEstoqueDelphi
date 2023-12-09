@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UUnidade;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UUnidade, Vcl.ExtCtrls;
 
 type
   TFormCadUnidadesObj = class(TForm)
@@ -16,6 +16,7 @@ type
     BtSalvarCadUniObj: TButton;
     BtExcluirCadUniObj: TButton;
     BtPesqIdUniObj: TButton;
+    PanelCadUniObj: TPanel;
     procedure BtPesqIdUniObjClick(Sender: TObject);
     procedure BtNovoCadUniObjClick(Sender: TObject);
     procedure BtSalvarCadUniObjClick(Sender: TObject);

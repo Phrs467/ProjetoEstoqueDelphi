@@ -2,8 +2,8 @@ object FormCadDepartamentoObj: TFormCadDepartamentoObj
   Left = 0
   Top = 0
   Caption = 'Cadastro de Departamento OBJ'
-  ClientHeight = 548
-  ClientWidth = 782
+  ClientHeight = 339
+  ClientWidth = 354
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,6 +11,7 @@ object FormCadDepartamentoObj: TFormCadDepartamentoObj
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
   object LblCadIdDepObj: TLabel
@@ -28,7 +29,7 @@ object FormCadDepartamentoObj: TFormCadDepartamentoObj
   end
   object LblCadNomeDepObj: TLabel
     Left = 40
-    Top = 224
+    Top = 216
     Width = 34
     Height = 14
     Caption = 'Nome'
@@ -42,7 +43,7 @@ object FormCadDepartamentoObj: TFormCadDepartamentoObj
   object PanelCadDepartamentoObj: TPanel
     Left = 0
     Top = 0
-    Width = 782
+    Width = 354
     Height = 89
     Align = alTop
     Caption = 'Cadastro de Departamento'
@@ -53,6 +54,7 @@ object FormCadDepartamentoObj: TFormCadDepartamentoObj
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 782
   end
   object EdtCadIdDepObj: TEdit
     Left = 40
@@ -64,14 +66,14 @@ object FormCadDepartamentoObj: TFormCadDepartamentoObj
   end
   object EdtCadNomeDepObj: TEdit
     Left = 40
-    Top = 243
+    Top = 235
     Width = 121
     Height = 21
     TabOrder = 2
   end
   object btnBtNovoCadDepartamento: TButton
     Left = 40
-    Top = 312
+    Top = 272
     Width = 75
     Height = 25
     Caption = 'Novo'
@@ -80,7 +82,7 @@ object FormCadDepartamentoObj: TFormCadDepartamentoObj
   end
   object BtSalvarCadDepartamento: TButton
     Left = 136
-    Top = 312
+    Top = 272
     Width = 75
     Height = 25
     Caption = 'Salvar'
@@ -89,7 +91,7 @@ object FormCadDepartamentoObj: TFormCadDepartamentoObj
   end
   object BtExcluirCadDepartamento: TButton
     Left = 232
-    Top = 312
+    Top = 272
     Width = 75
     Height = 25
     Caption = 'Excluir'

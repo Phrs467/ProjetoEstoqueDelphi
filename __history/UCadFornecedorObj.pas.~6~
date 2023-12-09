@@ -1,0 +1,246 @@
+unit UCadFornecedorObj;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UFornecedor, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TFormCadFornecedorObj = class(TForm)
+    LblCadIdFornObj: TLabel;
+    EdtCadIdFornObj: TEdit;
+    LblCadNomeFornId: TLabel;
+    EdtCadNomeFornObj: TEdit;
+    BtPesqCadFornObj: TButton;
+    BtNovoCadFornObj: TButton;
+    BtSalvarCadFornObj: TButton;
+    BtExcluirCadFornObj: TButton;
+    edt_cpfcnpj: TLabeledEdit;
+    procedure BtPesqCadFornObjClick(Sender: TObject);
+    procedure BtNovoCadFornObjClick(Sender: TObject);
+    procedure BtSalvarCadFornObjClick(Sender: TObject);
+    procedure BtExcluirCadFornObjClick(Sender: TObject);
+    procedure EdtCadIdFornObjKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure edt_cpfcnpjExit(Sender: TObject);
+  private
+    { Private declarations }
+    Fornecedor : TFornecedor;
+
+    procedure LimparForm;
+
+    procedure PesquisarFornecedor;
+
+    function IsValidCPF(const CPF: string): Boolean;
+    function IsValidCNPJ(const CNPJ: string): Boolean;
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCadFornecedorObj: TFormCadFornecedorObj;
+
+implementation
+
+uses
+  UPesqFornecedor;
+
+{$R *.dfm}
+
+procedure TFormCadFornecedorObj.BtExcluirCadFornObjClick(Sender: TObject);
+begin
+  Fornecedor := TFornecedor.Create;
+
+  Fornecedor.Id := StrToInt(EdtCadIdFornObj.Text);
+  Fornecedor.excluir;
+
+  Fornecedor.Free;
+
+  LimparForm;
+
+end;
+
+procedure TFormCadFornecedorObj.BtNovoCadFornObjClick(Sender: TObject);
+begin
+  LimparForm;
+end;
+
+procedure TFormCadFornecedorObj.BtPesqCadFornObjClick(Sender: TObject);
+begin
+ FormPesqForn.ShowModal;
+  if FormPesqForn.FrmIdForn > 0 then
+  begin
+    EdtCadIdFornObj.Text := IntToStr(FormPesqForn.FrmIdForn);
+    PesquisarFornecedor;
+  end;
+
+end;
+
+procedure TFormCadFornecedorObj.BtSalvarCadFornObjClick(Sender: TObject);
+begin
+     Fornecedor := TFornecedor.Create;
+
+     Fornecedor.Nome := EdtCadNomeFornObj.Text;
+
+     if EdtCadIdFornObj.Text = '' then
+        Fornecedor.incluir
+     else
+     begin
+       Fornecedor.Id := StrToInt(EdtCadIdFornObj.Text);
+       Fornecedor.alterar;
+     end;
+     Fornecedor.Free;
+
+end;
+
+procedure TFormCadFornecedorObj.EdtCadIdFornObjKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if key = VK_RETURN then
+  begin
+    PesquisarFornecedor;
+  end;
+end;
+
+function TFormCadFornecedorObj.IsValidCNPJ(const CNPJ: string): Boolean;
+var
+  Soma, Resto, i, Num, Peso: Integer;
+  DigitoVerif: array[0..1] of Integer;
+begin
+  Result := False;
+
+  if Length(CNPJ) <> 14 then
+    Exit;
+
+  for i := 0 to 1 do
+    DigitoVerif[i] := 0;
+
+  // Primeira parte da validação
+  Peso := 5;
+  for i := 1 to 12 do
+  begin
+    Num := StrToInt(CNPJ[i]);
+    DigitoVerif[0] := DigitoVerif[0] + (Num * Peso);
+    Inc(Peso);
+    if Peso > 9 then
+      Peso := 2;
+  end;
+
+  Resto := (DigitoVerif[0] mod 11);
+  if Resto < 2 then
+    Resto := 0
+  else
+    Resto := 11 - Resto;
+
+  if Resto <> StrToInt(CNPJ[13]) then
+    Exit;
+
+  // Segunda parte da validação
+  Peso := 6;
+  for i := 1 to 13 do
+  begin
+    Num := StrToInt(CNPJ[i]);
+    DigitoVerif[1] := DigitoVerif[1] + (Num * Peso);
+    Inc(Peso);
+    if Peso > 9 then
+      Peso := 2;
+  end;
+
+  Resto := (DigitoVerif[1] mod 11);
+  if Resto < 2 then
+    Resto := 0
+  else
+    Resto := 11 - Resto;
+
+  if Resto <> StrToInt(CNPJ[14]) then
+    Exit;
+
+  Result := True;
+end;
+
+
+function TFormCadFornecedorObj.IsValidCPF(const CPF: string): Boolean;
+var
+  Soma, Resto, i, Num, Peso: Integer;
+  DigitoVerif: array[0..1] of Integer;
+begin
+  Result := False;
+
+  if Length(CPF) <> 11 then
+    Exit;
+
+  for i := 0 to 1 do
+    DigitoVerif[i] := 0;
+
+  for i := 1 to 9 do
+  begin
+    Num := StrToInt(CPF[i]);
+    DigitoVerif[0] := DigitoVerif[0] + (Num * (11 - i));
+    DigitoVerif[1] := DigitoVerif[1] + (Num * (12 - i));
+  end;
+
+  Resto := (DigitoVerif[0] * 10) mod 11;
+  if Resto = 10 then
+    Resto := 0;
+
+  if Resto <> StrToInt(CPF[10]) then
+    Exit;
+
+  Resto := (DigitoVerif[1] * 10) mod 11;
+  if Resto = 10 then
+    Resto := 0;
+
+  if Resto <> StrToInt(CPF[11]) then
+    Exit;
+
+  Result := True;
+end;
+
+procedure TFormCadFornecedorObj.edt_cpfcnpjExit(Sender: TObject);
+begin
+// Remove qualquer caractere que não seja número do campo CPF/CNPJ
+  edt_cpfcnpj.Text := StringReplace(edt_cpfcnpj.Text, '.', '', [rfReplaceAll]);
+  edt_cpfcnpj.Text := StringReplace(edt_cpfcnpj.Text, '-', '', [rfReplaceAll]);
+  edt_cpfcnpj.Text := StringReplace(edt_cpfcnpj.Text, '/', '', [rfReplaceAll]);
+
+  // Verifica se é CPF ou CNPJ e exibe a mensagem apropriada
+  if (Length(edt_cpfcnpj.Text) = 11) and not IsValidCPF(edt_cpfcnpj.Text) then
+    ShowMessage('CPF inválido');
+
+  if (Length(edt_cpfcnpj.Text) = 14) and not IsValidCNPJ(edt_cpfcnpj.Text) then
+    ShowMessage('CNPJ inválido');
+end;
+
+procedure TFormCadFornecedorObj.LimparForm;
+begin
+    EdtCadIdFornObj.Clear;
+    EdtCadNomeFornObj.Clear;
+end;
+
+procedure TFormCadFornecedorObj.PesquisarFornecedor;
+begin
+  if EdtCadIdFornObj.Text <> '' then
+  begin
+
+    Fornecedor := TFornecedor.Create;
+    Fornecedor.Id := StrToInt(EdtCadIdFornObj.Text);
+
+    if Fornecedor.pesquisarId then
+    begin
+
+      EdtCadIdFornObj.Text := IntToStr(Fornecedor.Id);
+      EdtCadNomeFornObj.Text := Fornecedor.Nome;
+    end
+    else
+    begin
+      ShowMessage('Fornecedor não localizado!');
+    end;
+
+    Fornecedor.Free;
+
+  end;
+
+end;
+
+end.

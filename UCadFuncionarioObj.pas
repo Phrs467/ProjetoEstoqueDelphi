@@ -134,13 +134,19 @@ begin
   end;
 
   if EdtCadIdFuncObj.Text = '' then
-    Funcionario.incluir
+  begin
+    Funcionario.incluir;
+    ShowMessage('Registro salvo com sucesso!');
+  end
   else
   begin
     Funcionario.Id := StrToInt(EdtCadIdFuncObj.Text);
     Funcionario.alterar;
+    ShowMessage('Registro salvo com sucesso!');
   end;
   Funcionario.Free;
+
+
 
 end;
 

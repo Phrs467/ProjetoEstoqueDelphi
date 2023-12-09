@@ -2,8 +2,8 @@ object FormCadGrupoObj: TFormCadGrupoObj
   Left = 0
   Top = 0
   Caption = 'Cadastro de Grupo OBJ'
-  ClientHeight = 565
-  ClientWidth = 799
+  ClientHeight = 330
+  ClientWidth = 328
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,37 +15,37 @@ object FormCadGrupoObj: TFormCadGrupoObj
   PixelsPerInch = 96
   TextHeight = 13
   object LblCadIdGrupo: TLabel
-    Left = 40
-    Top = 37
+    Left = 32
+    Top = 125
     Width = 11
     Height = 13
     Caption = 'ID'
   end
   object LblCadNomeGrupo: TLabel
-    Left = 40
-    Top = 96
+    Left = 32
+    Top = 184
     Width = 74
     Height = 13
     Caption = 'Nome do Grupo'
   end
   object EdtCadIdGrupo: TEdit
-    Left = 40
-    Top = 56
+    Left = 32
+    Top = 144
     Width = 57
     Height = 21
     TabOrder = 0
     OnKeyDown = EdtCadIdGrupoKeyDown
   end
   object EdtCadNomeGrupo: TEdit
-    Left = 40
-    Top = 115
+    Left = 32
+    Top = 203
     Width = 193
     Height = 21
     TabOrder = 1
   end
   object BtNovoCadGrupo: TButton
-    Left = 40
-    Top = 168
+    Left = 32
+    Top = 256
     Width = 75
     Height = 25
     Caption = 'Novo'
@@ -53,8 +53,8 @@ object FormCadGrupoObj: TFormCadGrupoObj
     OnClick = BtNovoCadGrupoClick
   end
   object BtSalvarCadGrupo: TButton
-    Left = 121
-    Top = 168
+    Left = 113
+    Top = 256
     Width = 75
     Height = 25
     Caption = 'Salvar'
@@ -62,8 +62,8 @@ object FormCadGrupoObj: TFormCadGrupoObj
     OnClick = BtSalvarCadGrupoClick
   end
   object BtExcluirCadGrupo: TButton
-    Left = 202
-    Top = 168
+    Left = 194
+    Top = 256
     Width = 75
     Height = 25
     Caption = 'Excluir'
@@ -71,11 +71,27 @@ object FormCadGrupoObj: TFormCadGrupoObj
     OnClick = BtExcluirCadGrupoClick
   end
   object BtPesqCadGrupo: TButton
-    Left = 103
-    Top = 54
+    Left = 95
+    Top = 142
     Width = 34
     Height = 25
     TabOrder = 5
     OnClick = BtPesqCadGrupoClick
+  end
+  object PanelCadGrupoObj: TPanel
+    Left = 0
+    Top = 0
+    Width = 328
+    Height = 113
+    Align = alTop
+    Caption = 'Cadastro de Grupo'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 6
+    ExplicitWidth = 490
   end
 end

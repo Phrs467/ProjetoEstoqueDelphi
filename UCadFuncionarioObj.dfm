@@ -2,8 +2,8 @@ object FormCadFuncionarioObj: TFormCadFuncionarioObj
   Left = 0
   Top = 0
   Caption = 'Cadastro de Funcion'#225'rio OBJ'
-  ClientHeight = 584
-  ClientWidth = 816
+  ClientHeight = 453
+  ClientWidth = 490
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -115,7 +115,7 @@ object FormCadFuncionarioObj: TFormCadFuncionarioObj
   object PanelCadFuncObj: TPanel
     Left = 0
     Top = 0
-    Width = 816
+    Width = 490
     Height = 113
     Align = alTop
     Caption = 'Cadastro de Funcion'#225'rio'
@@ -126,13 +126,14 @@ object FormCadFuncionarioObj: TFormCadFuncionarioObj
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
-    ExplicitTop = 152
+    ExplicitWidth = 816
   end
   object EdtCadIdFuncObj: TEdit
     Left = 32
     Top = 171
     Width = 57
     Height = 21
+    ReadOnly = True
     TabOrder = 1
     OnKeyDown = EdtCadIdFuncObjKeyDown
   end
@@ -236,7 +237,7 @@ object FormCadFuncionarioObj: TFormCadFuncionarioObj
   end
   object DsCadFuncObj: TDataSource
     DataSet = DmFuncionario.qFuncObj
-    Left = 664
-    Top = 256
+    Left = 448
+    Top = 128
   end
 end

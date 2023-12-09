@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UProduto, UUnidade, UMarca, UGrupo,
-  Vcl.Menus ;
+  Vcl.Menus, Vcl.ExtCtrls ;
 
 type
   TFormCadProdutosObj = class(TForm)
@@ -29,6 +29,7 @@ type
     BtPesqMarcProdObj: TButton;
     LblCadGrupProdObj: TLabel;
     LblCadMarcProdObj: TLabel;
+    PanelCadProdObj: TPanel;
     procedure BtPesqProdObjClick(Sender: TObject);
     procedure BtPesqUniProdObjClick(Sender: TObject);
     procedure BtNovoCadProdObjClick(Sender: TObject);

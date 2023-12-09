@@ -1,0 +1,300 @@
+unit UCadFuncionarioObj;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, UFuncionario, UDepartamento,
+  Data.DB, DateUtils, Vcl.Buttons;
+
+type
+  TFormCadFuncionarioObj = class(TForm)
+    PanelCadFuncObj: TPanel;
+    LblCadIdFuncObj: TLabel;
+    EdtCadIdFuncObj: TEdit;
+    LblCadNomeFuncObj: TLabel;
+    EdtCadNomeFuncObj: TEdit;
+    LblCadSenhaFuncObj: TLabel;
+    EdtCadSenhaFuncObj: TEdit;
+    LblCadDepFuncObj: TLabel;
+    EdtCadIdDepFuncObj: TEdit;
+    BtPesqCadFuncObj: TButton;
+    EdtCadNomeDepFuncObj: TEdit;
+    BtSalvarCadFunc: TButton;
+    BtNovoCadFunc: TButton;
+    DsCadFuncObj: TDataSource;
+    ButtonPesqFunc: TButton;
+    BtExcluirCadFunc: TButton;
+    edt_matricula: TLabeledEdit;
+    GerarNumPedido: TSpeedButton;
+    CheckBoxAtivo: TCheckBox;
+    procedure BtSalvarCadFuncClick(Sender: TObject);
+    procedure ButtonPesqFuncClick(Sender: TObject);
+    procedure BtPesqCadFuncObjClick(Sender: TObject);
+    procedure BtExcluirCadFuncClick(Sender: TObject);
+    procedure BtNovoCadFuncClick(Sender: TObject);
+    procedure EdtCadIdFuncObjKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure GerarNumPedidoClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+    Funcionario : TFuncionario;
+    Departamento: TDepartamento;
+
+    procedure LimparForm;
+
+    procedure PesquisarFuncionario;
+    procedure PesquisarDepartamento;
+    Function GerarNumMatricula : String;
+  public
+    { Public declarations }
+  end;
+
+var
+  FormCadFuncionarioObj: TFormCadFuncionarioObj;
+
+implementation
+
+uses
+  UPesqDepartamento, UDmFuncionario, UPesqFuncionario;
+
+{$R *.dfm}
+
+
+procedure TFormCadFuncionarioObj.BtExcluirCadFuncClick(Sender: TObject);
+begin
+  Funcionario := TFuncionario.Create;
+
+  if Application.MessageBox('Você deseja realmente excluir os dados?','Aviso', MB_ICONEXCLAMATION+MB_YESNO) = mrNo then
+    abort;
+
+  Funcionario.Id := StrToInt(EdtCadIdFuncObj.Text);
+  Funcionario.excluir;
+
+  Funcionario.Free;
+
+  LimparForm;
+end;
+
+procedure TFormCadFuncionarioObj.BtNovoCadFuncClick(Sender: TObject);
+begin
+
+  if (EdtCadNomeFuncObj.Text <> '') or (EdtCadSenhaFuncObj.Text <> '') or
+  (EdtCadIdDepFuncObj.Text <> '') or (edt_matricula.Text <> '')then
+  begin
+    if Application.MessageBox('Você deseja limpar os dados preenchidos? ','Aviso',MB_ICONQUESTION+MB_YESNO) = mrNo then
+      Exit;
+  end;
+
+  LimparForm;
+end;
+
+procedure TFormCadFuncionarioObj.BtPesqCadFuncObjClick(Sender: TObject);
+begin
+    FormPesqDepartamento.ShowModal;
+  if FormPesqDepartamento.FrmIdDepartamento > 0 then
+  begin
+    EdtCadIdDepFuncObj.Text := IntToStr(FormPesqDepartamento.FrmIdDepartamento);
+    EdtCadNomeDepFuncObj.Text := FormPesqDepartamento.FrmNomeDepartamento;
+  end;
+
+end;
+
+procedure TFormCadFuncionarioObj.BtSalvarCadFuncClick(Sender: TObject);
+var
+  Ativo : String;
+begin
+  if CheckBoxAtivo.Checked = True then
+    Ativo := 'A'
+  else
+    Ativo := 'I';
+
+  Funcionario := TFuncionario.Create;
+
+  Funcionario.Matricula := StrToInt(edt_matricula.Text);
+  Funcionario.Nome := EdtCadNomeFuncObj.Text;
+  Funcionario.Senha := EdtCadSenhaFuncObj.Text;
+  Funcionario.Situacao := Ativo;
+  if EdtCadIdDepFuncObj.Text <> '' then
+  begin
+    Funcionario.DepId := StrToInt(EdtCadIdDepFuncObj.Text);
+  end;
+
+  if (EdtCadSenhaFuncObj.Text = '') then
+  begin
+    Application.MessageBox('Você deve preencher a senha ','Aviso', MB_ICONEXCLAMATION+MB_OK);
+    abort
+  end;
+
+  if (EdtCadNomeFuncObj.Text = '')  then
+  begin
+    Application.MessageBox('Você deve preencher o nome ','Aviso', MB_ICONEXCLAMATION+MB_OK);
+    abort
+  end;
+
+  if EdtCadIdFuncObj.Text = '' then
+    Funcionario.incluir
+  else
+  begin
+    Funcionario.Id := StrToInt(EdtCadIdFuncObj.Text);
+    Funcionario.alterar;
+  end;
+  Funcionario.Free;
+
+end;
+
+
+procedure TFormCadFuncionarioObj.ButtonPesqFuncClick(Sender: TObject);
+begin
+ FormPesqFunc.ShowModal;
+  if FormPesqFunc.FrmIdFuncionario > 0 then
+  begin
+    EdtCadIdFuncObj.Text := IntToStr(FormPesqFunc.FrmIdFuncionario);
+    PesquisarFuncionario;
+  end;
+
+end;
+
+procedure TFormCadFuncionarioObj.EdtCadIdFuncObjKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  //
+  if key = VK_RETURN then
+  begin
+    PesquisarFuncionario;
+  end;
+end;
+
+procedure TFormCadFuncionarioObj.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  LimparForm;
+end;
+
+function TFormCadFuncionarioObj.GerarNumMatricula: String;
+var
+  AnoAtual, MesAtual: Integer;
+  NumeroAleatorio: string;
+  Matricula: string;
+  NumeroJaUsado: TStringList;
+  Index: Integer; // Variável para armazenar o índice
+begin
+  AnoAtual := YearOf(Date);
+  MesAtual := MonthOf(Date); // Obter o mês atual
+
+  Randomize;
+  NumeroJaUsado := TStringList.Create;
+  try
+    repeat
+      // Gerar um número aleatório de 6 dígitos
+      NumeroAleatorio := Format('%d', [Random(10000000)]);
+
+      // Montar a matrícula com o ano atual, mês e o número aleatório
+      Matricula := NumeroAleatorio;
+
+      // Usar o método Find para verificar se a matrícula já foi usada
+      Index := NumeroJaUsado.IndexOf(Matricula);
+
+    until Index = -1;
+
+    // Adicionar a matrícula à lista de números já usados
+    NumeroJaUsado.Add(Matricula);
+  finally
+    NumeroJaUsado.Free;
+  end;
+  Result := Matricula;
+end;
+
+procedure TFormCadFuncionarioObj.GerarNumPedidoClick(Sender: TObject);
+begin
+  if edt_matricula.Text = '' then
+  begin
+    edt_matricula.Text := GerarNumMatricula;
+  end
+  else
+  begin
+    if Application.MessageBox('Você deseja sobreescrever o número de pedido atual? ','Aviso',
+    MB_ICONQUESTION+MB_YESNO) = mrYes then
+    begin
+      edt_matricula.Text := GerarNumMatricula;
+    end
+    else
+      Exit;
+  end;
+end;
+
+procedure TFormCadFuncionarioObj.LimparForm;
+begin
+  EdtCadIdFuncObj.Clear;
+  edt_matricula.Clear;
+  EdtCadNomeFuncObj.Clear;
+  EdtCadSenhaFuncObj.Clear;
+  EdtCadIdDepFuncObj.Clear;
+  CheckBoxAtivo.Checked := True;
+  EdtCadNomeDepFuncObj.Clear;
+
+end;
+
+procedure TFormCadFuncionarioObj.PesquisarDepartamento;
+begin
+  if EdtCadIdDepFuncObj.Text <> '' then
+  begin
+
+    Departamento := TDepartamento.Create;
+    Departamento.Id := StrToInt(EdtCadIdDepFuncObj.Text);
+
+    if Departamento.pesquisarId then
+    begin
+
+      EdtCadNomeDepFuncObj.Text := Departamento.Nome;
+
+    end
+    else
+    begin
+      ShowMessage('Departamento não localizado!');
+    end;
+
+    Departamento.Free;
+  end;
+
+end;
+
+procedure TFormCadFuncionarioObj.PesquisarFuncionario;
+begin
+
+  if EdtCadIdFuncObj.Text <> '' then
+  begin
+
+    Funcionario := TFuncionario.Create;
+    Funcionario.Id := StrToInt(EdtCadIdFuncObj.Text);
+
+    if Funcionario.pesquisarId then
+    begin
+      EdtCadIdFuncObj.Text := IntToStr(Funcionario.Id);
+      edt_matricula.Text := IntToStr(Funcionario.Matricula);
+      EdtCadNomeFuncObj.Text := Funcionario.Nome;
+      EdtCadSenhaFuncObj.Text := Funcionario.Senha;
+
+      if Funcionario.Situacao = 'A' then
+        CheckBoxAtivo.Checked := True
+      else
+        CheckBoxAtivo.Checked := False;
+
+      EdtCadIdDepFuncObj.Text := IntToStr(Funcionario.DepId);
+      if Funcionario.DepId > 0 then
+        PesquisarDepartamento;
+
+    end
+    else
+    begin
+      ShowMessage('Funcionário não localizado!');
+    end;
+
+    Funcionario.Free;
+
+  end;
+
+end;
+
+end.
