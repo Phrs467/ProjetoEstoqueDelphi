@@ -31,7 +31,7 @@ object FormPesqItensMoviEntrada: TFormPesqItensMoviEntrada
     object RgPesqItensMoviEntra: TRadioGroup
       Left = 16
       Top = 8
-      Width = 313
+      Width = 321
       Height = 57
       Caption = 'Pesquisar por:'
       Columns = 3

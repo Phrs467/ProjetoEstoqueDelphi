@@ -258,86 +258,85 @@ object FormMoviEntrada: TFormMoviEntrada
       item
         Expanded = False
         FieldName = 'Ime_id'
-        Title.Caption = 'ID Itens '
+        Title.Caption = 'Id'
+        Width = 60
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'Prod_id'
-        Title.Caption = 'ID Produto'
+        FieldName = 'Prod_Nome'
+        Title.Caption = 'Produto'
+        Width = 148
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'Uni_id'
-        Title.Caption = 'ID Unidade'
+        FieldName = 'Uni_Descricao'
+        Title.Caption = 'Unidade'
+        Width = 87
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Forn_Nome'
+        Title.Caption = 'Fornecedor'
+        Width = 121
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Num_Nota'
+        Title.Caption = 'Nota'
+        Width = 100
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Ime_Quantidade'
+        Title.Caption = 'Qtd.'
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Ime_Vlr_Unitario'
         Title.Caption = 'Valor Unit'#225'rio'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Ime_Vlr_Tot_Bruto'
-        Title.Caption = 'Valor Bruto'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Ime_Vlr_Tot_Frete'
-        Title.Caption = 'Total Frete'
+        Width = 88
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Ime_Vlr_Desconto'
-        Title.Caption = 'Valor Desconto'
+        Title.Caption = 'Desconto'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'moe_id'
+        FieldName = 'Ime_Vlr_Tot_Frete'
+        Title.Caption = 'Frete'
+        Width = 64
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Ime_Vlr_Tot_Bruto'
+        Title.Caption = 'Bruto'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Ime_Vlr_Tot_Liquido'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Prod_Nome'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Uni_Descricao'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Forn_Nome'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Num_Nota'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Ime_Quantidade'
+        Title.Caption = 'Liquido'
+        Width = 64
         Visible = True
       end>
   end
   object BtPesqCadItensMoviEntra: TButton
     Left = 56
-    Top = 280
+    Top = 278
     Width = 137
-    Height = 23
+    Height = 25
     Caption = 'Itens Movimenta'#231#227'o'
     TabOrder = 15
     OnClick = BtPesqCadItensMoviEntraClick

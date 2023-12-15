@@ -20,17 +20,18 @@ type
     qItensMoviEntradaIme_id: TAutoIncField;
     qItensMoviEntradaProd_id: TIntegerField;
     qItensMoviEntradaUni_id: TIntegerField;
+    qItensMoviEntradaMoe_id: TIntegerField;
+    qItensMoviEntradaIme_Quantidade: TIntegerField;
     qItensMoviEntradaIme_Vlr_Unitario: TFMTBCDField;
     qItensMoviEntradaIme_Vlr_Tot_Bruto: TBCDField;
     qItensMoviEntradaIme_Vlr_Tot_Frete: TBCDField;
     qItensMoviEntradaIme_Vlr_Desconto: TBCDField;
-    qItensMoviEntradamoe_id: TIntegerField;
     qItensMoviEntradaIme_Vlr_Tot_Liquido: TBCDField;
     qItensMoviEntradaProd_Nome: TStringField;
     qItensMoviEntradaUni_Descricao: TStringField;
+    qItensMoviEntradamoe_id_1: TAutoIncField;
     qItensMoviEntradaForn_Nome: TStringField;
     qItensMoviEntradaNum_Nota: TLargeintField;
-    qItensMoviEntradaIme_Quantidade: TIntegerField;
   private
     { Private declarations }
   public

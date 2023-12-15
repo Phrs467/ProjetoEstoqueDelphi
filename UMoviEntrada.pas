@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, UMovimentacaoEntrada,UItensMovEntrada, UFornecedor,
-  Data.DB, Vcl.Grids, Vcl.DBGrids;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons;
 
 type
   TFormMoviEntrada = class(TForm)
@@ -67,6 +67,7 @@ type
 //    Procedure PesquisarFornecedor;
   public
     { Public declarations }
+    procedure Calcular;
   end;
 
 var
@@ -115,6 +116,8 @@ begin
   FormItensMoviEntrada.ShowModal;
 
   PesquisarItensEntrada;
+
+  Calcular;
 end;
 
 procedure TFormMoviEntrada.BtPesqIdFornClick(Sender: TObject);
@@ -125,7 +128,6 @@ begin
     EdtIdFornMovi.Text := IntToStr(FormPesqForn.FrmIdForn);
     EdtNomeForn.Text := FormPesqForn.FrmNomeForn;
   end;
-
 end;
 
 procedure TFormMoviEntrada.BtPesqMoviEntradaClick(Sender: TObject);
@@ -136,54 +138,86 @@ begin
     EdtIdEntraMovi.Text := IntToStr(FormPesqMoviEntrada.FrmIdEntra);
     PesquisarIdEntrada;
   end;
-
 end;
 
 procedure TFormMoviEntrada.BtSalvarMoviClick(Sender: TObject);
-
 begin
-
   MovimentacaoEntrada := TMovimentacaoEntrada.Create;
 
   MovimentacaoEntrada.NumSerie := StrToInt(EdtNumSerie.Text);
   MovimentacaoEntrada.NumNota :=  StrToInt(EdtNumNota.Text);
   MovimentacaoEntrada.DataEmissao := StrToDateTime(MaskEdtDataEntra.Text);
-  //só para ver
   MovimentacaoEntrada.DataEntra := StrToDateTime(MaskEdtDataEmissao.Text);
 
   if EdtValDesconto.Text = '' then
-  begin
     MovimentacaoEntrada.ValDesconto := 00.00
-  end
   else
-  begin
     MovimentacaoEntrada.ValDesconto := StrToFloat(EdtValDesconto.Text);
-  end;
 
   if EdtValFrete.Text = '' then
-  begin
     MovimentacaoEntrada.ValFrete :=  00.00
-  end
   else
-  begin
     MovimentacaoEntrada.ValFrete :=  StrToFloat(EdtValFrete.Text);
-  end;
-  MovimentacaoEntrada.ValEntrada := StrToFloat(EdtValEntrada.Text);
-  MovimentacaoEntrada.ValTotalProd := StrToFloat(EdtTotalProd.Text);
+
+  if EdtValEntrada.Text = '' then
+    MovimentacaoEntrada.ValEntrada := 00.00
+  else
+    MovimentacaoEntrada.ValEntrada := StrToFloat(EdtValEntrada.Text);
+
+  if EdtTotalProd.Text = '' then
+    MovimentacaoEntrada.ValTotalProd := 00.00
+  else
+    MovimentacaoEntrada.ValTotalProd := StrToFloat(EdtTotalProd.Text);
+
   MovimentacaoEntrada.FornId := StrToInt(EdtIdFornMovi.Text);
   MovimentacaoEntrada.TipoMovi := 'ENF';
 
 
   if EdtIdEntraMovi.Text = '' then
-    MovimentacaoEntrada.incluir
+  begin
+    MovimentacaoEntrada.incluir;
+    ShowMessage('Registro salvo com sucesso');
+  end
   else
   begin
     MovimentacaoEntrada.IdEntra := StrToInt(EdtIdEntraMovi.Text);
     MovimentacaoEntrada.alterar;
   end;
 
-  MovimentacaoEntrada.Free
+  MovimentacaoEntrada.Free;
+end;
 
+procedure TFormMoviEntrada.Calcular;
+var
+  SomaDescontos, SomaFretes, SomaBruto, SomaLiquido: Double;
+  i: Integer;
+begin
+  SomaDescontos := 0;
+  SomaFretes := 0;
+  SomaBruto := 0;
+  SomaLiquido := 0;
+
+  for i := 0 to DBGridItensMoviEntrada.DataSource.DataSet.RecordCount - 1 do
+  begin
+    if not DBGridItensMoviEntrada.DataSource.DataSet.FieldByName('Ime_Vlr_Desconto').IsNull then
+      SomaDescontos := SomaDescontos + DBGridItensMoviEntrada.DataSource.DataSet.FieldByName('Ime_Vlr_Desconto').AsFloat;
+
+    if not DBGridItensMoviEntrada.DataSource.DataSet.FieldByName('Ime_Vlr_Tot_Frete').IsNull then
+      SomaFretes := SomaFretes + DBGridItensMoviEntrada.DataSource.DataSet.FieldByName('Ime_Vlr_Tot_Frete').AsFloat;
+
+    if not DBGridItensMoviEntrada.DataSource.DataSet.FieldByName('Ime_Vlr_Tot_Bruto').IsNull then
+      SomaBruto := SomaBruto + DBGridItensMoviEntrada.DataSource.DataSet.FieldByName('Ime_Vlr_Tot_Bruto').AsFloat;
+
+    if not DBGridItensMoviEntrada.DataSource.DataSet.FieldByName('Ime_Vlr_Tot_Liquido').IsNull then
+      SomaLiquido := SomaLiquido + DBGridItensMoviEntrada.DataSource.DataSet.FieldByName('Ime_Vlr_Tot_Liquido').AsFloat;
+
+    DBGridItensMoviEntrada.DataSource.DataSet.Next;
+  end;
+
+  EdtValDesconto.Text:= FormatFloat('#,##0.00', SomaDescontos);
+  EdtValFrete.Text := FormatFloat('#,##0.00', SomaFretes);
+  EdtTotalProd.Text := FormatFloat('#,##0.00', SomaBruto);
+  EdtValEntrada.Text := FormatFloat('#,##0.00', SomaLiquido);
 end;
 
 procedure TFormMoviEntrada.EdtIdEntraMoviKeyDown(Sender: TObject; var Key: Word;
@@ -194,8 +228,6 @@ begin
     PesquisarIdEntrada;
   end;
 end;
-
-
 
 procedure TFormMoviEntrada.EdtIdFornMoviKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -209,6 +241,7 @@ end;
 procedure TFormMoviEntrada.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   LimparForm;
+  DmItensMoviEntrada.dsItensMoviEntrada.DataSet.Close;
 end;
 
 procedure TFormMoviEntrada.LimparForm;
@@ -225,8 +258,6 @@ begin
   EdtValEntrada.Clear;
   EdtNomeForn.Clear
 end;
-
-
 
 procedure TFormMoviEntrada.PesquisarFornecedor;
 begin
@@ -282,10 +313,7 @@ begin
     end;
 
     MovimentacaoEntrada.Free;
-
-
   end;
-
 end;
 
 procedure TFormMoviEntrada.PesquisarItensEntrada;
@@ -305,8 +333,6 @@ begin
     end;
 
     ItensMoviEntrada.Free;
-
-
   end;
 end;
 

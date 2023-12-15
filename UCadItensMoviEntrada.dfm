@@ -103,21 +103,21 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
     Top = 232
     Width = 49
     Height = 22
-    TabOrder = 2
+    TabOrder = 3
   end
   object EdtIdUniItensMoviEntra: TEdit
     Left = 40
     Top = 289
     Width = 49
     Height = 22
-    TabOrder = 3
+    TabOrder = 5
   end
   object BtIdItensMoviEntra: TButton
     Left = 95
     Top = 118
     Width = 34
     Height = 25
-    TabOrder = 4
+    TabOrder = 16
     OnClick = BtIdItensMoviEntraClick
   end
   object BtIdMoeItensMoviEntra: TButton
@@ -125,7 +125,7 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
     Top = 174
     Width = 34
     Height = 25
-    TabOrder = 5
+    TabOrder = 17
     OnClick = BtIdMoeItensMoviEntraClick
   end
   object BtIdUniItensMoviEntra: TButton
@@ -133,7 +133,7 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
     Top = 286
     Width = 34
     Height = 25
-    TabOrder = 6
+    TabOrder = 18
     OnClick = BtIdUniItensMoviEntraClick
   end
   object BtIdProdItensMoviEntra: TButton
@@ -141,7 +141,7 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
     Top = 231
     Width = 34
     Height = 25
-    TabOrder = 7
+    TabOrder = 19
     OnClick = BtIdProdItensMoviEntraClick
   end
   object EdtNotaMoviEntrada: TEdit
@@ -149,56 +149,57 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
     Top = 176
     Width = 121
     Height = 22
-    TabOrder = 8
+    TabOrder = 2
   end
   object EdtNomeProdItensMoviEntra: TEdit
     Left = 136
     Top = 232
     Width = 121
     Height = 22
-    TabOrder = 9
+    TabOrder = 4
   end
   object EdtDescUniItensMoviEntra: TEdit
     Left = 135
     Top = 287
     Width = 121
     Height = 22
-    TabOrder = 10
+    TabOrder = 6
   end
   object EdtQtdItensMoviEntra: TEdit
     Left = 304
     Top = 119
     Width = 121
     Height = 22
-    TabOrder = 11
+    TabOrder = 7
   end
   object EdtVlrUnitarioItensMoviEntra: TEdit
     Left = 304
     Top = 175
     Width = 121
     Height = 22
-    TabOrder = 12
+    TabOrder = 8
   end
   object EdtVlrDescontoItensMoviEntra: TEdit
     Left = 304
     Top = 229
     Width = 121
     Height = 22
-    TabOrder = 13
+    TabOrder = 9
   end
   object EdtVlrFreteItensMoviEntra: TEdit
     Left = 304
     Top = 287
     Width = 121
     Height = 22
-    TabOrder = 14
+    TabOrder = 10
+    OnExit = EdtVlrFreteItensMoviEntraExit
   end
   object EdtVlrBrutoItensMoviEntra: TEdit
     Left = 456
     Top = 119
     Width = 121
     Height = 22
-    TabOrder = 15
+    TabOrder = 11
     OnExit = EdtVlrBrutoItensMoviEntraExit
   end
   object EdtVlrLiquiItensMoviEntra: TEdit
@@ -206,7 +207,7 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
     Top = 175
     Width = 121
     Height = 22
-    TabOrder = 16
+    TabOrder = 12
   end
   object BtNovoItemMoviEntra: TButton
     Left = 40
@@ -214,7 +215,7 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
     Width = 75
     Height = 25
     Caption = 'Novo'
-    TabOrder = 17
+    TabOrder = 13
     OnClick = BtNovoItemMoviEntraClick
   end
   object BtSalvarItemMoviEntra: TButton
@@ -223,7 +224,7 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
     Width = 75
     Height = 25
     Caption = 'Salvar'
-    TabOrder = 18
+    TabOrder = 14
     OnClick = BtSalvarItemMoviEntraClick
   end
   object BtExcluirItemMoviEntra: TButton
@@ -232,7 +233,7 @@ object FormItensMoviEntrada: TFormItensMoviEntrada
     Width = 75
     Height = 25
     Caption = 'Excluir'
-    TabOrder = 19
+    TabOrder = 15
     OnClick = BtExcluirItemMoviEntraClick
   end
   object PanelItensMoviEntrada: TPanel

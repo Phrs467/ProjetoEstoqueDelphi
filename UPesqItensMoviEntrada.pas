@@ -123,14 +123,13 @@ begin
   FrmIdItens := 0;
   FrmIdMov := 0;
   FrmNomeProd := '';
-   if not DmItensMoviEntrada.qPesqItensMoviEntrada.IsEmpty then
-   begin
+  if not DmItensMoviEntrada.qPesqItensMoviEntrada.IsEmpty then
+  begin
      FrmIdItens := DmItensMoviEntrada.qPesqItensMoviEntradaIme_id.AsInteger;
      FrmIdMov := DmItensMoviEntrada.qPesqItensMoviEntradamoe_id.AsInteger;
      FrmNomeProd := DmItensMoviEntrada.qPesqItensMoviEntradaForn_Nome.AsString;
-   end;
-   Self.Close;
-
+  end;
+  Self.Close;
 end;
 
 procedure TFormPesqItensMoviEntrada.RgPesqItensMoviEntraClick(Sender: TObject);

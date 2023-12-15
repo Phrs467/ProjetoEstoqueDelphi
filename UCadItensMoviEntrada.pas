@@ -47,6 +47,7 @@ type
     procedure BtIdItensMoviEntraClick(Sender: TObject);
     procedure BtSalvarItemMoviEntraClick(Sender: TObject);
     procedure BtExcluirItemMoviEntraClick(Sender: TObject);
+    procedure EdtVlrFreteItensMoviEntraExit(Sender: TObject);
     procedure EdtVlrBrutoItensMoviEntraExit(Sender: TObject);
   private
     { Private declarations }
@@ -102,7 +103,6 @@ begin
     EdtIdItensMoviEntra.Text := IntToStr(FormPesqItensMoviEntrada.FrmIdItens);
     PesquisarItens;
   end;
-
 end;
 
 procedure TFormItensMoviEntrada.BtIdMoeItensMoviEntraClick(Sender: TObject);
@@ -113,7 +113,6 @@ begin
     EdtIdMoviEntrada.Text := IntToStr(FormPesqMoviEntrada.FrmIdEntra);
     EdtNotaMoviEntrada.Text := IntToStr (FormPesqMoviEntrada.FrmNumNota);
   end;
-
 end;
 
 procedure TFormItensMoviEntrada.BtIdProdItensMoviEntraClick(Sender: TObject);
@@ -124,7 +123,6 @@ begin
     EdtIdProdItensMoviEntra.Text := IntToStr(FormPesqProdutos.FrmIdProduto);
     EdtNomeProdItensMoviEntra.Text := FormPesqProdutos.FrmNomeProduto;
   end;
-
 end;
 
 procedure TFormItensMoviEntrada.BtIdUniItensMoviEntraClick(Sender: TObject);
@@ -135,7 +133,6 @@ begin
     EdtIdUniItensMoviEntra.Text := IntToStr(FormPesqUnidades.FrmIdUnidades);
     EdtDescUniItensMoviEntra.Text := FormPesqUnidades.FrmDescUnidades;
   end;
-
 end;
 
 procedure TFormItensMoviEntrada.BtNovoItemMoviEntraClick(Sender: TObject);
@@ -151,7 +148,6 @@ begin
   end;
 
   LimparForm;
-
 end;
 
 procedure TFormItensMoviEntrada.BtSalvarItemMoviEntraClick(Sender: TObject);
@@ -202,23 +198,36 @@ begin
   end;
 
   ItensMoviEntrada.Free
-
 end;
 
 procedure TFormItensMoviEntrada.EdtVlrBrutoItensMoviEntraExit(Sender: TObject);
-//var
-//  Quantidade ,ValorUnitário, Desconto, ValorFrete ,ValorBruto, ValorLiquido : Double;
+var
+  Bruto, Desconto, Frete, Liquido : Double;
 begin
-//  Quantidade := StrToInt(EdtQtdItensMoviEntra.Text);
-//  ValorUnitário := StrToFloatDef(EdtVlrUnitarioItensMoviEntra.Text, 0);
-//  Desconto := StrToFloatDef(EdtDescUniItensMoviEntra.Text, 0);
-//  ValorFrete := StrToFloatDef(EdtVlrFreteItensMoviEntra.Text, 0);
-//  ValorBruto := StrToFloatDef(EdtVlrBrutoItensMoviEntra.Text, 0);
-//
-//
-//  ValorBruto := (ValorLiquido * Quantidade) - Desconto + ValorFrete;
-//  EdtVlrLiquiItensMoviEntra.Text := FormatFloat('#0.00', ValorBruto);
+  if EdtVlrDescontoItensMoviEntra.Text <> '' then
+    Desconto := StrToFloat(EdtVlrDescontoItensMoviEntra.Text);
 
+  if EdtVlrFreteItensMoviEntra.Text <> '' then
+    Frete := StrToFloat(EdtVlrFreteItensMoviEntra.Text);
+
+  Bruto := StrToFloat(EdtVlrBrutoItensMoviEntra.Text);
+
+  Liquido := (Bruto - Frete) - Desconto;
+
+  EdtVlrLiquiItensMoviEntra.Text := FloatToStr(Liquido);
+end;
+
+procedure TFormItensMoviEntrada.EdtVlrFreteItensMoviEntraExit(Sender: TObject);
+var
+  Qtd : Integer;
+  Unitario, Calculo : Double;
+begin
+  Qtd := StrToInt(EdtQtdItensMoviEntra.Text);
+  Unitario := StrToFloat(EdtVlrUnitarioItensMoviEntra.Text);
+
+  Calculo := Unitario * Qtd;
+
+  EdtVlrBrutoItensMoviEntra.Text := FloatToStr(Calculo);
 end;
 
 procedure TFormItensMoviEntrada.LimparForm;
@@ -236,7 +245,6 @@ begin
   EdtVlrFreteItensMoviEntra.Clear;
   EdtVlrBrutoItensMoviEntra.Clear;
   EdtVlrLiquiItensMoviEntra.Clear;
-
 end;
 
 procedure TFormItensMoviEntrada.PesquisarItens;
@@ -274,10 +282,7 @@ begin
     end;
 
     ItensMoviEntrada.Free;
-
-
   end;
-
 end;
 
 procedure TFormItensMoviEntrada.PesquisarMovimento;
@@ -298,7 +303,6 @@ begin
 
     MovimentoEntrada.Free;
   end;
-
 end;
 
 procedure TFormItensMoviEntrada.PesquisarProduto;
@@ -319,7 +323,6 @@ begin
 
     Produto.Free;
   end;
-
 end;
 
 procedure TFormItensMoviEntrada.PesquisarUnidade;

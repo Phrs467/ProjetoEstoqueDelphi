@@ -20,8 +20,7 @@ object DmItensMoviEntrada: TDmItensMoviEntrada
       
         #9'left outer join Movimento_Entrada Moe on Moe.moe_id = Ime.moe_i' +
         'd'
-      #9'inner join Fornecedor Forn on Forn.Forn_id = Moe.Forn_id'
-      ';')
+      #9'inner join Fornecedor Forn on Forn.Forn_id = Moe.Forn_id')
     Left = 376
     Top = 104
     object qItensMoviEntradaIme_id: TAutoIncField
@@ -33,6 +32,12 @@ object DmItensMoviEntrada: TDmItensMoviEntrada
     end
     object qItensMoviEntradaUni_id: TIntegerField
       FieldName = 'Uni_id'
+    end
+    object qItensMoviEntradaMoe_id: TIntegerField
+      FieldName = 'Moe_id'
+    end
+    object qItensMoviEntradaIme_Quantidade: TIntegerField
+      FieldName = 'Ime_Quantidade'
     end
     object qItensMoviEntradaIme_Vlr_Unitario: TFMTBCDField
       FieldName = 'Ime_Vlr_Unitario'
@@ -54,9 +59,6 @@ object DmItensMoviEntrada: TDmItensMoviEntrada
       Precision = 15
       Size = 2
     end
-    object qItensMoviEntradamoe_id: TIntegerField
-      FieldName = 'moe_id'
-    end
     object qItensMoviEntradaIme_Vlr_Tot_Liquido: TBCDField
       FieldName = 'Ime_Vlr_Tot_Liquido'
       Precision = 15
@@ -70,15 +72,16 @@ object DmItensMoviEntrada: TDmItensMoviEntrada
       FieldName = 'Uni_Descricao'
       Size = 50
     end
+    object qItensMoviEntradamoe_id_1: TAutoIncField
+      FieldName = 'moe_id_1'
+      ReadOnly = True
+    end
     object qItensMoviEntradaForn_Nome: TStringField
       FieldName = 'Forn_Nome'
       Size = 50
     end
     object qItensMoviEntradaNum_Nota: TLargeintField
       FieldName = 'Num_Nota'
-    end
-    object qItensMoviEntradaIme_Quantidade: TIntegerField
-      FieldName = 'Ime_Quantidade'
     end
   end
   object dsItensMoviEntrada: TDataSource
