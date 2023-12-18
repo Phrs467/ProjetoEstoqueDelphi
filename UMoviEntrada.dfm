@@ -16,88 +16,88 @@ object FormMoviEntrada: TFormMoviEntrada
   PixelsPerInch = 96
   TextHeight = 13
   object LblIdEntraMovi: TLabel
-    Left = 53
-    Top = 75
+    Left = 13
+    Top = 62
     Width = 78
     Height = 13
     Caption = 'ID de entrada'
   end
   object LblDataEntra: TLabel
-    Left = 56
-    Top = 219
+    Left = 16
+    Top = 206
     Width = 92
     Height = 13
     Caption = 'Data da entrada'
   end
   object LblDataEmissao: TLabel
-    Left = 189
-    Top = 218
+    Left = 149
+    Top = 205
     Width = 77
     Height = 13
     Caption = 'Data emiss'#227'o'
   end
   object LblIdFornMovim: TLabel
-    Left = 56
-    Top = 172
+    Left = 16
+    Top = 159
     Width = 79
     Height = 13
     Caption = 'Id Fornecedor'
   end
   object LblNumSerie: TLabel
-    Left = 56
-    Top = 121
+    Left = 16
+    Top = 108
     Width = 62
     Height = 13
     Caption = 'N'#176' de S'#233'rie'
   end
   object LblNumNota: TLabel
-    Left = 170
-    Top = 121
+    Left = 130
+    Top = 108
     Width = 59
     Height = 13
     Caption = 'N'#186' da Nota'
   end
   object LblNomeForn: TLabel
-    Left = 189
-    Top = 172
+    Left = 149
+    Top = 159
     Width = 99
     Height = 13
     Caption = 'Nome Fornecedor'
   end
   object EdtIdEntraMovi: TEdit
-    Left = 53
-    Top = 94
+    Left = 13
+    Top = 81
     Width = 65
     Height = 21
     TabOrder = 0
     OnKeyDown = EdtIdEntraMoviKeyDown
   end
   object EdtNumSerie: TEdit
-    Left = 56
-    Top = 140
+    Left = 16
+    Top = 127
     Width = 89
     Height = 21
     TabOrder = 1
   end
   object EdtNumNota: TEdit
-    Left = 170
-    Top = 140
+    Left = 130
+    Top = 127
     Width = 193
     Height = 21
     TabOrder = 2
   end
   object EdtIdFornMovi: TEdit
-    Left = 56
-    Top = 191
+    Left = 16
+    Top = 178
     Width = 65
     Height = 21
     TabOrder = 3
     OnKeyDown = EdtIdFornMoviKeyDown
   end
   object PanelValoresMoviEntrada: TPanel
-    Left = 472
+    Left = 360
     Top = 63
-    Width = 388
+    Width = 500
     Height = 218
     TabOrder = 7
     object LblValDesconto: TLabel
@@ -200,16 +200,16 @@ object FormMoviEntrada: TFormMoviEntrada
     OnClick = BtExcluirMoviClick
   end
   object BtPesqMoviEntrada: TButton
-    Left = 124
-    Top = 94
+    Left = 84
+    Top = 81
     Width = 27
     Height = 21
     TabOrder = 12
     OnClick = BtPesqMoviEntradaClick
   end
   object MaskEdtDataEntra: TMaskEdit
-    Left = 56
-    Top = 238
+    Left = 16
+    Top = 225
     Width = 118
     Height = 21
     EditMask = '!99/99/0000;1;_'
@@ -218,8 +218,8 @@ object FormMoviEntrada: TFormMoviEntrada
     Text = '  /  /    '
   end
   object MaskEdtDataEmissao: TMaskEdit
-    Left = 189
-    Top = 238
+    Left = 149
+    Top = 225
     Width = 118
     Height = 21
     EditMask = '!99/99/0000;1;_'
@@ -228,15 +228,15 @@ object FormMoviEntrada: TFormMoviEntrada
     Text = '  /  /    '
   end
   object EdtNomeForn: TEdit
-    Left = 189
-    Top = 191
+    Left = 149
+    Top = 178
     Width = 174
     Height = 21
     TabOrder = 4
   end
   object BtPesqIdForn: TButton
-    Left = 127
-    Top = 189
+    Left = 87
+    Top = 176
     Width = 29
     Height = 23
     TabOrder = 13
@@ -333,8 +333,8 @@ object FormMoviEntrada: TFormMoviEntrada
       end>
   end
   object BtPesqCadItensMoviEntra: TButton
-    Left = 56
-    Top = 278
+    Left = 16
+    Top = 265
     Width = 137
     Height = 25
     Caption = 'Itens Movimenta'#231#227'o'
