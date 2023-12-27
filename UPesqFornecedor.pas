@@ -14,11 +14,14 @@ type
     LblPesqForn: TLabel;
     EdtPesqForn: TEdit;
     BtPesqForn: TButton;
-    DBGridPesqForn: TDBGrid;
     BtSelecionarForn: TButton;
+    Panel1: TPanel;
+    DBGridPesqForn: TDBGrid;
     procedure RgPesqFornClick(Sender: TObject);
     procedure BtPesqFornClick(Sender: TObject);
     procedure BtSelecionarFornClick(Sender: TObject);
+    procedure DBGridPesqFornDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
 
   private
     { Private declarations }
@@ -27,6 +30,9 @@ type
     FrmNomeForn : string;
     FrmIdForn : Integer;
   end;
+
+type
+  TDBGridFornecedor = class(TDBGrid);
 
 var
   FormPesqForn: TFormPesqForn;
@@ -86,6 +92,9 @@ sql :=
       DmFornecedor.qPesqFornecedor.Open;
     end;
   end;
+
+  TDBGridFornecedor(DBGridPesqForn).DefaultRowHeight := 30;
+  TDBGridFornecedor(DBGridPesqForn).ClientHeight := (30 *   TDBGridFornecedor(DBGridPesqForn).RowCount) +30;
 end;
 
 procedure TFormPesqForn.BtSelecionarFornClick(Sender: TObject);
@@ -98,6 +107,27 @@ begin
      FrmNomeForn := DmFornecedor.qPesqFornecedorForn_Nome.AsString;
    end;
    Self.Close;
+end;
+
+procedure TFormPesqForn.DBGridPesqFornDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if odd(DBGridPesqForn.DataSource.DataSet.RecNo) then
+    DBGridPesqForn.Canvas.Brush.Color := $00E9E9E9
+  else
+    DBGridPesqForn.Canvas.Brush.Color := clWhite;
+
+  if (gdSelected in State) then
+  begin
+    DBGridPesqForn.Canvas.Brush.Color := clBlue;
+    DBGridPesqForn.Canvas.Font.Color := clWhite;
+    DBGridPesqForn.Canvas.Font.Style := [fsBold];
+  end;
+
+  DBGridPesqForn.Canvas.FillRect(Rect);
+  DBGridPesqForn.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+
+  DBGridPesqForn.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
 end;
 
 procedure TFormPesqForn.RgPesqFornClick(Sender: TObject);
