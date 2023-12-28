@@ -69,42 +69,93 @@ object FormPesqMoviEntrada: TFormPesqMoviEntrada
       OnClick = BtSelecMoviEntradaClick
     end
   end
-  object DBGridPesqMoviEntrada: TDBGrid
+  object Panel1: TPanel
     Left = 8
     Top = 79
     Width = 693
     Height = 315
-    DataSource = DmMoviEntrada.DsPesqMoviEntrada
     TabOrder = 1
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'Moe_id'
-        Title.Caption = 'ID Nota'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Num_Nota'
-        Title.Caption = 'Nota'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Forn_id'
-        Title.Caption = 'Id Fornecedor'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Forn_Nome'
-        Title.Caption = 'Nome Fornecedor'
-        Visible = True
-      end>
+    object DBGridPesqMoviEntrada: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 691
+      Height = 313
+      Align = alClient
+      BorderStyle = bsNone
+      DataSource = DmMoviEntrada.DsPesqMoviEntrada
+      DrawingStyle = gdsClassic
+      FixedColor = 7165253
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 7165253
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ParentFont = False
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      OnDrawColumnCell = DBGridPesqMoviEntradaDrawColumnCell
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'Moe_id'
+          Title.Alignment = taCenter
+          Title.Caption = 'ID Nota'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Alignment = taLeftJustify
+          Expanded = False
+          FieldName = 'Num_Nota'
+          Title.Alignment = taCenter
+          Title.Caption = 'Nota'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Forn_id'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 7165253
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Title.Alignment = taCenter
+          Title.Caption = 'Id Fornecedor'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Width = 108
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Forn_Nome'
+          Title.Alignment = taCenter
+          Title.Caption = 'Nome Fornecedor'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Width = 138
+          Visible = True
+        end>
+    end
   end
 end

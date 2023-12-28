@@ -16,9 +16,12 @@ type
     BtPesquisarProd: TButton;
     DBGrid1: TDBGrid;
     BtSelecionarProd: TButton;
+    Panel1: TPanel;
     procedure RgPesqProdutoClick(Sender: TObject);
     procedure BtPesquisarProdClick(Sender: TObject);
     procedure BtSelecionarProdClick(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -26,6 +29,9 @@ type
     FrmNomeProduto : string;
     FrmIdProduto : Integer;
   end;
+
+type
+  TDBGridProduto = class(TDBGrid);
 
 var
   FormPesqProdutos: TFormPesqProdutos;
@@ -95,6 +101,8 @@ begin
     end;
   end;
 
+  TDBGridProduto(DBGrid1).DefaultRowHeight := 30;
+  TDBGridProduto(DBGrid1).ClientHeight := (30 *   TDBGridProduto(DBGrid1).RowCount) +30;
 end;
 
 procedure TFormPesqProdutos.BtSelecionarProdClick(Sender: TObject);
@@ -107,6 +115,27 @@ begin
      FrmNomeProduto := DmProdutos.qPesqProdProd_Nome.AsString;
    end;
    Self.Close;
+end;
+
+procedure TFormPesqProdutos.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if odd(DBGrid1.DataSource.DataSet.RecNo) then
+    DBGrid1.Canvas.Brush.Color := $00E9E9E9
+  else
+    DBGrid1.Canvas.Brush.Color := clWhite;
+
+  if (gdSelected in State) then
+  begin
+    DBGrid1.Canvas.Brush.Color := clBlue;
+    DBGrid1.Canvas.Font.Color := clWhite;
+    DBGrid1.Canvas.Font.Style := [fsBold];
+  end;
+
+  DBGrid1.Canvas.FillRect(Rect);
+  DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+
+  DBGrid1.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
 end;
 
 procedure TFormPesqProdutos.RgPesqProdutoClick(Sender: TObject);

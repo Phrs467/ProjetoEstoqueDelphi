@@ -16,9 +16,12 @@ type
     BtPesqGrupo: TButton;
     BtSelecMarca: TButton;
     DBGrid1: TDBGrid;
+    Panel2: TPanel;
     procedure RgPesqMarcaClick(Sender: TObject);
     procedure BtPesqGrupoClick(Sender: TObject);
     procedure BtSelecMarcaClick(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -26,6 +29,9 @@ type
     FrmIdMarca : Integer;
     FrmNomeMarca : String;
   end;
+
+type
+  TDBGridMarca = class(TDBGrid);
 
 var
   FormPesqMarca: TFormPesqMarca;
@@ -85,6 +91,8 @@ begin
     end;
   end;
 
+  TDBGridMarca(DBGrid1).DefaultRowHeight := 30;
+  TDBGridMarca(DBGrid1).ClientHeight := (30 *   TDBGridMarca(DBGrid1).RowCount) +30;
 end;
 
 procedure TFormPesqMarca.BtSelecMarcaClick(Sender: TObject);
@@ -98,6 +106,27 @@ begin
    end;
    Self.Close;
 
+end;
+
+procedure TFormPesqMarca.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if odd(DBGrid1.DataSource.DataSet.RecNo) then
+    DBGrid1.Canvas.Brush.Color := $00E9E9E9
+  else
+    DBGrid1.Canvas.Brush.Color := clWhite;
+
+  if (gdSelected in State) then
+  begin
+    DBGrid1.Canvas.Brush.Color := clBlue;
+    DBGrid1.Canvas.Font.Color := clWhite;
+    DBGrid1.Canvas.Font.Style := [fsBold];
+  end;
+
+  DBGrid1.Canvas.FillRect(Rect);
+  DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+
+  DBGrid1.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
 end;
 
 procedure TFormPesqMarca.RgPesqMarcaClick(Sender: TObject);

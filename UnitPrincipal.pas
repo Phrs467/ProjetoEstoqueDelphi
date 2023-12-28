@@ -124,7 +124,7 @@ end;
 
 procedure TFrmPrincipal.Grupo1Click(Sender: TObject);
 begin
-  FormPesqMarca.ShowModal;
+  FormPesqGrupo.ShowModal;
 end;
 
 procedure TFrmPrincipal.GrupoOBJ1Click(Sender: TObject);
@@ -144,7 +144,7 @@ end;
 
 procedure TFrmPrincipal.Marca1Click(Sender: TObject);
 begin
-  FormPesqGrupo.ShowModal;
+  FormPesqMarca.ShowModal;
 end;
 
 procedure TFrmPrincipal.MarcaOBJ1Click(Sender: TObject);

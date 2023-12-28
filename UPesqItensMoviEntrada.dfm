@@ -69,51 +69,100 @@ object FormPesqItensMoviEntrada: TFormPesqItensMoviEntrada
       OnClick = BtSelecionarItensMoviEntradaClick
     end
   end
-  object DBGrid1: TDBGrid
+  object Panel1: TPanel
     Left = 8
     Top = 95
     Width = 809
     Height = 409
-    DataSource = DmItensMoviEntrada.dsPesqItensMoviEntrada
     TabOrder = 1
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'Ime_id'
-        Title.Caption = 'ID'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Prod_Nome'
-        Title.Caption = 'Produto Nome'
-        Width = 125
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'moe_id'
-        Title.Caption = 'ID Movimenta'#231#227'o'
-        Width = 94
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Forn_Nome'
-        Title.Caption = 'Fornecedor Nome'
-        Width = 250
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Num_Nota'
-        Title.Caption = 'Numero Nota'
-        Visible = True
-      end>
+    object DBGrid1: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 807
+      Height = 407
+      Align = alClient
+      BorderStyle = bsNone
+      DataSource = DmItensMoviEntrada.dsPesqItensMoviEntrada
+      DrawingStyle = gdsClassic
+      FixedColor = 7165253
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 7165253
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ParentFont = False
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      OnDrawColumnCell = DBGrid1DrawColumnCell
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'Ime_id'
+          Title.Alignment = taCenter
+          Title.Caption = 'ID'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Prod_Nome'
+          Title.Alignment = taCenter
+          Title.Caption = 'Produto Nome'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Width = 143
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'moe_id'
+          Title.Alignment = taCenter
+          Title.Caption = 'ID Movimenta'#231#227'o'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Width = 125
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Forn_Nome'
+          Title.Alignment = taCenter
+          Title.Caption = 'Fornecedor Nome'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Width = 250
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Num_Nota'
+          Title.Alignment = taCenter
+          Title.Caption = 'Numero Nota'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end>
+    end
   end
 end

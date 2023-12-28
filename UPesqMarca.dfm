@@ -68,40 +68,61 @@ object FormPesqMarca: TFormPesqMarca
       OnClick = BtSelecMarcaClick
     end
   end
-  object DBGrid1: TDBGrid
+  object Panel2: TPanel
     Left = 8
     Top = 111
-    Width = 841
-    Height = 474
-    DataSource = DmMarca.dsPesqMarcaObj
+    Width = 844
+    Height = 480
     TabOrder = 1
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'Marc_id'
-        Title.Caption = 'Id'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Marc_Nome'
-        Title.Caption = 'Nome'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end>
+    object DBGrid1: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 842
+      Height = 478
+      Align = alClient
+      BorderStyle = bsNone
+      DataSource = DmMarca.dsPesqMarcaObj
+      DrawingStyle = gdsClassic
+      FixedColor = 7165253
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 7165253
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ParentFont = False
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      OnDrawColumnCell = DBGrid1DrawColumnCell
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'Marc_id'
+          Title.Alignment = taCenter
+          Title.Caption = 'ID'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Marc_Nome'
+          Title.Alignment = taCenter
+          Title.Caption = 'Nome'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end>
+    end
   end
 end

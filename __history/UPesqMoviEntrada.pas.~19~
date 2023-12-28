@@ -1,0 +1,177 @@
+unit UPesqMoviEntrada;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TFormPesqMoviEntrada = class(TForm)
+    PanelPesqMoviEntrada: TPanel;
+    RgPesqMoviEntrada: TRadioGroup;
+    EdtPesqMoviEntrada: TEdit;
+    LblPesqMoviEntrada: TLabel;
+    BtPesqMoviEntrada: TButton;
+    BtSelecMoviEntrada: TButton;
+    DBGridPesqMoviEntrada: TDBGrid;
+    procedure RgPesqMoviEntradaClick(Sender: TObject);
+    procedure BtPesqMoviEntradaClick(Sender: TObject);
+    procedure BtSelecMoviEntradaClick(Sender: TObject);
+    procedure DBGridPesqMoviEntradaDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+
+    FrmIdEntra : Integer;
+    FrmNumNota  : Integer;
+    FrmNomeForn   : String;
+  end;
+
+type
+  TDBGridMoviEntrada = class(TDBGrid);
+
+var
+  FormPesqMoviEntrada: TFormPesqMoviEntrada;
+
+implementation
+
+uses
+  UDmMoviEntrada;
+
+{$R *.dfm}
+
+procedure TFormPesqMoviEntrada.BtPesqMoviEntradaClick(Sender: TObject);
+var
+  sql : string;
+
+begin
+  sql :=
+  ' select ' +
+  '  Mov.*  '+
+  '  ,Forn.Forn_Nome ' +
+  '  from Movimento_Entrada Mov ' +
+  '  left outer join Fornecedor Forn  On Forn.Forn_id = Mov.Forn_id ';
+
+  if RgPesqMoviEntrada.ItemIndex = 0 then
+  begin
+    if EdtPesqMoviEntrada.Text = '' then
+    begin
+      DmMoviEntrada.qPesqMoviEntrada.Close;
+      DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
+      DmMoviEntrada.qPesqMoviEntrada.Open;
+    end
+    else
+    begin
+      sql := sql + ' where Mov.Moe_id = :Moe_id ';
+
+      DmMoviEntrada.qPesqMoviEntrada.Close;
+      DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
+      DmMoviEntrada.qPesqMoviEntrada.Parameters.ParamByName('Moe_id').Value := EdtPesqMoviEntrada.Text;
+      DmMoviEntrada.qPesqMoviEntrada.Open;
+    end;
+  end;
+
+  if RgPesqMoviEntrada.ItemIndex = 1 then
+  begin
+    if EdtPesqMoviEntrada.Text = '' then
+    begin
+      DmMoviEntrada.qPesqMoviEntrada.Close;
+      DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
+      DmMoviEntrada.qPesqMoviEntrada.Open;
+    end
+    else
+    begin
+      sql := sql + ' where Mov.Num_Nota = :Num_Nota ';
+
+      DmMoviEntrada.qPesqMoviEntrada.Close;
+      DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
+      DmMoviEntrada.qPesqMoviEntrada.Parameters.ParamByName('Num_Nota').Value := EdtPesqMoviEntrada.Text;
+      DmMoviEntrada.qPesqMoviEntrada.Open;
+    end;
+  end;
+
+  if RgPesqMoviEntrada.ItemIndex = 2 then
+  begin
+    if EdtPesqMoviEntrada.Text = '' then
+    begin
+      DmMoviEntrada.qPesqMoviEntrada.Close;
+      DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
+      DmMoviEntrada.qPesqMoviEntrada.Open;
+    end
+    else
+    begin
+      sql := sql + ' where Forn.Forn_Nome like ''%' + EdtPesqMoviEntrada.Text + '%''';
+
+      DmMoviEntrada.qPesqMoviEntrada.Close;
+      DmMoviEntrada.qPesqMoviEntrada.SQL.Text := sql;
+      DmMoviEntrada.qPesqMoviEntrada.Open;
+    end;
+  end;
+
+  TDBGridMoviEntrada(DBGridPesqMoviEntrada).DefaultRowHeight := 30;
+  TDBGridMoviEntrada(DBGridPesqMoviEntrada).ClientHeight := (30 *   TDBGridMoviEntrada(DBGridPesqMoviEntrada).RowCount) +30;
+end;
+
+procedure TFormPesqMoviEntrada.BtSelecMoviEntradaClick(Sender: TObject);
+begin
+  FrmIdEntra := 0;
+  FrmNumNota := 0;
+  FrmNomeForn := '';
+   if not DmMoviEntrada.qPesqMoviEntrada.IsEmpty then
+   begin
+     FrmIdEntra := DmMoviEntrada.qPesqMoviEntradaMoe_id.AsInteger;
+     FrmNumNota := DmMoviEntrada.qPesqMoviEntradaNum_Nota.AsInteger;
+     FrmNomeForn := DmMoviEntrada.qPesqMoviEntradaForn_Nome.AsString;
+   end;
+   Self.Close;
+
+end;
+
+procedure TFormPesqMoviEntrada.DBGridPesqMoviEntradaDrawColumnCell(
+  Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+  if odd(DBGridPesqMoviEntrada.DataSource.DataSet.RecNo) then
+    DBGridPesqMoviEntrada.Canvas.Brush.Color := $00E9E9E9
+  else
+    DBGridPesqMoviEntrada.Canvas.Brush.Color := clWhite;
+
+  if (gdSelected in State) then
+  begin
+    DBGridPesqMoviEntrada.Canvas.Brush.Color := clBlue;
+    DBGridPesqMoviEntrada.Canvas.Font.Color := clWhite;
+    DBGridPesqMoviEntrada.Canvas.Font.Style := [fsBold];
+  end;
+
+  DBGridPesqMoviEntrada.Canvas.FillRect(Rect);
+  DBGridPesqMoviEntrada.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+
+  DBGridPesqMoviEntrada.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
+end;
+
+procedure TFormPesqMoviEntrada.RgPesqMoviEntradaClick(Sender: TObject);
+begin
+    begin
+      if RgPesqMoviEntrada.ItemIndex = 0 then
+      begin
+        LblPesqMoviEntrada.Caption := 'Digite o ID de entrada:';
+      end;
+
+      if RgPesqMoviEntrada.ItemIndex = 1 then
+      begin
+        LblPesqMoviEntrada.Caption := 'Digite o Nº da nota';
+      end;
+
+      if RgPesqMoviEntrada.ItemIndex = 2 then
+      begin
+        LblPesqMoviEntrada.Caption := 'Digite o nome do fornecedor';
+      end;
+  end;
+end;
+
+end.

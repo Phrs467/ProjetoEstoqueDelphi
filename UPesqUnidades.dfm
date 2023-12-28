@@ -68,40 +68,72 @@ object FormPesqUnidades: TFormPesqUnidades
       OnClick = BtSelecUnidadesClick
     end
   end
-  object DBGridPesqUni: TDBGrid
+  object Panel1: TPanel
     Left = 8
     Top = 87
     Width = 780
     Height = 413
-    DataSource = DmUnidades.dsPesqUnidades
     TabOrder = 1
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'Uni_id'
-        Title.Caption = 'Id'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Uni_Descricao'
-        Title.Caption = 'Descri'#231#227'o'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end>
+    object DBGridPesqUni: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 778
+      Height = 411
+      Align = alClient
+      BorderStyle = bsNone
+      DataSource = DmUnidades.dsPesqUnidades
+      DrawingStyle = gdsClassic
+      FixedColor = 7165253
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 7165253
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ParentFont = False
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      OnDrawColumnCell = DBGridPesqUniDrawColumnCell
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'Uni_id'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 7165253
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Title.Alignment = taCenter
+          Title.Caption = 'ID'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Width = 65
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Uni_Descricao'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 7165253
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Title.Alignment = taCenter
+          Title.Caption = 'Descri'#231#227'o'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end>
+    end
   end
 end

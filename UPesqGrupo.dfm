@@ -67,40 +67,61 @@ object FormPesqGrupo: TFormPesqGrupo
       OnClick = BtPesqGrupoClick
     end
   end
-  object DBGridPesqGrupo: TDBGrid
+  object Panel2: TPanel
     Left = 8
     Top = 95
     Width = 855
     Height = 447
-    DataSource = DmGrupo.dsPesqGrupoObj
     TabOrder = 1
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'Grup_id'
-        Title.Caption = 'Id'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Grup_Nome'
-        Title.Caption = 'Nome do grupo'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end>
+    object DBGridPesqGrupo: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 853
+      Height = 445
+      Align = alClient
+      BorderStyle = bsNone
+      DataSource = DmGrupo.dsPesqGrupoObj
+      DrawingStyle = gdsClassic
+      FixedColor = 7165253
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 7165253
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ParentFont = False
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      OnDrawColumnCell = DBGridPesqGrupoDrawColumnCell
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'Grup_id'
+          Title.Alignment = taCenter
+          Title.Caption = 'ID'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Grup_Nome'
+          Title.Alignment = taCenter
+          Title.Caption = 'Nome do grupo'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end>
+    end
   end
 end

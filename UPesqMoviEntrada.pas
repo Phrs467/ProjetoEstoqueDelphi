@@ -16,9 +16,13 @@ type
     BtPesqMoviEntrada: TButton;
     BtSelecMoviEntrada: TButton;
     DBGridPesqMoviEntrada: TDBGrid;
+    Panel1: TPanel;
     procedure RgPesqMoviEntradaClick(Sender: TObject);
     procedure BtPesqMoviEntradaClick(Sender: TObject);
     procedure BtSelecMoviEntradaClick(Sender: TObject);
+    procedure DBGridPesqMoviEntradaDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -28,6 +32,9 @@ type
     FrmNumNota  : Integer;
     FrmNomeForn   : String;
   end;
+
+type
+  TDBGridMoviEntrada = class(TDBGrid);
 
 var
   FormPesqMoviEntrada: TFormPesqMoviEntrada;
@@ -44,7 +51,6 @@ var
   sql : string;
 
 begin
-
   sql :=
   ' select ' +
   '  Mov.*  '+
@@ -108,6 +114,8 @@ begin
     end;
   end;
 
+  TDBGridMoviEntrada(DBGridPesqMoviEntrada).DefaultRowHeight := 30;
+  TDBGridMoviEntrada(DBGridPesqMoviEntrada).ClientHeight := (30 *   TDBGridMoviEntrada(DBGridPesqMoviEntrada).RowCount) +30;
 end;
 
 procedure TFormPesqMoviEntrada.BtSelecMoviEntradaClick(Sender: TObject);
@@ -123,6 +131,28 @@ begin
    end;
    Self.Close;
 
+end;
+
+procedure TFormPesqMoviEntrada.DBGridPesqMoviEntradaDrawColumnCell(
+  Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+  if odd(DBGridPesqMoviEntrada.DataSource.DataSet.RecNo) then
+    DBGridPesqMoviEntrada.Canvas.Brush.Color := $00E9E9E9
+  else
+    DBGridPesqMoviEntrada.Canvas.Brush.Color := clWhite;
+
+  if (gdSelected in State) then
+  begin
+    DBGridPesqMoviEntrada.Canvas.Brush.Color := clBlue;
+    DBGridPesqMoviEntrada.Canvas.Font.Color := clWhite;
+    DBGridPesqMoviEntrada.Canvas.Font.Style := [fsBold];
+  end;
+
+  DBGridPesqMoviEntrada.Canvas.FillRect(Rect);
+  DBGridPesqMoviEntrada.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+
+  DBGridPesqMoviEntrada.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
 end;
 
 procedure TFormPesqMoviEntrada.RgPesqMoviEntradaClick(Sender: TObject);
@@ -142,9 +172,7 @@ begin
       begin
         LblPesqMoviEntrada.Caption := 'Digite o nome do fornecedor';
       end;
-
   end;
-
 end;
 
 end.

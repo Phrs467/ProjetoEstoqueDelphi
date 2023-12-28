@@ -21,8 +21,6 @@ object FormPesqForn: TFormPesqForn
     Height = 89
     Align = alTop
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitWidth = 788
     object LblPesqForn: TLabel
       Left = 216
       Top = 16
@@ -48,7 +46,7 @@ object FormPesqForn: TFormPesqForn
       Left = 216
       Top = 35
       Width = 185
-      Height = 22
+      Height = 21
       TabOrder = 1
     end
     object BtPesqForn: TButton
@@ -85,9 +83,10 @@ object FormPesqForn: TFormPesqForn
       BorderStyle = bsNone
       Color = clWhite
       DataSource = DmFornecedor.dsPesqFornecedor
-      FixedColor = cl3DDkShadow
+      DrawingStyle = gdsClassic
+      FixedColor = 7165253
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowFrame
+      Font.Color = 7165253
       Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = [fsBold]
@@ -113,8 +112,8 @@ object FormPesqForn: TFormPesqForn
           Title.Caption = 'Id'
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
-          Title.Font.Height = -11
-          Title.Font.Name = 'Tahoma'
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
           Title.Font.Style = [fsBold]
           Visible = True
         end
@@ -126,12 +125,13 @@ object FormPesqForn: TFormPesqForn
           Font.Height = -12
           Font.Name = 'Arial'
           Font.Style = [fsBold]
+          ReadOnly = True
           Title.Alignment = taCenter
           Title.Caption = 'Nome Fornecedor'
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
-          Title.Font.Height = -11
-          Title.Font.Name = 'Tahoma'
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
           Title.Font.Style = [fsBold]
           Width = 537
           Visible = True

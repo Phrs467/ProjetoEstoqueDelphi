@@ -16,9 +16,12 @@ type
     BtPesqUni: TButton;
     DBGridPesqUni: TDBGrid;
     BtSelecUnidades: TButton;
+    Panel1: TPanel;
     procedure RgPesqUniClick(Sender: TObject);
     procedure BtPesqUniClick(Sender: TObject);
     procedure BtSelecUnidadesClick(Sender: TObject);
+    procedure DBGridPesqUniDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -26,6 +29,9 @@ type
     FrmIdUnidades : Integer;
     FrmDescUnidades : string;
   end;
+
+type
+  TDBGridUnidades = class(TDBGrid);
 
 var
   FormPesqUnidades: TFormPesqUnidades;
@@ -83,6 +89,9 @@ sql :=
       DmUnidades.qPesqUnidades.Open;
     end;
   end;
+
+  TDBGridUnidades(DBGridPesqUni).DefaultRowHeight := 30;
+  TDBGridUnidades(DBGridPesqUni).ClientHeight := (30 *   TDBGridUnidades(DBGridPesqUni).RowCount) +30;
 end;
 
 procedure TFormPesqUnidades.BtSelecUnidadesClick(Sender: TObject);
@@ -95,6 +104,27 @@ begin
      FrmDescUnidades := DmUnidades.qPesqUnidadesUni_Descricao.AsString;
    end;
    Self.Close;
+end;
+
+procedure TFormPesqUnidades.DBGridPesqUniDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if odd(DBGridPesqUni.DataSource.DataSet.RecNo) then
+    DBGridPesqUni.Canvas.Brush.Color := $00E9E9E9
+  else
+    DBGridPesqUni.Canvas.Brush.Color := clWhite;
+
+  if (gdSelected in State) then
+  begin
+    DBGridPesqUni.Canvas.Brush.Color := clBlue;
+    DBGridPesqUni.Canvas.Font.Color := clWhite;
+    DBGridPesqUni.Canvas.Font.Style := [fsBold];
+  end;
+
+  DBGridPesqUni.Canvas.FillRect(Rect);
+  DBGridPesqUni.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+
+  DBGridPesqUni.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
 end;
 
 procedure TFormPesqUnidades.RgPesqUniClick(Sender: TObject);

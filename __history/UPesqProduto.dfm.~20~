@@ -1,0 +1,181 @@
+object FormPesqProdutos: TFormPesqProdutos
+  Left = 0
+  Top = 0
+  Caption = 'Pesquisar Produtos'
+  ClientHeight = 606
+  ClientWidth = 871
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PanelPesqProduto: TPanel
+    Left = 0
+    Top = 0
+    Width = 871
+    Height = 81
+    Align = alTop
+    TabOrder = 0
+    object LblPesqProd: TLabel
+      Left = 240
+      Top = 16
+      Width = 80
+      Height = 13
+      Caption = 'Digite seu nome:'
+    end
+    object RgPesqProduto: TRadioGroup
+      Left = 8
+      Top = 8
+      Width = 209
+      Height = 49
+      Caption = 'Pesquisar por:'
+      Columns = 2
+      ItemIndex = 0
+      Items.Strings = (
+        'Nome'
+        'Id')
+      TabOrder = 0
+      OnClick = RgPesqProdutoClick
+    end
+    object EdtPesqProd: TEdit
+      Left = 240
+      Top = 35
+      Width = 121
+      Height = 21
+      TabOrder = 1
+    end
+    object BtPesquisarProd: TButton
+      Left = 384
+      Top = 29
+      Width = 75
+      Height = 25
+      Caption = 'Pesquisar'
+      TabOrder = 2
+      OnClick = BtPesquisarProdClick
+    end
+    object BtSelecionarProd: TButton
+      Left = 465
+      Top = 29
+      Width = 75
+      Height = 25
+      Caption = 'Selecionar'
+      TabOrder = 3
+      OnClick = BtSelecionarProdClick
+    end
+  end
+  object DBGrid1: TDBGrid
+    Left = 8
+    Top = 96
+    Width = 855
+    Height = 497
+    DataSource = DmProdutos.DsPesqProd
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'Prod_id'
+        Title.Caption = 'Id'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 59
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Prod_Nome'
+        Title.Caption = 'Nome Produto'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 174
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Uni_id'
+        Title.Caption = 'Id Descri'#231#227'o'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 79
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Uni_Descricao'
+        Title.Caption = 'Descri'#231#227'o do produto'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 131
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Grup_id'
+        Title.Caption = 'Id Grupo'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 72
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Grup_Nome'
+        Title.Caption = 'Nome Grupo'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 107
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Marc_id'
+        Title.Caption = 'Id da Marca'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 74
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Marc_Nome'
+        Title.Caption = 'Nome Marca'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 118
+        Visible = True
+      end>
+  end
+end
